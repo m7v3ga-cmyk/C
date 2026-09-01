@@ -83,7 +83,7 @@ url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fi
 .check label{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:11px 12px;border-radius:12px;color:#d4d4d6;font-size:13px;cursor:pointer}
 .check label i{color:var(--gold2)}
 .check input:checked+label{border-color:var(--gold);background:rgba(215,170,82,.08);color:white}
-.calc-result{margin-top:20px;padding:20px;border-radius:18px;background:#0a0b0e;border:1px solid rgba(215,170,82,.2);display:block} /* Always visible */
+.calc-result{margin-top:20px;padding:20px;border-radius:18px;background:#0a0b0e;border:1px solid rgba(215,170,82,.2);display:block}
 .result-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .result-price{font-size:30px;font-weight:900;color:var(--gold2)}
 .result-details{font-size:12px;color:#aeb0b5;margin-top:7px}
@@ -201,7 +201,6 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
         <div class="field"><label>منطقة التسليم</label><input id="to" placeholder="مثال: التجمع"></div>
         <div class="field"><label>عدد الغرف</label><input id="rooms" type="number" min="0" value="0"></div>
         <div class="field"><label>عدد أجهزة التكييف</label><input id="acs" type="number" min="0" value="0"></div>
-        <!-- حقلان جديدان للأدوار -->
         <div class="field"><label>عدد الأدوار (نازل)</label><input id="floorsDown" type="number" min="0" value="0"></div>
         <div class="field"><label>عدد الأدوار (طالع)</label><input id="floorsUp" type="number" min="0" value="0"></div>
       </div>
@@ -215,13 +214,13 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
         </div>
       </div>
       
-      <!-- منطقة عرض السعر التقديري -->
+      <!-- عرض السعر التقديري للعميل (يشمل الأرباح) -->
       <div class="calc-result" id="priceDisplay">
         <div class="result-top">
-          <span class="result-price" id="estimatedPrice">0 ج.م</span>
+          <span class="result-price" id="estimatedPrice">5500 ج.م</span>
           <span style="font-size:13px;color:var(--muted)">تقديري</span>
         </div>
-        <div class="result-details" id="priceDetails">أدخل البيانات لحساب التكلفة التقريبية</div>
+        <div class="result-details" id="priceDetails">السعر يشمل جميع الخدمات</div>
       </div>
 
       <button class="btn btn-gold" style="width:100%" onclick="sendCustomerOrder()">
@@ -231,7 +230,7 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
     <div class="calc-side reveal">
       <div class="badge">الإشراف 515</div>
       <h3>سيب علينا الحسبة والتنظيم.</h3>
-      <p>لن تظهر للعميل أي تكاليف تشغيل أو هامش ربح. يتم التعامل مع تفاصيل التسعير داخليًا بواسطة الإدارة.</p>
+      <p>نقدم لك سعرًا شاملًا لكل التفاصيل، دون تكاليف مخفية.</p>
       <div class="calc-points">
         <div>✓ سيارة نقل وعمالة متخصصة</div>
         <div>✓ فك وتركيب حسب الطلب</div>
@@ -322,42 +321,90 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
 <div class="toast" id="toast"></div>
 
 <script>
-// دالة حساب السعر التقديري
-function updatePrice() {
+// الأسعار الثابتة
+const PRICE_CAR = 2500;
+const PRICE_LABOR = 2000;
+const PRICE_CRANE = 2000;
+const PRICE_ASSEMBLY_PER_ROOM = 350;
+const PRICE_AC_PER_UNIT = 700;
+const EXTRA_FLOOR_PRICE = 150;
+const FLOOR_THRESHOLD = 5;
+const COMPANY_PROFIT = 1000; // أرباح الشركة (مخفية عن العميل)
+
+function calculateTotal() {
   const rooms = Number(document.getElementById('rooms').value) || 0;
   const acs = Number(document.getElementById('acs').value) || 0;
   const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
   const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
+  const crane = document.getElementById('crane').checked;
+  const assembly = document.getElementById('assembly').checked;
+  const acService = document.getElementById('ac').checked;
 
-  // سعر أساسي: 500 ج.م لكل غرفة + 200 ج.م لكل تكييف (مثال)
-  let base = rooms * 500 + acs * 200;
-  // رسوم إضافية للأدوار: 150 ج.م لكل دور يزيد عن 5 في أي اتجاه
-  let extra = 0;
-  if (floorsDown > 5) extra += (floorsDown - 5) * 150;
-  if (floorsUp > 5) extra += (floorsUp - 5) * 150;
-  const total = base + extra;
+  // الأساسي: عربية + عمال
+  let total = PRICE_CAR + PRICE_LABOR;
+  let details = `أساسي: عربية ${PRICE_CAR} + عمال ${PRICE_LABOR}`;
 
-  const priceEl = document.getElementById('estimatedPrice');
-  const detailsEl = document.getElementById('priceDetails');
-  if (total === 0) {
-    priceEl.textContent = '0 ج.م';
-    detailsEl.textContent = 'أدخل البيانات لحساب التكلفة التقريبية';
-  } else {
-    priceEl.textContent = total + ' ج.م';
-    let detailParts = [];
-    if (rooms > 0) detailParts.push(rooms + ' غرفة');
-    if (acs > 0) detailParts.push(acs + ' تكييف');
-    if (extra > 0) detailParts.push('رسوم أدوار: ' + extra + ' ج.م');
-    detailsEl.textContent = detailParts.join(' • ') + (extra > 0 ? ' (فوق 5 أدوار)' : '');
+  // إضافات
+  let extras = [];
+  if (crane) {
+    total += PRICE_CRANE;
+    extras.push(`ونش ${PRICE_CRANE}`);
   }
+  if (assembly && rooms > 0) {
+    const cost = rooms * PRICE_ASSEMBLY_PER_ROOM;
+    total += cost;
+    extras.push(`فك/تركيب ${rooms} غرفة × ${PRICE_ASSEMBLY_PER_ROOM} = ${cost}`);
+  } else if (assembly) {
+    extras.push(`فك/تركيب (0 غرفة)`);
+  }
+  if (acService && acs > 0) {
+    const cost = acs * PRICE_AC_PER_UNIT;
+    total += cost;
+    extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`);
+  } else if (acService) {
+    extras.push(`تكييف (0 جهاز)`);
+  }
+
+  // رسوم الأدوار الإضافية
+  let extraFloors = 0;
+  if (floorsDown > FLOOR_THRESHOLD) extraFloors += (floorsDown - FLOOR_THRESHOLD);
+  if (floorsUp > FLOOR_THRESHOLD) extraFloors += (floorsUp - FLOOR_THRESHOLD);
+  if (extraFloors > 0) {
+    const floorCost = extraFloors * EXTRA_FLOOR_PRICE;
+    total += floorCost;
+    extras.push(`رسوم أدوار (فوق ${FLOOR_THRESHOLD}) ${extraFloors} × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
+  }
+
+  // إضافة أرباح الشركة (بدون عرضها)
+  total += COMPANY_PROFIT;
+
+  // بناء نص التفاصيل للعرض (بدون ذكر الأرباح)
+  let detailText = details;
+  if (extras.length) {
+    detailText += ' + ' + extras.join(' + ');
+  }
+  // نضيف جملة عامة بدون ذكر الأرباح
+  detailText += ' (شامل جميع الخدمات)';
+
+  return { total, detailText };
 }
 
-// ربط التحديث بتغيير الحقول
+function updatePrice() {
+  const { total, detailText } = calculateTotal();
+  document.getElementById('estimatedPrice').textContent = total + ' ج.م';
+  document.getElementById('priceDetails').textContent = detailText;
+}
+
+// ربط التحديث بجميع الحقول والمربعات
 document.addEventListener('DOMContentLoaded', function() {
   const fields = ['rooms', 'acs', 'floorsDown', 'floorsUp'];
   fields.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('input', updatePrice);
+  });
+  ['crane', 'assembly', 'ac', 'electric'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', updatePrice);
   });
   updatePrice();
 });
@@ -381,6 +428,9 @@ function sendCustomerOrder(){
   if(document.getElementById('ac').checked) services.push('تكييف');
   if(document.getElementById('electric').checked) services.push('كهرباء');
 
+  // قراءة السعر المعروض (الذي يتضمن الأرباح)
+  const priceText = document.getElementById('estimatedPrice').textContent;
+
   const msg =
 `السلام عليكم، أريد طلب نقل أثاث من الإشراف 515%0A%0A` +
 `منطقة الاستلام: ${encodeURIComponent(from)}%0A` +
@@ -389,7 +439,8 @@ function sendCustomerOrder(){
 `عدد أجهزة التكييف: ${acs}%0A` +
 `عدد الأدوار نازل: ${floorsDown}%0A` +
 `عدد الأدوار طالع: ${floorsUp}%0A` +
-`الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A%0A` +
+`الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
+`السعر التقديري: ${encodeURIComponent(priceText)}%0A%0A` +
 `برجاء التواصل معي لتأكيد السعر والموعد.`;
 
   window.open('https://wa.me/201116870575?text='+msg,'_blank');
