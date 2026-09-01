@@ -83,8 +83,6 @@ url("FB_IMG_1788305116589_7969540872088037072.webp") center/cover}
 .check label{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:11px 12px;border-radius:12px;color:#d4d4d6;font-size:13px;cursor:pointer}
 .check label i{color:var(--gold2)}
 .check input:checked+label{border-color:var(--gold);background:rgba(215,170,82,.08);color:white}
-.check input:checked+label .discount-badge{display:inline-block}
-.discount-badge{display:none;background:var(--gold2);color:#111;font-size:9px;padding:2px 8px;border-radius:999px;font-weight:900;margin-right:auto}
 
 /* قسم الخصم */
 .discount-section{margin:18px 0;padding:16px;background:rgba(215,170,82,.06);border:1px solid rgba(215,170,82,.2);border-radius:16px}
@@ -426,7 +424,7 @@ const PRICE_CRANE = 2000;
 const PRICE_ASSEMBLY_PER_ROOM = 350;
 const PRICE_AC_PER_UNIT = 700;
 const EXTRA_FLOOR_PRICE = 150;
-const FLOOR_THRESHOLD = 5;
+const FLOOR_THRESHOLD = 5; // الحد الأقصى للأدوار المجانية (إجمالي)
 const COMPANY_PROFIT = 1000;
 
 // أسماء الخصومات
@@ -478,15 +476,17 @@ function calculateTotal() {
     extras.push(`تكييف (0 جهاز)`);
   }
 
-  // رسوم الأدوار الإضافية
+  // ====== تصحيح حساب الأدوار ======
+  // إجمالي الأدوار (نازل + طالع)
+  const totalFloors = floorsDown + floorsUp;
   let extraFloors = 0;
-  if (floorsDown > FLOOR_THRESHOLD) extraFloors += (floorsDown - FLOOR_THRESHOLD);
-  if (floorsUp > FLOOR_THRESHOLD) extraFloors += (floorsUp - FLOOR_THRESHOLD);
-  if (extraFloors > 0) {
+  if (totalFloors > FLOOR_THRESHOLD) {
+    extraFloors = totalFloors - FLOOR_THRESHOLD;
     const floorCost = extraFloors * EXTRA_FLOOR_PRICE;
     total += floorCost;
-    extras.push(`رسوم أدوار (فوق ${FLOOR_THRESHOLD}) ${extraFloors} × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
+    extras.push(`رسوم أدوار إضافية (${extraFloors} دور فوق الـ ${FLOOR_THRESHOLD}) × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
   }
+  // =================================
 
   // حفظ السعر قبل الخصم
   const originalTotal = total;
@@ -598,6 +598,7 @@ function sendCustomerOrder(){
 `عدد أجهزة التكييف: ${acs}%0A` +
 `عدد الأدوار نازل: ${floorsDown}%0A` +
 `عدد الأدوار طالع: ${floorsUp}%0A` +
+`إجمالي الأدوار: ${floorsDown + floorsUp}%0A` +
 `الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
 `الخصم المختار: ${encodeURIComponent(discountText)}%0A` +
 `السعر التقديري: ${encodeURIComponent(priceText)}%0A%0A` +
