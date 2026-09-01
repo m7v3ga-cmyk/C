@@ -188,37 +188,74 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
 
 <section class="section" id="calculator">
 <div class="container">
-  <div class="section-head reveal"><div><div class="badge">حاسبة تقديرية</div><h2>اعرف التكلفة قبل ما تطلب.</h2></div><p>اختار تفاصيل النقل وسنحسب لك تقديراً مبدئياً. السعر النهائي قد يتغير حسب المعاينة والتفاصيل الفعلية.</p></div>
+  <div class="section-head reveal">
+    <div><div class="badge">حاسبة الإدارة</div><h2>سعّر الأوردر واحسب ربحك.</h2></div>
+    <p>الحاسبة مبنية على تكاليف التشغيل التي حددتها: السيارة، العمال، الونش، النجار، التكييف، ونسبة الشركة، مع تطبيق الخصم على سعر الأوردر.</p>
+  </div>
+
   <div class="calc-wrap">
     <div class="form-card reveal">
-      <h3>بيانات النقل</h3><div class="hint">املأ البيانات في أقل من دقيقة</div>
+      <h3>بيانات الأوردر</h3>
+      <div class="hint">أدخل سعر البيع الأساسي، ثم اختار العرض والخدمات المطلوبة.</div>
+
       <div class="form-grid">
-        <div class="field"><label>منطقة الاستلام</label><input id="from" placeholder="مثال: مدينة نصر"></div>
-        <div class="field"><label>منطقة التسليم</label><input id="to" placeholder="مثال: التجمع"></div>
-        <div class="field"><label>حجم الأثاث</label><select id="size"><option value="0">اختار الحجم</option><option value="800">غرفة / نقل خفيف</option><option value="1400">شقة صغيرة</option><option value="2200">شقة متوسطة</option><option value="3200">شقة كبيرة / فيلا</option></select></div>
-        <div class="field"><label>تاريخ النقل</label><input id="date" type="date"></div>
-      </div>
-      <div class="services">
-        <div class="services-title">الخدمات الإضافية</div>
-        <div class="checks">
-          <div class="check"><input type="checkbox" id="assembly" data-price="500"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench"></i> فك وتركيب</label></div>
-          <div class="check"><input type="checkbox" id="ac" data-price="350"><label for="ac"><i class="fa-solid fa-snowflake"></i> تكييف</label></div>
-          <div class="check"><input type="checkbox" id="electric" data-price="250"><label for="electric"><i class="fa-solid fa-bolt"></i> كهرباء</label></div>
-          <div class="check"><input type="checkbox" id="packing" data-price="450"><label for="packing"><i class="fa-solid fa-box"></i> تغليف إضافي</label></div>
+        <div class="field"><label>سعر الأوردر الأساسي</label><input id="basePrice" type="number" min="0" placeholder="مثال: 15000"></div>
+        <div class="field"><label>عدد الغرف</label><input id="rooms" type="number" min="0" value="0"></div>
+        <div class="field"><label>عدد أجهزة التكييف</label><input id="acs" type="number" min="0" value="0"></div>
+        <div class="field"><label>العرض / الخصم</label>
+          <select id="discount">
+            <option value="0">بدون خصم</option>
+            <option value="25">العروسة — 25%</option>
+            <option value="15">المنقولات بعد الطلاق — 15%</option>
+            <option value="10">العرض المحدود — 10%</option>
+          </select>
         </div>
       </div>
-      <button class="btn btn-gold" style="width:100%" onclick="calculate()"><i class="fa-solid fa-wand-magic-sparkles"></i> احسب السعر واطلب الآن</button>
+
+      <div class="services">
+        <div class="services-title">تكاليف التشغيل الإضافية</div>
+        <div class="checks">
+          <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box"></i> ونش — 2,000 ج</label></div>
+        </div>
+      </div>
+
+      <button class="btn btn-gold" style="width:100%" onclick="calculateBusiness()">
+        <i class="fa-solid fa-calculator"></i> احسب الأوردر والربح
+      </button>
+
       <div class="calc-result" id="result">
-        <div class="result-top"><div><div class="muted" style="font-size:11px">التقدير المبدئي</div><div class="result-price" id="price">0 جنيه</div></div><i class="fa-solid fa-circle-check gold" style="font-size:30px"></i></div>
-        <div class="result-details" id="details"></div>
-        <button class="btn btn-dark" style="width:100%;margin-top:14px" onclick="sendWhatsApp()"><i class="fa-brands fa-whatsapp"></i> إرسال الطلب على واتساب</button>
+        <div class="result-top">
+          <div>
+            <div class="muted" style="font-size:11px">السعر النهائي بعد الخصم</div>
+            <div class="result-price" id="price">0 جنيه</div>
+          </div>
+          <i class="fa-solid fa-circle-check gold" style="font-size:30px"></i>
+        </div>
+
+        <div id="businessBreakdown" style="margin-top:18px;display:grid;gap:8px;font-size:13px"></div>
+
+        <div style="margin-top:16px;padding-top:15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center">
+          <span>صافي الربح</span>
+          <strong id="profit" class="gold" style="font-size:24px">0 جنيه</strong>
+        </div>
+
+        <button class="btn btn-dark" style="width:100%;margin-top:14px" onclick="sendBusinessWhatsApp()">
+          <i class="fa-brands fa-whatsapp"></i> إرسال تفاصيل الأوردر على واتساب
+        </button>
       </div>
     </div>
+
     <div class="calc-side reveal">
-      <div class="badge">مهم</div><h3>السعر الحقيقي بيتحدد حسب تفاصيل الشقة والنقل.</h3>
-      <p>الحاسبة هنا لتكوين تصور سريع فقط. فريق الإشراف يقدر يراجع طلبك ويؤكد التفاصيل والسعر قبل التنفيذ.</p>
+      <div class="badge">معادلة التسعير</div>
+      <h3>الخصم من سعر الأوردر أولاً، ونسبة الشركة من المبلغ النهائي.</h3>
+      <p>السيارة والعمال تكاليف أساسية، والونش والنجار والتكييف تُضاف حسب الاستخدام. بعد الخصم تُحسب نسبة الشركة 10% من السعر الذي سيدفعه العميل.</p>
       <div class="calc-points">
-        <div>✓ نقل + فك وتركيب حسب الطلب</div><div>✓ تكييف وكهرباء عند الحاجة</div><div>✓ متابعة من المشرف</div>
+        <div>✓ السيارة: 2,500 جنيه</div>
+        <div>✓ العمال: 2,000 جنيه</div>
+        <div>✓ الونش: 2,000 جنيه عند اختياره</div>
+        <div>✓ النجار: 300 جنيه لكل غرفة</div>
+        <div>✓ التكييف: 700 جنيه لكل جهاز</div>
+        <div>✓ الشركة: 10% من السعر النهائي بعد الخصم</div>
       </div>
     </div>
   </div>
@@ -303,28 +340,85 @@ footer{padding:45px 0 100px;border-top:1px solid var(--line);color:#85878c;font-
 <div class="toast" id="toast"></div>
 
 <script>
-let lastOrder = {};
+let lastBusinessOrder = {};
 
-function calculate(){
-  const from=document.getElementById('from').value.trim();
-  const to=document.getElementById('to').value.trim();
-  const size=Number(document.getElementById('size').value);
-  const date=document.getElementById('date').value;
-  if(!from||!to||!size){toast('اكتب منطقتي الاستلام والتسليم واختار حجم الأثاث أولاً');return}
-  let extra=0, services=[];
-  document.querySelectorAll('.check input:checked').forEach(x=>{extra+=Number(x.dataset.price);services.push(x.nextElementSibling.innerText.trim())});
-  const total=size+extra;
-  lastOrder={from,to,size,date,services,total};
-  document.getElementById('price').textContent=total.toLocaleString('ar-EG')+' جنيه';
-  document.getElementById('details').textContent=`من ${from} إلى ${to}${date?' • موعد مقترح: '+date:''}${services.length?' • '+services.join('، '):''}`;
+function calculateBusiness(){
+  const base = Number(document.getElementById('basePrice').value);
+  const rooms = Math.max(0, Number(document.getElementById('rooms').value) || 0);
+  const acs = Math.max(0, Number(document.getElementById('acs').value) || 0);
+  const discountRate = Number(document.getElementById('discount').value);
+  const crane = document.getElementById('crane').checked;
+
+  if(base <= 0){
+    toast('اكتب سعر الأوردر الأساسي أولاً');
+    return;
+  }
+
+  // تكاليف التشغيل حسب التسعير الذي حدده صاحب الشركة.
+  const car = 2500;
+  const workers = 2000;
+  const craneCost = crane ? 2000 : 0;
+  const carpenter = rooms * 300;
+  const acCost = acs * 700;
+
+  const discountAmount = base * (discountRate / 100);
+  const finalPrice = base - discountAmount;
+
+  // نسبة الشركة 10% من السعر النهائي بعد الخصم.
+  const companyFee = finalPrice * 0.10;
+  const operatingCost = car + workers + craneCost + carpenter + acCost;
+  const totalCost = operatingCost + companyFee;
+  const profit = finalPrice - totalCost;
+
+  lastBusinessOrder = {
+    base, rooms, acs, discountRate, discountAmount, finalPrice,
+    car, workers, craneCost, carpenter, acCost, operatingCost, companyFee, totalCost, profit
+  };
+
+  document.getElementById('price').textContent = finalPrice.toLocaleString('ar-EG') + ' جنيه';
+  document.getElementById('profit').textContent = profit.toLocaleString('ar-EG') + ' جنيه';
+
+  document.getElementById('businessBreakdown').innerHTML = `
+    <div style="display:flex;justify-content:space-between"><span>السعر الأساسي</span><strong>${base.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between;color:#f0cc7b"><span>الخصم (${discountRate}%)</span><strong>− ${discountAmount.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>السيارة</span><strong>${car.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>العمال</span><strong>${workers.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>الونش</span><strong>${craneCost.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>النجار (${rooms} غرف)</span><strong>${carpenter.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>التكييف (${acs} أجهزة)</span><strong>${acCost.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between"><span>الشركة (10%)</span><strong>${companyFee.toLocaleString('ar-EG')} ج</strong></div>
+    <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--line)"><span>إجمالي التكلفة</span><strong>${totalCost.toLocaleString('ar-EG')} ج</strong></div>
+  `;
   document.getElementById('result').classList.add('show');
-  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function sendWhatsApp(){
-  if(!lastOrder.total){toast('احسب السعر أولاً');return}
-  const msg=`السلام عليكم، أريد طلب نقل أثاث من الإشراف 515%0A%0Aمن: ${encodeURIComponent(lastOrder.from)}%0Aإلى: ${encodeURIComponent(lastOrder.to)}%0Aالحجم: ${encodeURIComponent(document.getElementById('size').selectedOptions[0].text)}%0Aالتاريخ: ${encodeURIComponent(lastOrder.date||'لم يحدد')}%0Aالخدمات: ${encodeURIComponent(lastOrder.services.join('، ')||'لا يوجد')}%0Aالتقدير المبدئي: ${lastOrder.total} جنيه%0A%0Aأرجو تأكيد السعر والموعد.`;
+
+function sendBusinessWhatsApp(){
+  if(!lastBusinessOrder.finalPrice){
+    toast('احسب الأوردر أولاً');
+    return;
+  }
+
+  const o = lastBusinessOrder;
+  const msg =
+`السلام عليكم، تفاصيل أوردر الإشراف 515%0A%0A` +
+`السعر الأساسي: ${o.base} جنيه%0A` +
+`الخصم: ${o.discountRate}% = ${o.discountAmount} جنيه%0A` +
+`السعر النهائي للعميل: ${o.finalPrice} جنيه%0A%0A` +
+`عدد الغرف: ${o.rooms}%0A` +
+`عدد أجهزة التكييف: ${o.acs}%0A` +
+`الونش: ${o.craneCost ? 'مطلوب' : 'غير مطلوب'}%0A%0A` +
+`تكلفة السيارة: ${o.car} جنيه%0A` +
+`تكلفة العمال: ${o.workers} جنيه%0A` +
+`تكلفة الونش: ${o.craneCost} جنيه%0A` +
+`تكلفة النجار: ${o.carpenter} جنيه%0A` +
+`تكلفة التكييف: ${o.acCost} جنيه%0A` +
+`نسبة الشركة: ${o.companyFee.toFixed(2)} جنيه%0A` +
+`إجمالي التكلفة: ${o.totalCost.toFixed(2)} جنيه%0A` +
+`صافي الربح: ${o.profit.toFixed(2)} جنيه`;
+
   window.open('https://wa.me/201116870575?text='+msg,'_blank');
 }
+
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600)}
 function offerTimer(){
   const key='ishraf515_offer_end_v2';
