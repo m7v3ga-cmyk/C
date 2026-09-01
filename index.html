@@ -13,20 +13,21 @@
                    ROOT – الأسود والذهبي الأنيق
                    ============================================================ */
         :root {
-            --gold: #c9a86c;
-            --gold-light: #e3cfa3;
-            --gold-dark: #b8944a;
-            --gold-gradient: linear-gradient(135deg, #c9a86c, #e3cfa3, #c9a86c);
-            --bg-dark: #0b0d12;
-            --bg-card: #14181f;
-            --text-light: #f0ede8;
-            --text-muted: #a8b2c9;
-            --radius-lg: 48px;
-            --radius-md: 32px;
-            --radius-sm: 20px;
-            --shadow-card: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-            --shadow-gold: 0 12px 40px rgba(201, 168, 108, 0.2);
-            --transition: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --gold: #d4af37;
+            --gold-light: #f3e5b0;
+            --gold-dark: #a6842e;
+            --gold-glow: rgba(212, 175, 55, 0.3);
+            --gold-gradient: linear-gradient(135deg, #d4af37, #f3e5b0, #d4af37);
+            --bg-deep: #080a0e;
+            --bg-card: rgba(18, 22, 32, 0.65);
+            --text-light: #f5f0eb;
+            --text-muted: #aab3c9;
+            --radius-xl: 60px 60px 40px 40px;
+            --radius-lg: 32px;
+            --radius-md: 24px;
+            --shadow-heavy: 0 40px 80px rgba(0, 0, 0, 0.8);
+            --shadow-gold: 0 20px 50px rgba(212, 175, 55, 0.15);
+            --transition-lux: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         /* ============================================================
@@ -40,67 +41,69 @@
 
         body {
             font-family: 'Cairo', 'Segoe UI', sans-serif;
-            background: var(--bg-dark);
+            background: var(--bg-deep);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 24px;
-            background-image: radial-gradient(ellipse at 30% 20%, #1a1e26 0%, #07090e 80%);
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* خلفية ذهبية ناعمة متحركة */
+        /* ===== الخلفية الإبداعية: شبكة نقطية + توهج ===== */
         body::before {
             content: '';
             position: fixed;
-            top: -30%;
-            left: -30%;
-            width: 160%;
-            height: 160%;
-            background: radial-gradient(circle at 50% 30%, rgba(201, 168, 108, 0.04) 0%, transparent 60%);
-            animation: ambientGold 30s infinite alternate ease-in-out;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.02) 0%, transparent 70%);
+            background-size: 100% 100%;
             z-index: 0;
             pointer-events: none;
         }
 
-        @keyframes ambientGold {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(4%, 3%) scale(1.08);
-            }
-            100% {
-                transform: translate(-3%, -2%) scale(0.96);
-            }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.08) 1px, transparent 0);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* ============================================================
-                   CARD الرئيسي
+                   CARD الرئيسي – زجاجي فاخر
                    ============================================================ */
         .card {
             position: relative;
             z-index: 2;
-            max-width: 720px;
+            max-width: 780px;
             width: 100%;
             background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-card), 0 0 0 1px rgba(201, 168, 108, 0.08) inset;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-heavy), 0 0 0 1px rgba(212, 175, 55, 0.12) inset;
             overflow: hidden;
-            animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            backdrop-filter: blur(2px);
-            transition: transform 0.4s ease;
+            animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            transition: transform 0.6s ease;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px) scale(1.003);
         }
 
         @keyframes fadeUp {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.98);
+                transform: translateY(50px) scale(0.96);
             }
             100% {
                 opacity: 1;
@@ -109,26 +112,49 @@
         }
 
         /* ============================================================
-                   HEADER – شعار مع truck متحرك
+                   HEADER – شعار فاخر مع شريط ذهبي متحرك
                    ============================================================ */
         .header {
-            background: linear-gradient(145deg, #10141c, #1a212b);
-            padding: 32px 28px 24px;
+            background: linear-gradient(145deg, #0e121b, #1a1f2b);
+            padding: 36px 28px 26px;
             text-align: center;
             position: relative;
-            border-bottom: 2px solid rgba(201, 168, 108, 0.15);
+            border-bottom: 2px solid transparent;
+            border-image: var(--gold-gradient) 1;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05), transparent 60%);
+            animation: ambientGold 12s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes ambientGold {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(5%, 5%) scale(1.2);
+            }
         }
 
         .header::after {
             content: '';
             position: absolute;
             bottom: -2px;
-            left: 10%;
-            right: 10%;
+            left: 5%;
+            right: 5%;
             height: 2px;
             background: var(--gold-gradient);
-            background-size: 200% 100%;
-            animation: shimmerBorder 6s ease-in-out infinite;
+            background-size: 300% 100%;
+            animation: shimmerBorder 5s ease-in-out infinite;
             border-radius: 4px;
         }
 
@@ -145,46 +171,49 @@
         .logo-wrapper {
             display: inline-block;
             position: relative;
-            padding: 10px;
+            padding: 14px;
             border-radius: 50%;
-            background: rgba(201, 168, 108, 0.06);
-            box-shadow: 0 0 50px rgba(201, 168, 108, 0.06);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.05);
         }
 
         .moving-truck {
             display: inline-block;
-            font-size: 3.4rem;
+            font-size: 3.8rem;
             color: var(--gold);
-            filter: drop-shadow(0 6px 24px rgba(201, 168, 108, 0.3));
-            animation: truckDrive 5s ease-in-out infinite;
+            filter: drop-shadow(0 8px 30px rgba(212, 175, 55, 0.3));
+            animation: truckLux 5s ease-in-out infinite;
             will-change: transform;
         }
 
-        @keyframes truckDrive {
+        @keyframes truckLux {
             0% {
-                transform: translateX(-18px) scale(1);
+                transform: translateX(-20px) scale(1) rotate(-2deg);
             }
             25% {
-                transform: translateX(0px) scale(1.06) rotate(-2deg);
+                transform: translateX(0px) scale(1.08) rotate(0deg);
             }
             50% {
-                transform: translateX(18px) scale(1) rotate(2deg);
+                transform: translateX(20px) scale(1) rotate(2deg);
             }
             75% {
-                transform: translateX(0px) scale(1.06) rotate(-2deg);
+                transform: translateX(0px) scale(1.08) rotate(0deg);
             }
             100% {
-                transform: translateX(-18px) scale(1);
+                transform: translateX(-20px) scale(1) rotate(-2deg);
             }
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            color: #f5efe6;
-            letter-spacing: 3px;
+            color: #fff;
+            letter-spacing: 6px;
             line-height: 1.2;
-            margin-top: 4px;
+            margin-top: 6px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .header h1 span {
@@ -192,40 +221,46 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: none;
         }
 
         .header .subtitle {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 300;
-            color: #b6c3db;
-            letter-spacing: 2px;
+            color: var(--text-muted);
+            letter-spacing: 4px;
             margin-top: 4px;
-            padding-top: 8px;
+            padding-top: 12px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            z-index: 1;
         }
 
         .header .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(201, 168, 108, 0.10);
-            border: 1px solid rgba(201, 168, 108, 0.2);
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             color: var(--gold-light);
-            padding: 6px 22px;
+            padding: 8px 28px;
             border-radius: 60px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 12px;
-            backdrop-filter: blur(4px);
+            letter-spacing: 2px;
+            margin-top: 16px;
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.05);
         }
 
         .badge i {
             color: var(--gold);
-            animation: starSpin 8s linear infinite;
+            animation: crownSpin 10s linear infinite;
         }
 
-        @keyframes starSpin {
+        @keyframes crownSpin {
             0% {
                 transform: rotate(0deg);
             }
@@ -238,198 +273,317 @@
                    CONTENT
                    ============================================================ */
         .content {
-            padding: 28px 24px 16px;
+            padding: 32px 28px 20px;
         }
 
-        /* ===== وصف الخدمة ===== */
+        /* ===== وصف الخدمة بتأثير جانبي ===== */
         .service-description {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(201, 168, 108, 0.10);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            border-right: 4px solid var(--gold);
             border-radius: var(--radius-md);
-            padding: 18px 22px;
-            margin-bottom: 28px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
             position: relative;
-            transition: border-color 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.02);
         }
 
         .service-description:hover {
-            border-color: rgba(201, 168, 108, 0.25);
-        }
-
-        .service-description::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gold-gradient);
-            border-radius: 0 4px 4px 0;
-            opacity: 0.6;
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.04), inset 0 0 40px rgba(212, 175, 55, 0.02);
         }
 
         .desc-title {
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: 0.95rem;
+            font-weight: 800;
             color: var(--text-light);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 6px;
         }
 
         .desc-title i {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
         }
 
         .service-description p {
             font-size: 0.95rem;
             font-weight: 400;
             color: var(--text-muted);
-            line-height: 1.8;
+            line-height: 1.9;
             padding-right: 4px;
         }
 
         .highlight {
             color: var(--gold);
             font-weight: 700;
+            position: relative;
         }
 
-        /* ===== قسم تواصل بنا – المهندسون ===== */
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+            opacity: 0.4;
+        }
+
+        /* ============================================================
+                   قسم تواصل بنا – بطاقات المهندسين الإبداعية
+                   ============================================================ */
         .contact-section {
-            margin-top: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .section-head {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 22px;
+            gap: 18px;
+            margin-bottom: 28px;
         }
 
         .section-head .line {
             flex: 1;
             height: 1px;
-            background: var(--gold-gradient);
-            opacity: 0.25;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
             border-radius: 4px;
         }
 
         .section-head h2 {
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 900;
             color: var(--text-light);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            white-space: nowrap;
         }
 
         .section-head h2 i {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            animation: pulseGold 2s ease-in-out infinite;
         }
 
-        /* ===== شبكة المهندسين ===== */
+        @keyframes pulseGold {
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        /* ===== شبكة المهندسين الثلاثية (بطاقات هوية فاخرة) ===== */
         .engineers-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 24px;
         }
 
         .engineer-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(201, 168, 108, 0.08);
-            border-radius: var(--radius-sm);
-            padding: 20px 14px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.10);
+            border-radius: var(--radius-lg);
+            padding: 24px 14px 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* تأثير الزاوية الذهبية في البطاقة */
+        .engineer-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .engineer-card:hover::before {
+            opacity: 1;
+        }
+
+        .engineer-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--gold-gradient);
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scaleX(0.5);
+        }
+
+        .engineer-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
         }
 
         .engineer-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(201, 168, 108, 0.25);
-            box-shadow: var(--shadow-gold);
-            background: rgba(201, 168, 108, 0.04);
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 175, 55, 0.05);
+            background: rgba(255, 255, 255, 0.04);
         }
 
+        /* الصورة الرمزية (أيقونة خوذة بتاج) */
         .engineer-avatar {
-            width: 56px;
-            height: 56px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: var(--gold-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0b0d12;
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-            box-shadow: 0 6px 24px rgba(201, 168, 108, 0.2);
+            font-size: 2rem;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
+            position: relative;
+            transition: all 0.4s ease;
             flex-shrink: 0;
         }
 
+        .engineer-card:hover .engineer-avatar {
+            transform: scale(1.08) rotate(-4deg);
+            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.35);
+        }
+
+        /* إضافة تاج صغير فوق الأفاتار */
+        .engineer-avatar .crown-icon {
+            position: absolute;
+            top: -10px;
+            left: -6px;
+            font-size: 0.9rem;
+            color: var(--gold);
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+            animation: crownFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-4deg);
+            }
+            50% {
+                transform: translateY(-4px) rotate(4deg);
+            }
+        }
+
         .engineer-name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--text-light);
             line-height: 1.3;
             margin-bottom: 2px;
+            letter-spacing: 0.5px;
         }
 
         .engineer-role {
             font-size: 0.7rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 14px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.08);
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        .engineer-role i {
-            color: var(--gold);
-            font-size: 0.6rem;
-        }
-
+        /* حقل الهاتف المدمج */
         .phone-field {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 40px;
-            padding: 4px 12px 4px 10px;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 60px;
+            padding: 6px 16px 6px 12px;
             width: 100%;
-            margin-bottom: 12px;
-            transition: border-color 0.3s ease;
+            margin-bottom: 14px;
+            transition: all 0.3s ease;
             direction: ltr;
+            backdrop-filter: blur(4px);
         }
 
         .phone-field:hover {
-            border-color: rgba(201, 168, 108, 0.2);
+            border-color: rgba(212, 175, 55, 0.2);
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .phone-field .phone-icon {
-            color: var(--text-muted);
+            color: var(--gold);
             font-size: 0.8rem;
+            animation: ringPhone 2s ease-in-out infinite;
+        }
+
+        @keyframes ringPhone {
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+            20% {
+                transform: rotate(-10deg);
+            }
+            40% {
+                transform: rotate(10deg);
+            }
+            60% {
+                transform: rotate(-6deg);
+            }
+            80% {
+                transform: rotate(6deg);
+            }
         }
 
         .phone-field .number {
             font-family: 'Cairo', monospace;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--text-light);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-align: center;
             flex: 1;
         }
@@ -439,91 +593,121 @@
             color: #fff;
             font-size: 0.5rem;
             font-weight: 700;
-            padding: 2px 10px;
+            padding: 2px 12px;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
             gap: 4px;
             white-space: nowrap;
+            box-shadow: 0 2px 12px rgba(37, 211, 102, 0.2);
         }
 
         .phone-field .wa-badge i {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
         }
 
+        /* صف الأزرار */
         .action-row {
             display: flex;
             gap: 8px;
             width: 100%;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .action-row .btn {
             flex: 1;
-            padding: 8px 6px;
-            border-radius: 40px;
+            padding: 10px 4px;
+            border-radius: 60px;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-align: center;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            transition: all 0.3s ease;
+            gap: 8px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             border: none;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-light);
             border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
         }
 
-        .action-row .btn i {
-            font-size: 0.8rem;
+        .action-row .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .action-row .btn i,
+        .action-row .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .action-row .btn-call {
+            border-color: rgba(212, 175, 55, 0.15);
         }
 
         .action-row .btn-call:hover {
-            background: var(--gold);
-            color: #0b0d12;
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
             border-color: var(--gold);
-            transform: scale(1.04);
-            box-shadow: 0 4px 20px rgba(201, 168, 108, 0.25);
+            color: #0b0d12;
+        }
+
+        .action-row .btn-call:hover::before {
+            opacity: 1;
         }
 
         .action-row .btn-wa {
             background: #25D366;
             color: #fff;
             border-color: #25D366;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.15);
         }
 
         .action-row .btn-wa:hover {
             background: #1ebe5c;
-            transform: scale(1.04);
-            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
         }
 
-        /* ===== معرض الصور (ثانوي) ===== */
+        .action-row .btn-wa::before {
+            display: none;
+        }
+
+        /* ===== معرض صور مصغر (أنيق) ===== */
         .gallery-mini {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin: 20px 0 16px;
+            gap: 10px;
+            margin: 24px 0 18px;
         }
 
         .gallery-mini .item {
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-md);
             overflow: hidden;
             aspect-ratio: 1 / 1;
-            background: #1e232d;
+            background: #12161e;
             border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-mini .item:hover {
-            transform: scale(1.03);
-            border-color: rgba(201, 168, 108, 0.2);
+            transform: scale(1.04) translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .gallery-mini .item img {
@@ -531,6 +715,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-mini .item:hover img {
+            transform: scale(1.08);
         }
 
         .gallery-mini .item .overlay {
@@ -538,13 +727,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), transparent);
-            padding: 6px 8px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
+            padding: 8px 12px;
             color: #fff;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 600;
             opacity: 0;
             transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
         }
 
         .gallery-mini .item:hover .overlay {
@@ -555,30 +745,41 @@
         .location-row {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin: 12px 0 8px;
-            padding: 10px 16px;
+            padding: 14px 18px;
             background: rgba(255, 255, 255, 0.02);
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-md);
             border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 4px;
         }
 
         .location-box {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             flex: 1;
             min-width: 160px;
         }
 
         .location-box i {
             color: var(--gold);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            animation: locationPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes locationPulse {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
         }
 
         .location-box .loc-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-light);
         }
@@ -590,117 +791,135 @@
 
         .btn-map-group {
             display: flex;
-            gap: 6px;
+            gap: 8px;
         }
 
         .btn-map {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: var(--gold-gradient);
             color: #0b0d12;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.7rem;
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 0.75rem;
             text-decoration: none;
             white-space: nowrap;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
             font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
         }
 
         .btn-map:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 6px 24px rgba(201, 168, 108, 0.3);
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 36px rgba(212, 175, 55, 0.25);
         }
 
         /* ============================================================
-                   FOOTER
+                   FOOTER – أنيق ومتناسق
                    ============================================================ */
         .card-footer {
-            padding: 16px 24px 20px;
-            border-top: 1px solid rgba(201, 168, 108, 0.08);
+            padding: 18px 28px 22px;
+            border-top: 1px solid rgba(212, 175, 55, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.2);
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
         }
 
         .card-footer .brand {
             font-weight: 800;
             color: var(--text-light);
-            letter-spacing: 1px;
-            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
         }
 
         .card-footer .brand i {
             color: var(--gold);
-            margin-left: 8px;
+            margin-left: 10px;
+            animation: brandPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes brandPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .card-footer .trust {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .card-footer .trust span {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .card-footer .trust span:hover {
             color: var(--text-light);
+            transform: translateY(-2px);
         }
 
         .card-footer .trust span i {
             color: var(--gold);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
         }
 
         /* ============================================================
-                   RESPONSIVE – تحسينات شاملة
+                   RESPONSIVE – تحسينات متقدمة
                    ============================================================ */
-        @media (max-width: 700px) {
+        @media (max-width: 850px) {
             .engineers-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                gap: 16px;
             }
+        }
+
+        @media (max-width: 650px) {
             .header h1 {
-                font-size: 2.4rem;
+                font-size: 2.6rem;
+                letter-spacing: 4px;
             }
             .moving-truck {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
-            @keyframes truckDrive {
+            @keyframes truckLux {
                 0% {
-                    transform: translateX(-12px) scale(1);
+                    transform: translateX(-12px) scale(1) rotate(-1deg);
                 }
                 25% {
-                    transform: translateX(0px) scale(1.05) rotate(-1deg);
+                    transform: translateX(0px) scale(1.05) rotate(0deg);
                 }
                 50% {
                     transform: translateX(12px) scale(1) rotate(1deg);
                 }
                 75% {
-                    transform: translateX(0px) scale(1.05) rotate(-1deg);
+                    transform: translateX(0px) scale(1.05) rotate(0deg);
                 }
                 100% {
-                    transform: translateX(-12px) scale(1);
+                    transform: translateX(-12px) scale(1) rotate(-1deg);
                 }
             }
             .content {
-                padding: 20px 16px 12px;
+                padding: 24px 16px 12px;
             }
             .location-row {
                 flex-direction: column;
@@ -717,72 +936,95 @@
             .card-footer .trust {
                 justify-content: center;
             }
+            .section-head h2 {
+                font-size: 1rem;
+            }
+            .engineer-card {
+                padding: 18px 10px 16px;
+            }
+            .engineer-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             .engineers-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 12px;
+            }
+            .header {
+                padding: 24px 16px 18px;
             }
             .header h1 {
                 font-size: 2rem;
-            }
-            .header {
-                padding: 24px 14px 18px;
+                letter-spacing: 2px;
             }
             .moving-truck {
                 font-size: 2.4rem;
             }
-            @keyframes truckDrive {
+            @keyframes truckLux {
                 0% {
                     transform: translateX(-8px) scale(1);
                 }
                 25% {
-                    transform: translateX(0px) scale(1.04) rotate(-1deg);
+                    transform: translateX(0px) scale(1.04);
                 }
                 50% {
-                    transform: translateX(8px) scale(1) rotate(1deg);
+                    transform: translateX(8px) scale(1);
                 }
                 75% {
-                    transform: translateX(0px) scale(1.04) rotate(-1deg);
+                    transform: translateX(0px) scale(1.04);
                 }
                 100% {
                     transform: translateX(-8px) scale(1);
                 }
             }
             .header .subtitle {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                letter-spacing: 2px;
             }
             .header .badge {
                 font-size: 0.6rem;
-                padding: 4px 14px;
+                padding: 4px 16px;
             }
             .content {
-                padding: 14px 10px 8px;
+                padding: 16px 10px 8px;
             }
             .service-description {
-                padding: 14px 16px;
-                border-radius: var(--radius-sm);
+                padding: 14px 14px;
+                border-radius: var(--radius-md);
             }
             .service-description p {
-                font-size: 0.85rem;
-            }
-            .desc-title {
                 font-size: 0.8rem;
             }
-            .section-head h2 {
-                font-size: 0.9rem;
+            .desc-title {
+                font-size: 0.75rem;
             }
             .engineer-card {
-                padding: 14px 10px 12px;
+                padding: 14px 6px 12px;
+                border-radius: var(--radius-md);
             }
             .engineer-avatar {
-                width: 44px;
-                height: 44px;
+                width: 48px;
+                height: 48px;
                 font-size: 1.2rem;
+            }
+            .engineer-avatar .crown-icon {
+                font-size: 0.6rem;
+                top: -6px;
+                left: -4px;
             }
             .engineer-name {
                 font-size: 0.85rem;
+            }
+            .engineer-role {
+                font-size: 0.55rem;
+                padding: 1px 10px;
+            }
+            .phone-field {
+                padding: 4px 10px;
             }
             .phone-field .number {
                 font-size: 0.7rem;
@@ -793,20 +1035,25 @@
             }
             .action-row .btn {
                 font-size: 0.6rem;
-                padding: 6px 4px;
-            }
-            .action-row .btn i {
-                font-size: 0.7rem;
-            }
-            .gallery-mini {
+                padding: 6px 2px;
                 gap: 4px;
             }
+            .action-row .btn i {
+                font-size: 0.65rem;
+            }
+            .gallery-mini {
+                gap: 6px;
+            }
+            .gallery-mini .item .overlay {
+                font-size: 0.5rem;
+                padding: 4px 8px;
+            }
             .location-box .loc-text {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
             .btn-map {
                 font-size: 0.6rem;
-                padding: 4px 10px;
+                padding: 5px 12px;
             }
             .card-footer .brand {
                 font-size: 0.75rem;
@@ -816,88 +1063,56 @@
             }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 380px) {
             .engineers-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
             }
             .header h1 {
                 font-size: 1.6rem;
-                letter-spacing: 1px;
             }
             .moving-truck {
                 font-size: 2rem;
             }
-            @keyframes truckDrive {
-                0% {
-                    transform: translateX(-6px) scale(1);
-                }
-                25% {
-                    transform: translateX(0px) scale(1.03) rotate(-0.5deg);
-                }
-                50% {
-                    transform: translateX(6px) scale(1) rotate(0.5deg);
-                }
-                75% {
-                    transform: translateX(0px) scale(1.03) rotate(-0.5deg);
-                }
-                100% {
-                    transform: translateX(-6px) scale(1);
-                }
-            }
-            .engineer-card {
-                padding: 10px 6px 10px;
-            }
             .engineer-avatar {
-                width: 36px;
-                height: 36px;
+                width: 38px;
+                height: 38px;
                 font-size: 1rem;
             }
             .engineer-name {
                 font-size: 0.7rem;
             }
-            .engineer-role {
-                font-size: 0.55rem;
-            }
-            .phone-field {
-                padding: 2px 6px;
-            }
             .phone-field .number {
                 font-size: 0.6rem;
-            }
-            .phone-field .wa-badge {
-                font-size: 0.35rem;
-                padding: 1px 4px;
             }
             .action-row .btn {
                 font-size: 0.5rem;
                 padding: 4px 2px;
-                gap: 3px;
             }
             .action-row .btn i {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
             .gallery-mini {
-                gap: 3px;
+                gap: 4px;
             }
             .location-box .loc-text {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
             .btn-map {
                 font-size: 0.5rem;
-                padding: 3px 8px;
+                padding: 4px 8px;
             }
         }
 
-        /* ===== SCROLLBAR ===== */
+        /* ===== SCROLLBAR ذهبية ===== */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: transparent;
+            background: var(--bg-deep);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--gold);
+            background: var(--gold-gradient);
             border-radius: 10px;
         }
     </style>
@@ -907,7 +1122,7 @@
     <div class="card">
 
         <!-- ============================================================
-        HEADER
+        HEADER – فاخر مع شاحنة متحركة
         ============================================================ -->
         <div class="header">
             <div class="logo-wrapper">
@@ -942,7 +1157,7 @@
                 </p>
             </div>
 
-            <!-- ===== قسم تواصل بنا – المهندسون ===== -->
+            <!-- ===== قسم تواصل بنا – المهندسون (المحور الرئيسي) ===== -->
             <div class="contact-section">
                 <div class="section-head">
                     <i class="fas fa-phone-volume"></i>
@@ -951,23 +1166,23 @@
                 </div>
 
                 <div class="engineers-grid" id="engineersContainer">
-                    <!-- يتم حقن بطاقات المهندسين هنا بواسطة JS -->
+                    <!-- يتم حقن بطاقات المهندسين بواسطة JS -->
                 </div>
             </div>
 
             <!-- ===== معرض صور مصغر (ثانوي) ===== -->
             <div class="gallery-mini">
                 <div class="item">
-                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=200&h=200&fit=crop&crop=center" alt="نقل أثاث" loading="lazy" />
-                    <div class="overlay"><i class="fas fa-truck"></i> نقل</div>
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&h=300&fit=crop&crop=center" alt="نقل أثاث" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-truck"></i> نقل آمن</div>
                 </div>
                 <div class="item">
-                    <img src="https://images.unsplash.com/photo-1556911220-bda9a8b6d1b6?w=200&h=200&fit=crop&crop=center" alt="فك وتركيب" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1556911220-bda9a8b6d1b6?w=300&h=300&fit=crop&crop=center" alt="فك وتركيب" loading="lazy" />
                     <div class="overlay"><i class="fas fa-tools"></i> فك وتركيب</div>
                 </div>
                 <div class="item">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop&crop=center" alt="عفش منزلي" loading="lazy" />
-                    <div class="overlay"><i class="fas fa-couch"></i> عفش</div>
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center" alt="عفش منزلي" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-couch"></i> عفش منزلي</div>
                 </div>
             </div>
 
@@ -1008,7 +1223,7 @@
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT – بيانات المهندسين الثابتة (3 مهندسين)
+    JAVASCRIPT – بيانات المهندسين الثابتة مع لمسات إضافية
     ============================================================ -->
     <script>
         (function() {
@@ -1043,14 +1258,16 @@
                 if (!container) return;
 
                 let html = '';
-                ENGINEERS.forEach((eng) => {
+                ENGINEERS.forEach((eng, index) => {
                     const waMessage = encodeURIComponent(
                         'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 414)'
                     );
+                    // إضافة أيقونة تاج مميزة لكل مهندس
                     html += `
-                                <div class="engineer-card" data-id="${eng.id}">
+                                <div class="engineer-card" data-id="${eng.id}" style="animation-delay: ${index * 0.1}s;">
                                     <div class="engineer-avatar">
                                         <i class="fas fa-hard-hat"></i>
+                                        <i class="fas fa-crown crown-icon"></i>
                                     </div>
                                     <div class="engineer-name">${escapeHtml(eng.name)}</div>
                                     <div class="engineer-role"><i class="fas fa-star"></i> ${escapeHtml(eng.role || 'مشرف')}</div>
@@ -1061,10 +1278,10 @@
                                     </div>
                                     <div class="action-row">
                                         <a href="tel:${escapeHtml(eng.phone)}" class="btn btn-call">
-                                            <i class="fas fa-phone"></i> اتصل
+                                            <i class="fas fa-phone"></i> <span>اتصل</span>
                                         </a>
                                         <a href="https://wa.me/2${escapeHtml(eng.phone)}?text=${waMessage}" target="_blank" class="btn btn-wa">
-                                            <i class="fab fa-whatsapp"></i> واتساب
+                                            <i class="fab fa-whatsapp"></i> <span>واتساب</span>
                                         </a>
                                     </div>
                                 </div>
