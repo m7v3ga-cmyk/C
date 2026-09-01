@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الإشراف ٤١٤ | نقل أثاث وعفش - فاخر</title>
+    <title>الإشراف ٥١٥ | نقل أثاث وعفش - فاخر</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Google Font (Cairo) -->
@@ -276,14 +276,14 @@
             padding: 32px 28px 20px;
         }
 
-        /* ===== وصف الخدمة بتأثير جانبي ===== */
+        /* ===== وصف الخدمة ===== */
         .service-description {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(212, 175, 55, 0.08);
             border-right: 4px solid var(--gold);
             border-radius: var(--radius-md);
             padding: 20px 24px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             position: relative;
             transition: all 0.4s ease;
             box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.02);
@@ -346,7 +346,161 @@
         }
 
         /* ============================================================
-                   قسم تواصل بنا – بطاقات المهندسين الإبداعية
+                   قسم العروض والخصومات الجديد
+                   ============================================================ */
+        .offers-section {
+            margin-bottom: 28px;
+            padding: 6px 0;
+        }
+
+        .offers-head {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .offers-head .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        .offers-head h3 {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--gold);
+            letter-spacing: 3px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offers-head h3 i {
+            font-size: 1.2rem;
+            animation: pulseGold 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGold {
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .offer-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.10);
+            border-radius: var(--radius-md);
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .offer-card:hover::before {
+            opacity: 1;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: var(--shadow-gold);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .offer-card .offer-icon {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 6px;
+            display: block;
+            animation: iconFloat 4s ease-in-out infinite;
+        }
+
+        .offer-card .offer-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-light);
+            line-height: 1.3;
+        }
+
+        .offer-card .offer-discount {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin: 4px 0;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .offer-card .offer-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* شعار البركة والنبي */
+        .blessing-tag {
+            text-align: center;
+            padding: 14px 20px;
+            margin-top: 6px;
+            border-top: 1px solid rgba(212, 175, 55, 0.06);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+            border-radius: var(--radius-md);
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        .blessing-tag p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .blessing-tag p i {
+            color: var(--gold);
+            font-size: 1.2rem;
+            animation: crownSpin 8s linear infinite;
+        }
+
+        .blessing-tag .highlight-gold {
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* ============================================================
+                   قسم تواصل بنا – المهندسين
                    ============================================================ */
         .contact-section {
             margin-bottom: 8px;
@@ -385,17 +539,7 @@
             animation: pulseGold 2s ease-in-out infinite;
         }
 
-        @keyframes pulseGold {
-            0%,
-            100% {
-                text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.1);
-            }
-        }
-
-        /* ===== شبكة المهندسين الثلاثية (بطاقات هوية فاخرة) ===== */
+        /* ===== شبكة المهندسين الثلاثية ===== */
         .engineers-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -420,7 +564,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* تأثير الزاوية الذهبية في البطاقة */
         .engineer-card::before {
             content: '';
             position: absolute;
@@ -464,7 +607,6 @@
             background: rgba(255, 255, 255, 0.04);
         }
 
-        /* الصورة الرمزية (أيقونة خوذة بتاج) */
         .engineer-avatar {
             width: 70px;
             height: 70px;
@@ -487,7 +629,6 @@
             box-shadow: 0 12px 48px rgba(212, 175, 55, 0.35);
         }
 
-        /* إضافة تاج صغير فوق الأفاتار */
         .engineer-avatar .crown-icon {
             position: absolute;
             top: -10px;
@@ -531,7 +672,6 @@
             border: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        /* حقل الهاتف المدمج */
         .phone-field {
             display: flex;
             align-items: center;
@@ -606,7 +746,6 @@
             font-size: 0.65rem;
         }
 
-        /* صف الأزرار */
         .action-row {
             display: flex;
             gap: 8px;
@@ -685,7 +824,7 @@
             display: none;
         }
 
-        /* ===== معرض صور مصغر (أنيق) ===== */
+        /* ===== معرض صور مصغر ===== */
         .gallery-mini {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -819,7 +958,7 @@
         }
 
         /* ============================================================
-                   FOOTER – أنيق ومتناسق
+                   FOOTER
                    ============================================================ */
         .card-footer {
             padding: 18px 28px 22px;
@@ -884,7 +1023,7 @@
         }
 
         /* ============================================================
-                   RESPONSIVE – تحسينات متقدمة
+                   RESPONSIVE
                    ============================================================ */
         @media (max-width: 850px) {
             .engineers-grid {
@@ -894,6 +1033,10 @@
         }
 
         @media (max-width: 650px) {
+            .offers-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
             .header h1 {
                 font-size: 2.6rem;
                 letter-spacing: 4px;
@@ -950,6 +1093,29 @@
         }
 
         @media (max-width: 480px) {
+            .offers-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .offer-card {
+                padding: 14px 10px;
+            }
+            .offer-card .offer-icon {
+                font-size: 1.6rem;
+            }
+            .offer-card .offer-title {
+                font-size: 0.8rem;
+            }
+            .offer-card .offer-discount {
+                font-size: 1.2rem;
+            }
+            .offer-card .offer-desc {
+                font-size: 0.65rem;
+            }
+            .blessing-tag p {
+                font-size: 0.85rem;
+                gap: 8px;
+            }
             .engineers-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 12px;
@@ -1064,6 +1230,10 @@
         }
 
         @media (max-width: 380px) {
+            .offers-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
             .engineers-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
@@ -1102,6 +1272,12 @@
                 font-size: 0.5rem;
                 padding: 4px 8px;
             }
+            .offer-card .offer-discount {
+                font-size: 1rem;
+            }
+            .blessing-tag p {
+                font-size: 0.7rem;
+            }
         }
 
         /* ===== SCROLLBAR ذهبية ===== */
@@ -1122,7 +1298,7 @@
     <div class="card">
 
         <!-- ============================================================
-        HEADER – فاخر مع شاحنة متحركة
+        HEADER – تم التحديث إلى ٥١٥
         ============================================================ -->
         <div class="header">
             <div class="logo-wrapper">
@@ -1130,7 +1306,7 @@
                     <i class="fas fa-truck-moving"></i>
                 </div>
             </div>
-            <h1>الإشراف <span>٤١٤</span></h1>
+            <h1>الإشراف <span>٥١٥</span></h1>
             <div class="subtitle">نقل أثاث · عفش · فك وتركيب</div>
             <div class="badge">
                 <i class="fas fa-crown"></i> خدمة احترافية عالية الجودة
@@ -1157,7 +1333,48 @@
                 </p>
             </div>
 
-            <!-- ===== قسم تواصل بنا – المهندسون (المحور الرئيسي) ===== -->
+            <!-- ============================================================
+            قسم العروض والخصومات الجديد
+            ============================================================ -->
+            <div class="offers-section">
+                <div class="offers-head">
+                    <div class="line"></div>
+                    <h3><i class="fas fa-gift"></i> عروض خاصة</h3>
+                    <div class="line"></div>
+                </div>
+
+                <div class="offers-grid">
+                    <!-- خصم العرائس -->
+                    <div class="offer-card">
+                        <span class="offer-icon"><i class="fas fa-venus"></i></span>
+                        <div class="offer-title">للعرائس</div>
+                        <div class="offer-discount">خصم ٢٥%</div>
+                        <div class="offer-desc">على جميع خدمات النقل</div>
+                    </div>
+                    <!-- خصم المطلقات -->
+                    <div class="offer-card">
+                        <span class="offer-icon"><i class="fas fa-heart"></i></span>
+                        <div class="offer-title">للمطلقات</div>
+                        <div class="offer-discount">خصم ١٥%</div>
+                        <div class="offer-desc">على جميع خدمات النقل</div>
+                    </div>
+                </div>
+
+                <!-- شعار البركة والنبي -->
+                <div class="blessing-tag">
+                    <p>
+                        <i class="fas fa-pray"></i>
+                        بالبركة على صلاة النبي
+                        <i class="fas fa-star" style="color:var(--gold);font-size:0.8rem;"></i>
+                        مع الإشراف <span class="highlight-gold">٥١٥</span> بالصلاة على النبي تكسب
+                        <i class="fas fa-pray"></i>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            قسم تواصل بنا – المهندسون
+            ============================================================ -->
             <div class="contact-section">
                 <div class="section-head">
                     <i class="fas fa-phone-volume"></i>
@@ -1170,7 +1387,7 @@
                 </div>
             </div>
 
-            <!-- ===== معرض صور مصغر (ثانوي) ===== -->
+            <!-- ===== معرض صور مصغر ===== -->
             <div class="gallery-mini">
                 <div class="item">
                     <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&h=300&fit=crop&crop=center" alt="نقل أثاث" loading="lazy" />
@@ -1207,11 +1424,11 @@
         </div>
 
         <!-- ============================================================
-        FOOTER
+        FOOTER – تم التحديث إلى ٥١٥
         ============================================================ -->
         <div class="card-footer">
             <div class="brand">
-                <i class="fas fa-phone-volume"></i> الإشراف ٤١٤
+                <i class="fas fa-phone-volume"></i> الإشراف ٥١٥
             </div>
             <div class="trust">
                 <span><i class="fas fa-clock"></i> ٢٤ ساعة</span>
@@ -1223,7 +1440,7 @@
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT – بيانات المهندسين الثابتة مع لمسات إضافية
+    JAVASCRIPT – بيانات المهندسين
     ============================================================ -->
     <script>
         (function() {
@@ -1260,9 +1477,8 @@
                 let html = '';
                 ENGINEERS.forEach((eng, index) => {
                     const waMessage = encodeURIComponent(
-                        'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 414)'
+                        'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 515)'
                     );
-                    // إضافة أيقونة تاج مميزة لكل مهندس
                     html += `
                                 <div class="engineer-card" data-id="${eng.id}" style="animation-delay: ${index * 0.1}s;">
                                     <div class="engineer-avatar">
