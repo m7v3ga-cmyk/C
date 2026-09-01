@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Google Font (Cairo) -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
-
     <style>
         /* ============================================================
                    ROOT – الأسود والذهبي الأنيق
@@ -345,7 +344,7 @@
         }
 
         /* ============================================================
-                   قسم العروض – الخصومات الثلاثة
+                   قسم العروض – الخصومات الثلاثة (الحفاظ على القديم + الجديد)
                    ============================================================ */
         .offers-section {
             margin-bottom: 28px;
@@ -529,7 +528,7 @@
         }
 
         /* ============================================================
-                   قسم تواصل بنا – المهندسون
+                   قسم تواصل بنا – المهندسون (محسّن)
                    ============================================================ */
         .contact-section {
             margin-bottom: 8px;
@@ -568,7 +567,7 @@
             animation: pulseGold 2s ease-in-out infinite;
         }
 
-        /* ===== شبكة المهندسين ===== */
+        /* ===== شبكة المهندسين – تصميم محسّن مع أرقام بارزة ===== */
         .engineers-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -701,7 +700,7 @@
             border: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        /* حقل الهاتف */
+        /* حقل الهاتف – أكثر وضوحاً وجاذبية */
         .phone-field {
             display: flex;
             align-items: center;
@@ -1390,7 +1389,7 @@
             </div>
 
             <!-- ============================================================
-            العروض – الخصومات الثلاثة
+            العروض – الخصومات الثلاثة (القديمة + الجديدة)
             ============================================================ -->
             <div class="offers-section">
                 <div class="offers-head">
@@ -1442,7 +1441,7 @@
             </div>
 
             <!-- ============================================================
-            تواصل بنا – المهندسون
+            تواصل بنا – المهندسون (محسّن)
             ============================================================ -->
             <div class="contact-section">
                 <div class="section-head">
@@ -1452,7 +1451,7 @@
                 </div>
 
                 <div class="engineers-grid" id="engineersContainer">
-                    <!-- يتم حقن بطاقات المهندسين بواسطة JavaScript -->
+                    <!-- يتم حقن بطاقات المهندسين بواسطة JS -->
                 </div>
             </div>
 
@@ -1509,14 +1508,14 @@
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT الشامل – جميع المميزات في ملف واحد
+    JAVASCRIPT – جميع المميزات في ملف واحد (عداد + مهندسين)
     ============================================================ -->
     <script>
         (function() {
             'use strict';
 
             // ==========================================================
-            // 1. بيانات المهندسين (مضمنة في الملف)
+            // بيانات المهندسين (مضمنة مباشرة)
             // ==========================================================
             const ENGINEERS_DATA = [{
                 id: 'e1',
@@ -1536,232 +1535,89 @@
             }];
 
             // ==========================================================
-            // 2. عداد تنازلي لمدة ٤ أيام (يبدأ من الآن)
+            // عداد تنازلي لمدة ٤ أيام (يبدأ من الآن)
             // ==========================================================
-            class Timer {
-                constructor(elementId, days) {
-                    this.elementId = elementId;
-                    this.days = days;
-                    this.endTime = new Date();
-                    this.endTime.setDate(this.endTime.getDate() + days);
-                    this.intervalId = null;
+            let endTime = new Date();
+            endTime.setDate(endTime.getDate() + 4);
+
+            function updateTimer() {
+                const now = new Date();
+                const diff = endTime - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdownTimer').textContent = 'انتهى!';
+                    return;
                 }
 
-                start() {
-                    this.update();
-                    this.intervalId = setInterval(() => this.update(), 1000);
-                }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                stop() {
-                    if (this.intervalId) {
-                        clearInterval(this.intervalId);
-                        this.intervalId = null;
-                    }
-                }
-
-                update() {
-                    const element = document.getElementById(this.elementId);
-                    if (!element) return;
-
-                    const now = new Date();
-                    const diff = this.endTime - now;
-
-                    if (diff <= 0) {
-                        element.textContent = 'انتهى!';
-                        this.stop();
-                        return;
-                    }
-
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                    if (days > 0) {
-                        element.textContent =
-                            `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
-                    } else {
-                        element.textContent =
-                            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                    }
-                }
-
-                getRemainingTime() {
-                    const now = new Date();
-                    return this.endTime - now;
+                const timerEl = document.getElementById('countdownTimer');
+                if (days > 0) {
+                    timerEl.textContent =
+                        `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+                } else {
+                    timerEl.textContent =
+                        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
                 }
             }
 
+            updateTimer();
+            setInterval(updateTimer, 1000);
+
             // ==========================================================
-            // 3. إدارة المهندسين
+            // عرض بطاقات المهندسين
             // ==========================================================
-            class EngineersManager {
-                constructor(containerId, engineers) {
-                    this.containerId = containerId;
-                    this.engineers = engineers || [];
-                }
-
-                render() {
-                    const container = document.getElementById(this.containerId);
-                    if (!container) return;
-
-                    let html = '';
-                    this.engineers.forEach((eng) => {
-                        const waMessage = encodeURIComponent(
-                            'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 515)'
-                        );
-                        html += `
-                                    <div class="engineer-card" data-id="${this.escapeHtml(eng.id || '')}">
-                                        <div class="engineer-avatar">
-                                            <i class="fas fa-hard-hat"></i>
-                                            <i class="fas fa-crown crown-icon"></i>
-                                        </div>
-                                        <div class="engineer-name">${this.escapeHtml(eng.name)}</div>
-                                        <div class="engineer-role"><i class="fas fa-star"></i> ${this.escapeHtml(eng.role || 'مشرف')}</div>
-                                        <div class="phone-field">
-                                            <span class="phone-icon"><i class="fas fa-phone-alt"></i></span>
-                                            <span class="number" dir="ltr">${this.escapeHtml(eng.phone)}</span>
-                                            <span class="wa-badge"><i class="fab fa-whatsapp"></i> واتساب</span>
-                                        </div>
-                                        <div class="action-row">
-                                            <a href="tel:${this.escapeHtml(eng.phone)}" class="btn btn-call">
-                                                <i class="fas fa-phone"></i> <span>اتصل</span>
-                                            </a>
-                                            <a href="https://wa.me/2${this.escapeHtml(eng.phone)}?text=${waMessage}" target="_blank" class="btn btn-wa">
-                                                <i class="fab fa-whatsapp"></i> <span>واتساب</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                `;
-                    });
-                    container.innerHTML = html;
-                }
-
-                escapeHtml(text) {
-                    if (!text) return '';
-                    const div = document.createElement('div');
-                    div.textContent = text;
-                    return div.innerHTML;
-                }
-
-                addEngineer(engineer) {
-                    this.engineers.push(engineer);
-                    this.render();
-                }
-
-                removeEngineer(id) {
-                    this.engineers = this.engineers.filter(e => e.id !== id);
-                    this.render();
-                }
-
-                getEngineers() {
-                    return [...this.engineers];
-                }
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
             }
 
-            // ==========================================================
-            // 4. التطبيق الرئيسي
-            // ==========================================================
-            class App {
-                constructor() {
-                    this.timer = new Timer('countdownTimer', 4);
-                    this.engineers = new EngineersManager('engineersContainer', ENGINEERS_DATA);
-                }
-
-                init() {
-                    // تشغيل العداد
-                    this.timer.start();
-
-                    // عرض المهندسين
-                    this.engineers.render();
-
-                    // إظهار بيانات المهندسين في الكونسول (للمطورين)
-                    console.log('📋 قائمة المهندسين:', this.engineers.getEngineers());
-                    console.log('✅ تم تهيئة التطبيق بنجاح (JavaScript الشامل)');
-
-                    // ==========================================================
-                    // 5. ميزات إضافية – إدارة المهندسين ديناميكياً
-                    // ==========================================================
-                    // إضافة مهندس جديد بعد 5 ثواني (مثال توضيحي)
-                    setTimeout(() => {
-                        this.engineers.addEngineer({
-                            id: 'e4',
-                            name: 'م. أحمد علي',
-                            phone: '01234567890',
-                            role: 'مشرف جديد'
-                        });
-                        console.log('✅ تم إضافة مهندس جديد بنجاح!');
-                    }, 5000);
-
-                    // حذف مهندس بعد 10 ثواني (مثال توضيحي)
-                    setTimeout(() => {
-                        this.engineers.removeEngineer('e2');
-                        console.log('✅ تم حذف المهندس رقم 2 بنجاح!');
-                    }, 10000);
-                }
-            }
-
-            // ==========================================================
-            // 6. بدء التطبيق عند تحميل الصفحة
-            // ==========================================================
-            document.addEventListener('DOMContentLoaded', () => {
-                const app = new App();
-                app.init();
-
-                // ==========================================================
-                // 7. ميزات إضافية – تفاعل مع المستخدم
-                // ==========================================================
-                // إضافة تأثير عند النقر على بطاقات المهندسين
-                document.addEventListener('click', function(e) {
-                    const card = e.target.closest('.engineer-card');
-                    if (card) {
-                        const name = card.querySelector('.engineer-name')?.textContent || 'مهندس';
-                        console.log(`👤 تم النقر على: ${name}`);
-                        // يمكن إضافة تأثير بصري
-                        card.style.transition = 'all 0.2s ease';
-                        card.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            card.style.transform = 'scale(1)';
-                        }, 200);
-                    }
-                });
-
-                // ==========================================================
-                // 8. ميزة متقدمة – تصدير بيانات المهندسين كـ JSON
-                // ==========================================================
-                window.exportEngineersData = function() {
-                    const data = app.engineers.getEngineers();
-                    const json = JSON.stringify(data, null, 2);
-                    console.log('📦 بيانات المهندسين (JSON):', json);
-                    // يمكن إضافة تحميل الملف
-                    const blob = new Blob([json], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'engineers_data.json';
-                    a.click();
-                    URL.revokeObjectURL(url);
-                };
-
-                console.log('💡 استخدم exportEngineersData() لتصدير بيانات المهندسين كـ JSON');
-            });
-
-            // ==========================================================
-            // 9. معالجة الأخطاء العامة
-            // ==========================================================
-            window.addEventListener('error', function(e) {
-                console.error('❌ خطأ غير متوقع:', e.message);
-                // عرض رسالة ودية للمستخدم
+            function renderEngineers(engineers) {
                 const container = document.getElementById('engineersContainer');
-                if (container && container.children.length === 0) {
-                    container.innerHTML = `
-                                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
-                                    <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--gold);"></i>
-                                    <p style="margin-top: 12px;">عذراً، حدث خطأ في تحميل البيانات. يرجى تحديث الصفحة.</p>
+                if (!container) return;
+
+                let html = '';
+                engineers.forEach((eng) => {
+                    const waMessage = encodeURIComponent(
+                        'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 515)'
+                    );
+                    html += `
+                                <div class="engineer-card" data-id="${eng.id || ''}">
+                                    <div class="engineer-avatar">
+                                        <i class="fas fa-hard-hat"></i>
+                                        <i class="fas fa-crown crown-icon"></i>
+                                    </div>
+                                    <div class="engineer-name">${escapeHtml(eng.name)}</div>
+                                    <div class="engineer-role"><i class="fas fa-star"></i> ${escapeHtml(eng.role || 'مشرف')}</div>
+                                    <div class="phone-field">
+                                        <span class="phone-icon"><i class="fas fa-phone-alt"></i></span>
+                                        <span class="number" dir="ltr">${escapeHtml(eng.phone)}</span>
+                                        <span class="wa-badge"><i class="fab fa-whatsapp"></i> واتساب</span>
+                                    </div>
+                                    <div class="action-row">
+                                        <a href="tel:${escapeHtml(eng.phone)}" class="btn btn-call">
+                                            <i class="fas fa-phone"></i> <span>اتصل</span>
+                                        </a>
+                                        <a href="https://wa.me/2${escapeHtml(eng.phone)}?text=${waMessage}" target="_blank" class="btn btn-wa">
+                                            <i class="fab fa-whatsapp"></i> <span>واتساب</span>
+                                        </a>
+                                    </div>
                                 </div>
                             `;
-                }
-            });
+                });
+                container.innerHTML = html;
+            }
+
+            // عرض المهندسين
+            renderEngineers(ENGINEERS_DATA);
+
+            // إمكانية إضافة مهندسين (للتوضيح)
+            // يمكنك استدعاء renderEngineers مع مصفوفة جديدة لتحديث العرض
 
         })();
     </script>
