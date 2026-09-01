@@ -3,36 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الإشراف ٥١٥ | نقل أثاث وعفش - فاخر</title>
-    <!-- Font Awesome 6 -->
+    <title>الإشراف ٥١٥ | نقل أثاث وعفش</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- Google Font (Cairo) -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        /* ============================================================
-                   ROOT – الأسود والذهبي الأنيق
-                   ============================================================ */
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f3e5b0;
-            --gold-dark: #a6842e;
-            --gold-glow: rgba(212, 175, 55, 0.3);
-            --gold-gradient: linear-gradient(135deg, #d4af37, #f3e5b0, #d4af37);
-            --bg-deep: #080a0e;
-            --bg-card: rgba(18, 22, 32, 0.70);
-            --text-light: #f5f0eb;
-            --text-muted: #b0b9cf;
-            --radius-xl: 60px 60px 40px 40px;
-            --radius-lg: 32px;
-            --radius-md: 24px;
-            --shadow-heavy: 0 40px 80px rgba(0, 0, 0, 0.8);
-            --shadow-gold: 0 20px 50px rgba(212, 175, 55, 0.15);
-            --transition-lux: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* ============================================================
-                   RESET & BASE
-                   ============================================================ */
+        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -40,1587 +15,638 @@
         }
 
         body {
-            font-family: 'Cairo', 'Segoe UI', sans-serif;
-            background: var(--bg-deep);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            position: relative;
-            overflow-x: hidden;
+            font-family: 'Cairo', sans-serif;
+            background: #f4f4f4;
+            color: #222;
+            line-height: 1.6;
+            padding: 20px;
         }
 
-        /* خلفية شبكة ذهبية فاخرة */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.02) 0%, transparent 70%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.08) 1px, transparent 0);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ============================================================
-                   CARD الرئيسي – زجاجي فاخر
-                   ============================================================ */
-        .card {
-            position: relative;
-            z-index: 2;
-            max-width: 780px;
-            width: 100%;
-            background: var(--bg-card);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-heavy), 0 0 0 1px rgba(212, 175, 55, 0.12) inset;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            transition: transform 0.6s ease;
         }
 
-        .card:hover {
-            transform: translateY(-6px) scale(1.003);
-        }
-
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.96);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* ============================================================
-                   HEADER – 515
-                   ============================================================ */
+        /* ========== HEADER ========== */
         .header {
-            background: linear-gradient(145deg, #0e121b, #1a1f2b);
-            padding: 36px 28px 26px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
-            border-bottom: 2px solid transparent;
-            border-image: var(--gold-gradient) 1;
-            overflow: hidden;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05), transparent 60%);
-            animation: ambientGold 12s infinite alternate ease-in-out;
-            pointer-events: none;
-        }
-
-        @keyframes ambientGold {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(5%, 5%) scale(1.2);
-            }
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 5%;
-            right: 5%;
-            height: 2px;
-            background: var(--gold-gradient);
-            background-size: 300% 100%;
-            animation: shimmerBorder 5s ease-in-out infinite;
-            border-radius: 4px;
-        }
-
-        @keyframes shimmerBorder {
-            0%,
-            100% {
-                background-position: 0% 0%;
-            }
-            50% {
-                background-position: 100% 0%;
-            }
-        }
-
-        .logo-wrapper {
-            display: inline-block;
-            position: relative;
-            padding: 14px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.05);
-        }
-
-        .moving-truck {
-            display: inline-block;
-            font-size: 3.8rem;
-            color: var(--gold);
-            filter: drop-shadow(0 8px 30px rgba(212, 175, 55, 0.3));
-            animation: truckLux 5s ease-in-out infinite;
-            will-change: transform;
-        }
-
-        @keyframes truckLux {
-            0% {
-                transform: translateX(-20px) scale(1) rotate(-2deg);
-            }
-            25% {
-                transform: translateX(0px) scale(1.08) rotate(0deg);
-            }
-            50% {
-                transform: translateX(20px) scale(1) rotate(2deg);
-            }
-            75% {
-                transform: translateX(0px) scale(1.08) rotate(0deg);
-            }
-            100% {
-                transform: translateX(-20px) scale(1) rotate(-2deg);
-            }
-        }
-
-        .header h1 {
-            font-size: 3.2rem;
+        .header .logo {
+            font-size: 2.8rem;
             font-weight: 900;
-            color: #fff;
-            letter-spacing: 6px;
-            line-height: 1.2;
-            margin-top: 6px;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
-            position: relative;
-            z-index: 1;
+            letter-spacing: 2px;
         }
 
-        .header h1 span {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
+        .header .logo span {
+            color: #d4af37;
         }
 
         .header .subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-top: 8px;
             font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            margin-top: 4px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            position: relative;
-            z-index: 1;
         }
 
         .header .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: var(--gold-light);
-            padding: 8px 28px;
-            border-radius: 60px;
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 6px 24px;
+            border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 2px;
             margin-top: 16px;
-            backdrop-filter: blur(8px);
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.05);
+            letter-spacing: 1px;
         }
 
-        .badge i {
-            color: var(--gold);
-            animation: crownSpin 10s linear infinite;
-        }
-
-        @keyframes crownSpin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ============================================================
-                   CONTENT
-                   ============================================================ */
+        /* ========== CONTENT ========== */
         .content {
-            padding: 32px 28px 20px;
+            padding: 40px 30px;
         }
 
-        /* ===== وصف الخدمة ===== */
-        .service-description {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            border-right: 4px solid var(--gold);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            transition: all 0.4s ease;
-            box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.02);
-        }
-
-        .service-description:hover {
-            border-color: rgba(212, 175, 55, 0.25);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.04), inset 0 0 40px rgba(212, 175, 55, 0.02);
-        }
-
-        .desc-title {
-            font-size: 0.95rem;
+        /* Section title */
+        .section-title {
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--text-light);
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 6px;
         }
 
-        .desc-title i {
-            color: var(--gold);
-            font-size: 1.2rem;
-            animation: iconFloat 3s ease-in-out infinite;
+        .section-title i {
+            color: #d4af37;
         }
 
-        @keyframes iconFloat {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-4px);
-            }
-        }
-
-        .service-description p {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.9;
-            padding-right: 4px;
-        }
-
-        .highlight {
-            color: var(--gold);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gold-gradient);
-            opacity: 0.4;
-        }
-
-        /* ============================================================
-                   قسم العروض – الخصومات الثلاثة (الحفاظ على القديم + الجديد)
-                   ============================================================ */
-        .offers-section {
-            margin-bottom: 28px;
-        }
-
-        .offers-head {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 16px;
-        }
-
-        .offers-head .line {
+        .section-title .line {
             flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            height: 2px;
+            background: linear-gradient(to left, #d4af37, transparent);
             opacity: 0.3;
         }
 
-        .offers-head h3 {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: var(--gold);
-            letter-spacing: 3px;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /* ===== SERVICE DESCRIPTION ===== */
+        .service-box {
+            background: #fafafa;
+            border-right: 5px solid #d4af37;
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 40px;
         }
 
-        .offers-head h3 i {
-            font-size: 1.2rem;
-            animation: pulseGold 2s ease-in-out infinite;
+        .service-box p {
+            font-size: 1rem;
+            color: #444;
         }
 
-        @keyframes pulseGold {
-            0%,
-            100% {
-                text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-            }
-            50% {
-                text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.1);
-            }
+        .service-box strong {
+            color: #d4af37;
         }
 
+        /* ===== OFFERS ===== */
         .offers-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
         .offer-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.10);
-            border-radius: var(--radius-md);
-            padding: 18px 12px 14px;
+            background: #fafafa;
+            border-radius: 16px;
+            padding: 24px 16px;
             text-align: center;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(4px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gold-gradient);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .offer-card:hover::before {
-            opacity: 1;
+            transition: 0.3s ease;
+            border: 1px solid #eee;
         }
 
         .offer-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 175, 55, 0.25);
-            box-shadow: var(--shadow-gold);
-            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-color: #d4af37;
         }
 
-        .offer-card .offer-icon {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 4px;
-            display: block;
-            animation: iconFloat 4s ease-in-out infinite;
+        .offer-card .icon {
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 6px;
         }
 
-        .offer-card .offer-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-light);
-            line-height: 1.3;
+        .offer-card .title {
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
-        .offer-card .offer-discount {
+        .offer-card .discount {
             font-size: 1.8rem;
             font-weight: 900;
-            color: var(--gold);
-            margin: 2px 0;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            margin: 4px 0;
         }
 
-        .offer-card .offer-desc {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            font-weight: 500;
+        .offer-card .desc {
+            font-size: 0.85rem;
+            color: #777;
         }
 
-        /* البطاقة الخاصة بالعرض المحدود (مع المؤقت) */
-        .offer-card.limited .timer-wrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            color: var(--gold-light);
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        .offer-card.limited .timer-wrap i {
-            color: var(--gold);
-            animation: iconFloat 2s ease-in-out infinite;
-        }
-
-        .offer-card.limited .timer-wrap .timer {
-            font-weight: 900;
+        .offer-card .timer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            background: #222;
             color: #fff;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            direction: ltr;
+            padding: 4px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
         }
 
-        /* ===== شعار البركة ===== */
-        .blessing-tag {
+        .offer-card .timer span {
+            color: #d4af37;
+        }
+
+        /* ===== BLESSING ===== */
+        .blessing {
             text-align: center;
-            padding: 14px 20px;
-            margin-top: 6px;
-            border-top: 1px solid rgba(212, 175, 55, 0.06);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.06);
-            border-radius: var(--radius-md);
-            background: rgba(212, 175, 55, 0.02);
-        }
-
-        .blessing-tag p {
+            padding: 16px;
+            background: #fafafa;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 1px solid #eee;
             font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            font-weight: 600;
         }
 
-        .blessing-tag p i {
-            color: var(--gold);
-            font-size: 1.2rem;
-            animation: crownSpin 8s linear infinite;
+        .blessing i {
+            color: #d4af37;
+            margin: 0 6px;
         }
 
-        .blessing-tag .highlight-gold {
-            color: var(--gold);
-            font-weight: 900;
-        }
-
-        /* ============================================================
-                   قسم تواصل بنا – المهندسون (محسّن)
-                   ============================================================ */
-        .contact-section {
-            margin-bottom: 8px;
-        }
-
-        .section-head {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 24px;
-        }
-
-        .section-head .line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            opacity: 0.3;
-            border-radius: 4px;
-        }
-
-        .section-head h2 {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--text-light);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            white-space: nowrap;
-        }
-
-        .section-head h2 i {
-            color: var(--gold);
-            font-size: 1.4rem;
-            animation: pulseGold 2s ease-in-out infinite;
-        }
-
-        /* ===== شبكة المهندسين – تصميم محسّن مع أرقام بارزة ===== */
+        /* ===== ENGINEERS ===== */
         .engineers-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
         .engineer-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(212, 175, 55, 0.10);
-            border-radius: var(--radius-lg);
-            padding: 22px 12px 18px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 16px;
             text-align: center;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .engineer-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            pointer-events: none;
-        }
-
-        .engineer-card:hover::before {
-            opacity: 1;
-        }
-
-        .engineer-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background: var(--gold-gradient);
-            border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            transform: scaleX(0.5);
-        }
-
-        .engineer-card:hover::after {
-            opacity: 1;
-            transform: scaleX(1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f0f0;
+            transition: 0.3s ease;
         }
 
         .engineer-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(212, 175, 55, 0.25);
-            box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 175, 55, 0.05);
-            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: #d4af37;
         }
 
-        .engineer-avatar {
-            width: 64px;
-            height: 64px;
+        .engineer-card .avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4af37, #f3e5b0);
             border-radius: 50%;
-            background: var(--gold-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0b0d12;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
-            position: relative;
-            transition: all 0.4s ease;
-            flex-shrink: 0;
+            margin: 0 auto 12px;
+            font-size: 2rem;
+            color: #222;
         }
 
-        .engineer-card:hover .engineer-avatar {
-            transform: scale(1.08) rotate(-4deg);
-            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.35);
-        }
-
-        .engineer-avatar .crown-icon {
-            position: absolute;
-            top: -10px;
-            left: -6px;
-            font-size: 0.9rem;
-            color: var(--gold);
-            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
-            animation: crownFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes crownFloat {
-            0%,
-            100% {
-                transform: translateY(0) rotate(-4deg);
-            }
-            50% {
-                transform: translateY(-4px) rotate(4deg);
-            }
-        }
-
-        .engineer-name {
+        .engineer-card .name {
             font-size: 1.1rem;
             font-weight: 800;
-            color: var(--text-light);
-            line-height: 1.3;
-            margin-bottom: 2px;
-            letter-spacing: 0.5px;
         }
 
-        .engineer-role {
-            font-size: 0.7rem;
-            color: var(--gold);
+        .engineer-card .role {
+            color: #d4af37;
             font-weight: 600;
+            font-size: 0.85rem;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(212, 175, 55, 0.08);
-            padding: 2px 16px;
-            border-radius: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.06);
         }
 
-        /* حقل الهاتف – أكثر وضوحاً وجاذبية */
-        .phone-field {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 60px;
-            padding: 8px 18px 8px 14px;
-            width: 100%;
-            margin-bottom: 14px;
-            transition: all 0.3s ease;
+        .engineer-card .phone {
             direction: ltr;
-            backdrop-filter: blur(4px);
-        }
-
-        .phone-field:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.05);
-        }
-
-        .phone-field .phone-icon {
-            color: var(--gold);
+            background: #f4f4f4;
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 700;
             font-size: 1rem;
-            animation: ringPhone 2s ease-in-out infinite;
+            margin-bottom: 14px;
+            color: #222;
         }
 
-        @keyframes ringPhone {
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-            20% {
-                transform: rotate(-10deg);
-            }
-            40% {
-                transform: rotate(10deg);
-            }
-            60% {
-                transform: rotate(-6deg);
-            }
-            80% {
-                transform: rotate(6deg);
-            }
-        }
-
-        .phone-field .number {
-            font-family: 'Cairo', monospace;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 1.5px;
-            text-align: center;
-            flex: 1;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
-        }
-
-        .phone-field .wa-badge {
-            background: #25D366;
-            color: #fff;
-            font-size: 0.55rem;
-            font-weight: 700;
-            padding: 3px 14px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-            box-shadow: 0 2px 16px rgba(37, 211, 102, 0.2);
-        }
-
-        .phone-field .wa-badge i {
-            font-size: 0.7rem;
-        }
-
-        .action-row {
+        .engineer-card .actions {
             display: flex;
-            gap: 8px;
-            width: 100%;
-            margin-top: 2px;
+            gap: 10px;
+            justify-content: center;
         }
 
-        .action-row .btn {
-            flex: 1;
-            padding: 10px 4px;
-            border-radius: 60px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-align: center;
+        .engineer-card .actions a {
             text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s ease;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            border: none;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-light);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            position: relative;
-            overflow: hidden;
         }
 
-        .action-row .btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gold-gradient);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 0;
+        .btn-call {
+            background: #222;
+            color: #fff;
         }
 
-        .action-row .btn i,
-        .action-row .btn span {
-            position: relative;
-            z-index: 1;
+        .btn-call:hover {
+            background: #d4af37;
+            color: #222;
         }
 
-        .action-row .btn-call {
-            border-color: rgba(212, 175, 55, 0.15);
-        }
-
-        .action-row .btn-call:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
-            border-color: var(--gold);
-            color: #0b0d12;
-        }
-
-        .action-row .btn-call:hover::before {
-            opacity: 1;
-        }
-
-        .action-row .btn-wa {
+        .btn-wa {
             background: #25D366;
             color: #fff;
-            border-color: #25D366;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.15);
         }
 
-        .action-row .btn-wa:hover {
+        .btn-wa:hover {
             background: #1ebe5c;
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
         }
 
-        .action-row .btn-wa::before {
-            display: none;
-        }
-
-        /* ===== معرض صور مصغر ===== */
-        .gallery-mini {
+        /* ===== GALLERY ===== */
+        .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 24px 0 18px;
+            gap: 16px;
+            margin-bottom: 40px;
         }
 
-        .gallery-mini .item {
-            border-radius: var(--radius-md);
+        .gallery-item {
+            border-radius: 16px;
             overflow: hidden;
-            aspect-ratio: 1 / 1;
-            background: #12161e;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.4s ease;
+            aspect-ratio: 1/1;
+            background: #eee;
             position: relative;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .gallery-mini .item:hover {
-            transform: scale(1.04) translateY(-4px);
-            border-color: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-mini .item img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.6s ease;
+            transition: 0.3s ease;
         }
 
-        .gallery-mini .item:hover img {
-            transform: scale(1.08);
+        .gallery-item:hover img {
+            transform: scale(1.05);
         }
 
-        .gallery-mini .item .overlay {
+        .gallery-item .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
-            padding: 8px 12px;
+            padding: 12px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
             color: #fff;
-            font-size: 0.65rem;
             font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            backdrop-filter: blur(2px);
-        }
-
-        .gallery-mini .item:hover .overlay {
-            opacity: 1;
-        }
-
-        /* ===== الموقع ===== */
-        .location-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            margin-top: 4px;
-        }
-
-        .location-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 160px;
-        }
-
-        .location-box i {
-            color: var(--gold);
-            font-size: 1.2rem;
-            animation: locationPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes locationPulse {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-3px);
-            }
-        }
-
-        .location-box .loc-text {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .location-box .loc-text span {
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .btn-map-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-map {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--gold-gradient);
-            color: #0b0d12;
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 0.75rem;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
-        }
-
-        .btn-map:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 8px 36px rgba(212, 175, 55, 0.25);
-        }
-
-        /* ============================================================
-                   FOOTER
-                   ============================================================ */
-        .card-footer {
-            padding: 18px 28px 22px;
-            border-top: 1px solid rgba(212, 175, 55, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(4px);
-        }
-
-        .card-footer .brand {
-            font-weight: 800;
-            color: var(--text-light);
-            letter-spacing: 1.5px;
-            font-size: 0.9rem;
-        }
-
-        .card-footer .brand i {
-            color: var(--gold);
-            margin-left: 10px;
-            animation: brandPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes brandPulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .card-footer .trust {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .card-footer .trust span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .card-footer .trust span:hover {
-            color: var(--text-light);
-            transform: translateY(-2px);
-        }
-
-        .card-footer .trust span i {
-            color: var(--gold);
             font-size: 0.8rem;
         }
 
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
-        @media (max-width: 850px) {
-            .engineers-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            .offers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .offers-grid .offer-card:last-child {
-                grid-column: span 2;
-            }
+        /* ===== LOCATION ===== */
+        .location {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: #fafafa;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
         }
 
-        @media (max-width: 650px) {
-            .header h1 {
-                font-size: 2.6rem;
-                letter-spacing: 4px;
-            }
-            .moving-truck {
-                font-size: 3rem;
-            }
-            @keyframes truckLux {
-                0% {
-                    transform: translateX(-12px) scale(1) rotate(-1deg);
-                }
-                25% {
-                    transform: translateX(0px) scale(1.05) rotate(0deg);
-                }
-                50% {
-                    transform: translateX(12px) scale(1) rotate(1deg);
-                }
-                75% {
-                    transform: translateX(0px) scale(1.05) rotate(0deg);
-                }
-                100% {
-                    transform: translateX(-12px) scale(1) rotate(-1deg);
-                }
+        .location i {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+
+        .location .text {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .location .text span {
+            font-weight: 400;
+            color: #777;
+        }
+
+        .location .map-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .location .map-btns a {
+            background: #d4af37;
+            color: #222;
+            padding: 6px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s ease;
+        }
+
+        .location .map-btns a:hover {
+            background: #b8962e;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 20px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .footer .brand {
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .footer .brand i {
+            color: #d4af37;
+            margin-left: 8px;
+        }
+
+        .footer .trust {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer .trust span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer .trust i {
+            color: #d4af37;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header .logo {
+                font-size: 2rem;
             }
             .content {
-                padding: 24px 16px 12px;
+                padding: 24px 16px;
             }
-            .location-row {
-                flex-direction: column;
-                align-items: stretch;
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .btn-map-group {
-                justify-content: center;
-            }
-            .card-footer {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .card-footer .trust {
-                justify-content: center;
-            }
-            .section-head h2 {
-                font-size: 1rem;
-            }
-            .engineer-card {
-                padding: 18px 10px 16px;
-            }
-            .engineer-avatar {
-                width: 56px;
-                height: 56px;
-                font-size: 1.5rem;
-            }
-            .phone-field .number {
-                font-size: 1rem;
-            }
-            .offers-grid {
+            .engineers-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .offers-grid .offer-card:last-child {
-                grid-column: span 2;
+            .location {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .location .map-btns {
+                justify-content: center;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .footer .trust {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
             .engineers-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
             }
             .header {
-                padding: 24px 16px 18px;
+                padding: 24px 16px;
             }
-            .header h1 {
-                font-size: 2rem;
-                letter-spacing: 2px;
-            }
-            .moving-truck {
-                font-size: 2.4rem;
-            }
-            @keyframes truckLux {
-                0% {
-                    transform: translateX(-8px) scale(1);
-                }
-                25% {
-                    transform: translateX(0px) scale(1.04);
-                }
-                50% {
-                    transform: translateX(8px) scale(1);
-                }
-                75% {
-                    transform: translateX(0px) scale(1.04);
-                }
-                100% {
-                    transform: translateX(-8px) scale(1);
-                }
-            }
-            .header .subtitle {
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-            }
-            .header .badge {
-                font-size: 0.6rem;
-                padding: 4px 16px;
-            }
-            .content {
-                padding: 16px 10px 8px;
-            }
-            .service-description {
-                padding: 14px 14px;
-                border-radius: var(--radius-md);
-            }
-            .service-description p {
-                font-size: 0.8rem;
-            }
-            .desc-title {
-                font-size: 0.75rem;
-            }
-            .offers-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .offers-grid .offer-card:last-child {
-                grid-column: span 2;
-            }
-            .offer-card {
-                padding: 14px 8px;
-            }
-            .offer-card .offer-icon {
+            .header .logo {
                 font-size: 1.6rem;
             }
-            .offer-card .offer-title {
-                font-size: 0.8rem;
-            }
-            .offer-card .offer-discount {
-                font-size: 1.4rem;
-            }
-            .offer-card .offer-desc {
-                font-size: 0.6rem;
-            }
-            .offer-card.limited .timer-wrap {
-                font-size: 0.6rem;
-                padding: 2px 8px;
-            }
-            .offer-card.limited .timer-wrap .timer {
-                font-size: 0.7rem;
-            }
-            .blessing-tag p {
-                font-size: 0.85rem;
-                gap: 8px;
-            }
-            .engineer-card {
-                padding: 14px 6px 12px;
-                border-radius: var(--radius-md);
-            }
-            .engineer-avatar {
-                width: 48px;
-                height: 48px;
-                font-size: 1.2rem;
-            }
-            .engineer-avatar .crown-icon {
-                font-size: 0.6rem;
-                top: -6px;
-                left: -4px;
-            }
-            .engineer-name {
-                font-size: 0.85rem;
-            }
-            .engineer-role {
-                font-size: 0.55rem;
-                padding: 1px 10px;
-            }
-            .phone-field {
-                padding: 4px 10px;
-                gap: 6px;
-            }
-            .phone-field .number {
-                font-size: 0.85rem;
-            }
-            .phone-field .wa-badge {
-                font-size: 0.45rem;
-                padding: 2px 8px;
-            }
-            .phone-field .wa-badge i {
-                font-size: 0.6rem;
-            }
-            .action-row .btn {
-                font-size: 0.6rem;
-                padding: 6px 2px;
-                gap: 4px;
-            }
-            .action-row .btn i {
-                font-size: 0.65rem;
-            }
-            .gallery-mini {
-                gap: 6px;
-            }
-            .gallery-mini .item .overlay {
-                font-size: 0.5rem;
-                padding: 4px 8px;
-            }
-            .location-box .loc-text {
-                font-size: 0.65rem;
-            }
-            .btn-map {
-                font-size: 0.6rem;
-                padding: 5px 12px;
-            }
-            .card-footer .brand {
-                font-size: 0.75rem;
-            }
-            .card-footer .trust span {
-                font-size: 0.6rem;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .engineers-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .header h1 {
-                font-size: 1.6rem;
-            }
-            .moving-truck {
-                font-size: 2rem;
-            }
-            .engineer-avatar {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .engineer-name {
-                font-size: 0.7rem;
-            }
-            .phone-field .number {
-                font-size: 0.7rem;
-            }
-            .action-row .btn {
-                font-size: 0.5rem;
-                padding: 4px 2px;
-            }
-            .action-row .btn i {
-                font-size: 0.55rem;
-            }
-            .offer-card .offer-discount {
-                font-size: 1.2rem;
-            }
-            .offer-card .offer-title {
-                font-size: 0.7rem;
-            }
-            .blessing-tag p {
-                font-size: 0.7rem;
-            }
-            .gallery-mini {
-                gap: 4px;
-            }
-            .location-box .loc-text {
-                font-size: 0.55rem;
-            }
-            .btn-map {
-                font-size: 0.5rem;
-                padding: 4px 8px;
-            }
-        }
-
-        /* ===== SCROLLBAR ذهبية ===== */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-deep);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold-gradient);
-            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
+<div class="container">
 
-        <!-- ============================================================
-        HEADER – الإشراف ٥١٥
-        ============================================================ -->
-        <div class="header">
-            <div class="logo-wrapper">
-                <div class="moving-truck">
-                    <i class="fas fa-truck-moving"></i>
-                </div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">الإشراف <span>٥١٥</span></div>
+        <div class="subtitle">نقل أثاث · عفش · فك وتركيب</div>
+        <div class="badge"><i class="fas fa-crown"></i> خدمة احترافية عالية الجودة</div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- Service Description -->
+        <div class="service-box">
+            <p>
+                <i class="fas fa-shield-alt" style="color:#d4af37;margin-left:10px;"></i>
+                نقدم خدمات <strong>نقل آمن</strong> للأثاث والعفش المنزلي مع فريق متكامل من
+                <strong>النجارين</strong>، <strong>فنيي التكييف</strong>، و <strong>الكهربائيين</strong>
+                لضمان فك وتركيب دقيق واحترافي.
+            </p>
+        </div>
+
+        <!-- Offers -->
+        <div class="section-title">
+            <i class="fas fa-gift"></i> عروض خاصة
+            <div class="line"></div>
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="icon"><i class="fas fa-venus"></i></div>
+                <div class="title">للعرائس</div>
+                <div class="discount">خصم ٢٥%</div>
+                <div class="desc">على جميع الخدمات</div>
             </div>
-            <h1>الإشراف <span>٥١٥</span></h1>
-            <div class="subtitle">نقل أثاث · عفش · فك وتركيب</div>
-            <div class="badge">
-                <i class="fas fa-crown"></i> خدمة احترافية عالية الجودة
+            <div class="offer-card">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <div class="title">للمطلقات</div>
+                <div class="discount">خصم ١٥%</div>
+                <div class="desc">على جميع الخدمات</div>
+            </div>
+            <div class="offer-card">
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <div class="title">عرض محدود</div>
+                <div class="discount">خصم ١٠%</div>
+                <div class="desc">لمدة ٤ أيام فقط</div>
+                <div class="timer"><i class="fas fa-hourglass-half"></i> متبقي <span id="countdownTimer">--:--:--</span></div>
             </div>
         </div>
 
-        <!-- ============================================================
-        CONTENT
-        ============================================================ -->
-        <div class="content">
-
-            <!-- ===== وصف الخدمة ===== -->
-            <div class="service-description">
-                <div class="desc-title">
-                    <i class="fas fa-shield-alt"></i>
-                    نقل آمن للاثاث والعفش المنزلي
-                </div>
-                <p>
-                    نقدم خدمات <span class="highlight">نقل آمن</span> للأثاث والعفش المنزلي
-                    مع فريق متكامل من <span class="highlight">النجارين</span>،
-                    <span class="highlight">فنيي التكييف</span>،
-                    و <span class="highlight">الكهربائيين</span>
-                    لضمان فك وتركيب دقيق واحترافي.
-                </p>
-            </div>
-
-            <!-- ============================================================
-            العروض – الخصومات الثلاثة (القديمة + الجديدة)
-            ============================================================ -->
-            <div class="offers-section">
-                <div class="offers-head">
-                    <div class="line"></div>
-                    <h3><i class="fas fa-gift"></i> عروض خاصة</h3>
-                    <div class="line"></div>
-                </div>
-
-                <div class="offers-grid">
-                    <!-- 1. العرائس 25% -->
-                    <div class="offer-card">
-                        <span class="offer-icon"><i class="fas fa-venus"></i></span>
-                        <div class="offer-title">للعرائس</div>
-                        <div class="offer-discount">خصم ٢٥%</div>
-                        <div class="offer-desc">على جميع الخدمات</div>
-                    </div>
-
-                    <!-- 2. المطلقات 15% -->
-                    <div class="offer-card">
-                        <span class="offer-icon"><i class="fas fa-heart"></i></span>
-                        <div class="offer-title">للمطلقات</div>
-                        <div class="offer-discount">خصم ١٥%</div>
-                        <div class="offer-desc">على جميع الخدمات</div>
-                    </div>
-
-                    <!-- 3. العرض المحدود 10% لمدة 4 أيام -->
-                    <div class="offer-card limited">
-                        <span class="offer-icon"><i class="fas fa-clock"></i></span>
-                        <div class="offer-title">عرض محدود</div>
-                        <div class="offer-discount">خصم ١٠%</div>
-                        <div class="offer-desc">لمدة ٤ أيام فقط</div>
-                        <div class="timer-wrap">
-                            <i class="fas fa-hourglass-half"></i>
-                            متبقي <span class="timer" id="countdownTimer">--:--:--</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- شعار البركة -->
-                <div class="blessing-tag">
-                    <p>
-                        <i class="fas fa-pray"></i>
-                        بالبركة على صلاة النبي
-                        <i class="fas fa-star" style="color:var(--gold);font-size:0.8rem;"></i>
-                        مع الإشراف <span class="highlight-gold">٥١٥</span> بالصلاة على النبي تكسب
-                        <i class="fas fa-pray"></i>
-                    </p>
-                </div>
-            </div>
-
-            <!-- ============================================================
-            تواصل بنا – المهندسون (محسّن)
-            ============================================================ -->
-            <div class="contact-section">
-                <div class="section-head">
-                    <i class="fas fa-phone-volume"></i>
-                    <h2>تواصل بنا</h2>
-                    <div class="line"></div>
-                </div>
-
-                <div class="engineers-grid" id="engineersContainer">
-                    <!-- يتم حقن بطاقات المهندسين بواسطة JS -->
-                </div>
-            </div>
-
-            <!-- ===== معرض صور مصغر ===== -->
-            <div class="gallery-mini">
-                <div class="item">
-                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&h=300&fit=crop&crop=center" alt="نقل أثاث" loading="lazy" />
-                    <div class="overlay"><i class="fas fa-truck"></i> نقل آمن</div>
-                </div>
-                <div class="item">
-                    <img src="https://images.unsplash.com/photo-1556911220-bda9a8b6d1b6?w=300&h=300&fit=crop&crop=center" alt="فك وتركيب" loading="lazy" />
-                    <div class="overlay"><i class="fas fa-tools"></i> فك وتركيب</div>
-                </div>
-                <div class="item">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center" alt="عفش منزلي" loading="lazy" />
-                    <div class="overlay"><i class="fas fa-couch"></i> عفش منزلي</div>
-                </div>
-            </div>
-
-            <!-- ===== الموقع ===== -->
-            <div class="location-row">
-                <div class="location-box">
-                    <i class="fas fa-location-dot"></i>
-                    <div class="loc-text">
-                        المقر الرئيسي <span>·</span> القاهرة <span>·</span> مدينة نصر <span>·</span> الحي العاشر
-                    </div>
-                </div>
-                <div class="btn-map-group">
-                    <a href="https://maps.app.goo.gl/e3DjqeHDS5pKeKR67" target="_blank" class="btn-map">
-                        <i class="fas fa-map-pin"></i> موقع الشركة
-                    </a>
-                    <a href="https://maps.app.goo.gl/YAomkUpGSQ4bWjLZ8" target="_blank" class="btn-map">
-                        <i class="fas fa-building"></i> موقع المكتب
-                    </a>
-                </div>
-            </div>
-
+        <!-- Blessing -->
+        <div class="blessing">
+            <i class="fas fa-pray"></i>
+            بالبركة على صلاة النبي
+            <i class="fas fa-star" style="color:#d4af37;"></i>
+            مع الإشراف <strong style="color:#d4af37;">٥١٥</strong> بالصلاة على النبي تكسب
+            <i class="fas fa-pray"></i>
         </div>
 
-        <!-- ============================================================
-        FOOTER
-        ============================================================ -->
-        <div class="card-footer">
-            <div class="brand">
-                <i class="fas fa-phone-volume"></i> الإشراف ٥١٥
+        <!-- Engineers -->
+        <div class="section-title">
+            <i class="fas fa-phone-volume"></i> تواصل بنا
+            <div class="line"></div>
+        </div>
+        <div class="engineers-grid" id="engineersContainer">
+            <!-- سيتم حقن البطاقات بواسطة JS -->
+        </div>
+
+        <!-- Gallery -->
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=400&fit=crop&crop=center" alt="نقل أثاث" loading="lazy" />
+                <div class="overlay"><i class="fas fa-truck"></i> نقل آمن</div>
             </div>
-            <div class="trust">
-                <span><i class="fas fa-clock"></i> ٢٤ ساعة</span>
-                <span><i class="fas fa-shield-alt"></i> ضمان شامل</span>
-                <span><i class="fas fa-tools"></i> فك وتركيب</span>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1556911220-bda9a8b6d1b6?w=400&h=400&fit=crop&crop=center" alt="فك وتركيب" loading="lazy" />
+                <div class="overlay"><i class="fas fa-tools"></i> فك وتركيب</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop&crop=center" alt="عفش منزلي" loading="lazy" />
+                <div class="overlay"><i class="fas fa-couch"></i> عفش منزلي</div>
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="location">
+            <i class="fas fa-location-dot"></i>
+            <div class="text">
+                المقر الرئيسي <span>·</span> القاهرة <span>·</span> مدينة نصر <span>·</span> الحي العاشر
+            </div>
+            <div class="map-btns">
+                <a href="https://maps.app.goo.gl/e3DjqeHDS5pKeKR67" target="_blank"><i class="fas fa-map-pin"></i> موقع الشركة</a>
+                <a href="https://maps.app.goo.gl/YAomkUpGSQ4bWjLZ8" target="_blank"><i class="fas fa-building"></i> موقع المكتب</a>
             </div>
         </div>
 
     </div>
 
-    <!-- ============================================================
-    JAVASCRIPT – جميع المميزات في ملف واحد (عداد + مهندسين)
-    ============================================================ -->
-    <script>
-        (function() {
-            'use strict';
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="brand"><i class="fas fa-phone-volume"></i> الإشراف ٥١٥</div>
+        <div class="trust">
+            <span><i class="fas fa-clock"></i> ٢٤ ساعة</span>
+            <span><i class="fas fa-shield-alt"></i> ضمان شامل</span>
+            <span><i class="fas fa-tools"></i> فك وتركيب</span>
+        </div>
+    </footer>
 
-            // ==========================================================
-            // بيانات المهندسين (مضمنة مباشرة)
-            // ==========================================================
-            const ENGINEERS_DATA = [{
-                id: 'e1',
-                name: 'م. محمود مدحت',
-                phone: '01116870575',
-                role: 'مشرف أول'
-            }, {
-                id: 'e2',
-                name: 'م. محمود أحمد',
-                phone: '01110758232',
-                role: 'مشرف ثاني'
-            }, {
-                id: 'e3',
-                name: 'م. يوسف حسن',
-                phone: '01559887180',
-                role: 'مشرف'
-            }];
+</div>
 
-            // ==========================================================
-            // عداد تنازلي لمدة ٤ أيام (يبدأ من الآن)
-            // ==========================================================
-            let endTime = new Date();
-            endTime.setDate(endTime.getDate() + 4);
+<script>
+    (function() {
+        'use strict';
 
-            function updateTimer() {
-                const now = new Date();
-                const diff = endTime - now;
+        // ========== DATA ==========
+        const engineers = [
+            { id: 'e1', name: 'م. محمود مدحت', phone: '01116870575', role: 'مشرف أول' },
+            { id: 'e2', name: 'م. محمود أحمد', phone: '01110758232', role: 'مشرف ثاني' },
+            { id: 'e3', name: 'م. يوسف حسن', phone: '01559887180', role: 'مشرف' }
+        ];
 
-                if (diff <= 0) {
-                    document.getElementById('countdownTimer').textContent = 'انتهى!';
-                    return;
-                }
+        // ========== RENDER ENGINEERS ==========
+        function renderEngineers() {
+            const container = document.getElementById('engineersContainer');
+            if (!container) return;
 
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            let html = '';
+            engineers.forEach(eng => {
+                const waMsg = encodeURIComponent('السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 515)');
+                html += `
+                    <div class="engineer-card">
+                        <div class="avatar"><i class="fas fa-hard-hat"></i></div>
+                        <div class="name">${eng.name}</div>
+                        <div class="role"><i class="fas fa-star"></i> ${eng.role}</div>
+                        <div class="phone" dir="ltr">${eng.phone}</div>
+                        <div class="actions">
+                            <a href="tel:${eng.phone}" class="btn-call"><i class="fas fa-phone"></i> اتصل</a>
+                            <a href="https://wa.me/2${eng.phone}?text=${waMsg}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> واتساب</a>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
 
-                const timerEl = document.getElementById('countdownTimer');
-                if (days > 0) {
-                    timerEl.textContent =
-                        `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
-                } else {
-                    timerEl.textContent =
-                        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                }
+        // ========== TIMER (4 days) ==========
+        let endTime = new Date();
+        endTime.setDate(endTime.getDate() + 4);
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = endTime - now;
+
+            const el = document.getElementById('countdownTimer');
+            if (!el) return;
+
+            if (diff <= 0) {
+                el.textContent = 'انتهى!';
+                return;
             }
 
-            updateTimer();
-            setInterval(updateTimer, 1000);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            // ==========================================================
-            // عرض بطاقات المهندسين
-            // ==========================================================
-            function escapeHtml(text) {
-                if (!text) return '';
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
+            if (days > 0) {
+                el.textContent = `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+            } else {
+                el.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }
+        }
 
-            function renderEngineers(engineers) {
-                const container = document.getElementById('engineersContainer');
-                if (!container) return;
+        // ========== INIT ==========
+        renderEngineers();
+        updateTimer();
+        setInterval(updateTimer, 1000);
 
-                let html = '';
-                engineers.forEach((eng) => {
-                    const waMessage = encodeURIComponent(
-                        'السلام عليكم ... أرغب في خدمة نقل الأثاث (الإشراف 515)'
-                    );
-                    html += `
-                                <div class="engineer-card" data-id="${eng.id || ''}">
-                                    <div class="engineer-avatar">
-                                        <i class="fas fa-hard-hat"></i>
-                                        <i class="fas fa-crown crown-icon"></i>
-                                    </div>
-                                    <div class="engineer-name">${escapeHtml(eng.name)}</div>
-                                    <div class="engineer-role"><i class="fas fa-star"></i> ${escapeHtml(eng.role || 'مشرف')}</div>
-                                    <div class="phone-field">
-                                        <span class="phone-icon"><i class="fas fa-phone-alt"></i></span>
-                                        <span class="number" dir="ltr">${escapeHtml(eng.phone)}</span>
-                                        <span class="wa-badge"><i class="fab fa-whatsapp"></i> واتساب</span>
-                                    </div>
-                                    <div class="action-row">
-                                        <a href="tel:${escapeHtml(eng.phone)}" class="btn btn-call">
-                                            <i class="fas fa-phone"></i> <span>اتصل</span>
-                                        </a>
-                                        <a href="https://wa.me/2${escapeHtml(eng.phone)}?text=${waMessage}" target="_blank" class="btn btn-wa">
-                                            <i class="fab fa-whatsapp"></i> <span>واتساب</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            `;
-                });
-                container.innerHTML = html;
-            }
-
-            // عرض المهندسين
-            renderEngineers(ENGINEERS_DATA);
-
-            // إمكانية إضافة مهندسين (للتوضيح)
-            // يمكنك استدعاء renderEngineers مع مصفوفة جديدة لتحديث العرض
-
-        })();
-    </script>
+    })();
+</script>
 
 </body>
 </html>
