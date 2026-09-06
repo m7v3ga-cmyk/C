@@ -18,18 +18,20 @@
   --panel: #111317;
   --panel2: #17191e;
   --gold: #d7aa52;
-  --gold2: #f0cc7b;
+  --gold2: #f5d98a; /* أفتح وأكثر إشراقاً */
+  --gold-light: #fae8b3; /* لإضاءة إضافية */
   --text: #f7f3ea;
-  --muted: #a7a9af;
+  --muted: #b8b9be; /* أفتح قليلاً */
   --line: rgba(255,255,255,.09);
   --green: #25d366;
   --danger: #ff6b6b;
   --shadow: 0 25px 80px rgba(0,0,0,.35);
   --card-bg: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
   --input-bg: #0b0c0f;
-  --badge-bg: rgba(215,170,82,.08);
-  --discount-bg: rgba(215,170,82,.06);
+  --badge-bg: rgba(215,170,82,.12);
+  --discount-bg: rgba(215,170,82,.08);
   --calc-result-bg: #0a0b0e;
+  --text-shadow-gold: 0 0 12px rgba(215,170,82,.15);
 }
 
 /* ===== LIGHT MODE ===== */
@@ -38,14 +40,15 @@
   --panel: #e8e4db;
   --panel2: #ddd8ce;
   --text: #1e1b16;
-  --muted: #5a554a;
+  --muted: #4a453a;
   --line: rgba(0,0,0,.12);
   --shadow: 0 25px 60px rgba(0,0,0,.08);
   --card-bg: #ffffff;
   --input-bg: #ffffff;
-  --badge-bg: rgba(215,170,82,.12);
+  --badge-bg: rgba(215,170,82,.15);
   --discount-bg: rgba(215,170,82,.08);
   --calc-result-bg: #f8f5ed;
+  --text-shadow-gold: 0 0 15px rgba(215,170,82,.08);
 }
 
 * { box-sizing: border-box; margin:0; padding:0 }
@@ -61,19 +64,33 @@ body {
 a { text-decoration: none; color: inherit }
 button, input, select { font: inherit }
 .container { width: min(1120px, 92%); margin: auto }
-.gold { color: var(--gold2) }
+.gold { 
+  color: var(--gold2); 
+  text-shadow: var(--text-shadow-gold);
+  font-weight: 700;
+}
 .muted { color: var(--muted) }
 .section { padding: 95px 0 }
 .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 38px }
-.section-head h2 { font-size: clamp(28px,4vw,44px); line-height: 1.25 }
-.section-head p { color: var(--muted); max-width: 560px }
+.section-head h2 { 
+  font-size: clamp(28px,4vw,44px); 
+  line-height: 1.25;
+  color: var(--text);
+  font-weight: 900;
+}
+.section-head p { 
+  color: var(--muted); 
+  max-width: 560px;
+  font-weight: 500;
+}
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(215,170,82,.35);
+  border: 1px solid rgba(215,170,82,.4);
   background: var(--badge-bg);
   color: var(--gold2);
   padding: 7px 13px; border-radius: 999px;
-  font-size: 13px; font-weight: 800; margin-bottom: 14px
+  font-size: 13px; font-weight: 800; margin-bottom: 14px;
+  text-shadow: 0 0 10px rgba(215,170,82,.1);
 }
 
 /* ===== TOOLBAR ===== */
@@ -99,16 +116,17 @@ button, input, select { font: inherit }
   display: flex; align-items: center; gap: 6px;
   cursor: pointer; padding: 4px 8px;
   border-radius: 30px; transition: 0.2s;
-  font-weight: 600;
+  font-weight: 700;
 }
-.toolbar button:hover { color: var(--gold2); background: rgba(215,170,82,.06) }
+.toolbar button:hover { color: var(--gold2); background: rgba(215,170,82,.08) }
 .toolbar .clock {
-  font-size: 13px; font-weight: 700;
+  font-size: 14px; font-weight: 800;
   color: var(--gold2);
   direction: ltr;
-  background: rgba(215,170,82,.08);
-  padding: 3px 12px; border-radius: 30px;
+  background: rgba(215,170,82,.1);
+  padding: 3px 14px; border-radius: 30px;
   white-space: nowrap;
+  text-shadow: 0 0 15px rgba(215,170,82,.15);
 }
 
 /* ===== NAV ===== */
@@ -127,15 +145,16 @@ button, input, select { font: inherit }
   display: grid; place-items: center;
   background: linear-gradient(145deg,var(--gold2),#a77828);
   color:#111;
-  box-shadow:0 8px 30px rgba(215,170,82,.2)
+  box-shadow:0 8px 30px rgba(215,170,82,.25);
 }
-.brand small { display: block; color: var(--muted); font-size:10px; font-weight:600 }
-.nav-links { display: flex; gap:25px; color:#cfd0d3; font-size:14px }
+.brand small { display: block; color: var(--muted); font-size:10px; font-weight:700 }
+.nav-links { display: flex; gap:25px; color:#cfd0d3; font-size:14px; font-weight:600 }
 .nav-links a:hover { color:var(--gold2) }
 .nav-btn {
   background:var(--gold2); color:#111;
   padding:9px 16px; border-radius:12px;
-  font-weight:900; font-size:13px
+  font-weight:900; font-size:13px;
+  box-shadow: 0 4px 20px rgba(215,170,82,.2);
 }
 [data-theme="light"] .nav-links { color: #3a362f; }
 
@@ -155,9 +174,27 @@ button, input, select { font: inherit }
 }
 .hero:after { content:""; position:absolute; inset:auto 0 0; height:180px; background:linear-gradient(transparent,var(--bg)) }
 .hero-content { position:relative; z-index:2; max-width:730px }
-.hero h1 { font-size:clamp(42px,6vw,76px); line-height:1.08; font-weight:900; letter-spacing:-2px; margin-bottom:22px }
-.hero h1 span { background:linear-gradient(90deg,#fff,var(--gold2)); -webkit-background-clip:text; color:transparent }
-.hero p { font-size:18px; color:#d2d2d5; max-width:650px; margin-bottom:30px }
+.hero h1 { 
+  font-size:clamp(42px,6vw,76px); 
+  line-height:1.08; 
+  font-weight:900; 
+  letter-spacing:-2px; 
+  margin-bottom:22px;
+  color: var(--text);
+}
+.hero h1 span { 
+  background:linear-gradient(90deg,#fff,var(--gold2)); 
+  -webkit-background-clip:text; 
+  color:transparent;
+  font-weight: 900;
+}
+.hero p { 
+  font-size:18px; 
+  color: #d8d8db; 
+  max-width:650px; 
+  margin-bottom:30px;
+  font-weight: 500;
+}
 [data-theme="light"] .hero p { color: #3a3a3a; }
 .hero-actions { display:flex; flex-wrap:wrap; gap:12px }
 .btn {
@@ -167,12 +204,27 @@ button, input, select { font: inherit }
   font-weight:900; transition:.25s
 }
 .btn:hover { transform:translateY(-3px) }
-.btn-gold { background:linear-gradient(135deg,var(--gold2),var(--gold)); color:#111; box-shadow:0 12px 35px rgba(215,170,82,.18) }
-.btn-dark { background:rgba(255,255,255,.07); border:1px solid var(--line); color:white }
+.btn-gold { 
+  background:linear-gradient(135deg,var(--gold2),var(--gold)); 
+  color:#111; 
+  box-shadow:0 12px 35px rgba(215,170,82,.25);
+  font-weight: 900;
+}
+.btn-dark { 
+  background:rgba(255,255,255,.07); 
+  border:1px solid var(--line); 
+  color:white;
+  font-weight: 700;
+}
 [data-theme="light"] .btn-dark { background: rgba(0,0,0,.04); color: #1e1b16; }
 .hero-stats { display:flex; flex-wrap:wrap; gap:25px; margin-top:45px }
-.stat strong { display:block; font-size:25px; color:var(--gold2) }
-.stat span { font-size:12px; color:var(--muted) }
+.stat strong { 
+  display:block; 
+  font-size:26px; 
+  color:var(--gold2);
+  text-shadow: 0 0 20px rgba(215,170,82,.15);
+}
+.stat span { font-size:12px; color:var(--muted); font-weight:600 }
 .scroll-note { position:absolute; bottom:26px; right:4%; z-index:4; color:#999; font-size:11px }
 
 /* ===== CARDS ===== */
@@ -189,11 +241,20 @@ button, input, select { font: inherit }
 .feature i {
   width:52px; height:52px; border-radius:16px;
   display:grid; place-items:center;
-  background:rgba(215,170,82,.1);
+  background:rgba(215,170,82,.12);
   color:var(--gold2); font-size:20px; margin-bottom:17px
 }
-.feature h3 { font-size:18px; margin-bottom:8px }
-.feature p { font-size:13px; color:var(--muted) }
+.feature h3 { 
+  font-size:18px; 
+  margin-bottom:8px;
+  color: var(--text);
+  font-weight: 800;
+}
+.feature p { 
+  font-size:13px; 
+  color:var(--muted);
+  font-weight: 500;
+}
 
 /* ===== CALC ===== */
 .calc-wrap { display:grid; grid-template-columns:1fr .75fr; gap:22px; align-items:stretch }
@@ -204,10 +265,26 @@ button, input, select { font: inherit }
   transition: 0.3s;
 }
 [data-theme="light"] .form-card { background: #ffffff; }
-.form-card h3 { font-size:25px; margin-bottom:5px }
-.form-card .hint { color:var(--muted); font-size:13px; margin-bottom:25px }
+.form-card h3 { 
+  font-size:25px; 
+  margin-bottom:5px;
+  color: var(--text);
+  font-weight: 900;
+}
+.form-card .hint { 
+  color:var(--muted); 
+  font-size:13px; 
+  margin-bottom:25px;
+  font-weight: 500;
+}
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px }
-.field label { display:block; font-size:12px; color:#bbb; margin-bottom:7px }
+.field label { 
+  display:block; 
+  font-size:12px; 
+  color:var(--muted); 
+  margin-bottom:7px;
+  font-weight: 700;
+}
 .field input, .field select {
   width:100%; height:50px;
   border:1px solid var(--line);
@@ -215,10 +292,16 @@ button, input, select { font: inherit }
   color:var(--text);
   border-radius:13px; padding:0 14px; outline:none;
   transition:0.3s;
+  font-weight: 600;
 }
 .field input:focus, .field select:focus { border-color:rgba(215,170,82,.7) }
 .services { margin:18px 0 }
-.services-title { font-size:12px; color:#bbb; margin-bottom:9px }
+.services-title { 
+  font-size:12px; 
+  color:var(--muted); 
+  margin-bottom:9px;
+  font-weight: 700;
+}
 .checks { display:grid; grid-template-columns:1fr 1fr; gap:10px }
 .check { position:relative }
 .check input { position:absolute; opacity:0 }
@@ -226,22 +309,38 @@ button, input, select { font: inherit }
   display:flex; align-items:center; gap:9px;
   border:1px solid var(--line);
   padding:11px 12px; border-radius:12px;
-  color:#d4d4d6; font-size:13px; cursor:pointer;
+  color:var(--muted); 
+  font-size:13px; 
+  cursor:pointer;
   transition:0.2s;
   background: var(--input-bg);
+  font-weight: 600;
 }
 [data-theme="light"] .check label { background: #f5f2eb; color: #1e1b16; }
 .check label i { color:var(--gold2) }
-.check input:checked+label { border-color:var(--gold); background:rgba(215,170,82,.08); color:white }
-[data-theme="light"] .check input:checked+label { background: rgba(215,170,82,.12); color:#1e1b16; }
+.check input:checked+label { 
+  border-color:var(--gold); 
+  background:rgba(215,170,82,.12); 
+  color:var(--text);
+}
+[data-theme="light"] .check input:checked+label { background: rgba(215,170,82,.15); color:#1e1b16; }
 
 .discount-section {
   margin:18px 0; padding:16px;
   background:var(--discount-bg);
-  border:1px solid rgba(215,170,82,.2);
+  border:1px solid rgba(215,170,82,.25);
   border-radius:16px
 }
-.discount-section .title { font-size:13px; color:var(--gold2); font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px }
+.discount-section .title { 
+  font-size:13px; 
+  color:var(--gold2); 
+  font-weight:800; 
+  margin-bottom:10px; 
+  display:flex; 
+  align-items:center; 
+  gap:8px;
+  text-shadow: 0 0 12px rgba(215,170,82,.1);
+}
 .discount-options { display:grid; grid-template-columns:1fr 1fr; gap:8px }
 .discount-opt { position:relative }
 .discount-opt input { position:absolute; opacity:0 }
@@ -249,29 +348,63 @@ button, input, select { font: inherit }
   display:flex; align-items:center; justify-content:center; gap:6px;
   border:1px solid var(--line);
   padding:10px; border-radius:12px;
-  color:#d4d4d6; font-size:12px; cursor:pointer;
+  color:var(--muted); 
+  font-size:12px; 
+  cursor:pointer;
   transition:.2s;
   background: var(--input-bg);
+  font-weight: 700;
 }
 [data-theme="light"] .discount-opt label { background: #f5f2eb; color:#1e1b16; }
 .discount-opt label i { color:var(--gold2); font-size:14px }
-.discount-opt input:checked+label { border-color:var(--gold); background:rgba(215,170,82,.12); color:white; box-shadow:0 0 20px rgba(215,170,82,.05) }
+.discount-opt input:checked+label { 
+  border-color:var(--gold); 
+  background:rgba(215,170,82,.15); 
+  color:var(--text);
+  box-shadow:0 0 30px rgba(215,170,82,.08);
+}
 [data-theme="light"] .discount-opt input:checked+label { color:#1e1b16; }
 
 .calc-result {
   margin-top:20px; padding:20px;
   border-radius:18px;
   background:var(--calc-result-bg);
-  border:1px solid rgba(215,170,82,.2);
+  border:1px solid rgba(215,170,82,.25);
   display:block;
   transition:0.3s;
 }
 .result-top { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap }
-.result-price { font-size:30px; font-weight:900; color:var(--gold2) }
-.result-price .original { font-size:16px; color:#666; text-decoration:line-through; margin-left:10px; font-weight:400 }
-.result-price .discount-label { font-size:12px; color:var(--gold2); background:rgba(215,170,82,.15); padding:2px 10px; border-radius:999px; font-weight:700; margin-right:8px }
-.result-details { font-size:12px; color:#aeb0b5; margin-top:7px; line-height:1.6 }
-[data-theme="light"] .result-details { color:#5a554a; }
+.result-price { 
+  font-size:32px; 
+  font-weight:900; 
+  color:var(--gold2);
+  text-shadow: 0 0 25px rgba(215,170,82,.12);
+}
+.result-price .original { 
+  font-size:16px; 
+  color:var(--muted); 
+  text-decoration:line-through; 
+  margin-left:10px; 
+  font-weight:500 
+}
+.result-price .discount-label { 
+  font-size:13px; 
+  color:var(--gold2); 
+  background:rgba(215,170,82,.15); 
+  padding:2px 12px; 
+  border-radius:999px; 
+  font-weight:800; 
+  margin-right:8px;
+  text-shadow: 0 0 10px rgba(215,170,82,.1);
+}
+.result-details { 
+  font-size:13px; 
+  color:var(--muted); 
+  margin-top:7px; 
+  line-height:1.6;
+  font-weight: 500;
+}
+[data-theme="light"] .result-details { color:#4a453a; }
 
 .calc-side {
   position:relative; overflow:hidden; border-radius:28px; padding:35px;
@@ -285,8 +418,19 @@ button, input, select { font: inherit }
     linear-gradient(180deg,rgba(242,239,232,.6),rgba(242,239,232,.95)),
     url("1000008879.jpg") center/cover;
 }
-.calc-side h3 { font-size:31px; line-height:1.35; position:relative }
-.calc-side p { color:#c4c4c8; position:relative; margin-top:15px }
+.calc-side h3 { 
+  font-size:31px; 
+  line-height:1.35; 
+  position:relative;
+  color: var(--text);
+  font-weight: 900;
+}
+.calc-side p { 
+  color: #d0d0d4; 
+  position:relative; 
+  margin-top:15px;
+  font-weight: 500;
+}
 [data-theme="light"] .calc-side p { color: #3a3a3a; }
 .calc-points {
   position:absolute; bottom:30px; right:35px; left:35px;
@@ -296,20 +440,51 @@ button, input, select { font: inherit }
   font-size:13px;
   background:rgba(0,0,0,.38); backdrop-filter:blur(8px);
   border:1px solid rgba(255,255,255,.08);
-  padding:9px 12px; border-radius:12px
+  padding:9px 12px; border-radius:12px;
+  color: var(--text);
+  font-weight: 600;
 }
-[data-theme="light"] .calc-points div { background: rgba(255,255,255,.7); border-color: rgba(0,0,0,.06); color:#1e1b16; }
+[data-theme="light"] .calc-points div { 
+  background: rgba(255,255,255,.75); 
+  border-color: rgba(0,0,0,.06); 
+  color:#1e1b16; 
+}
 
 /* ===== OFFERS ===== */
 .offers { grid-template-columns:repeat(3,1fr) }
 .offer { position:relative; overflow:hidden }
-.offer .percent { font-size:42px; font-weight:900; color:var(--gold2); line-height:1 }
-.offer small { color:var(--muted) }
-.offer h3 { margin:15px 0 5px }
-.offer p { color:#aaa; font-size:13px }
-[data-theme="light"] .offer p { color:#5a554a; }
+.offer .percent { 
+  font-size:44px; 
+  font-weight:900; 
+  color:var(--gold2);
+  text-shadow: 0 0 30px rgba(215,170,82,.12);
+}
+.offer small { 
+  color:var(--muted);
+  font-weight: 700;
+}
+.offer h3 { 
+  margin:15px 0 5px;
+  color: var(--text);
+  font-weight: 800;
+}
+.offer p { 
+  color:var(--muted); 
+  font-size:13px;
+  font-weight: 500;
+}
+[data-theme="light"] .offer p { color:#4a453a; }
 .offer.featured { border-color:rgba(215,170,82,.45); transform:translateY(-8px) }
-.ribbon { position:absolute; top:15px; left:-35px; transform:rotate(-45deg); background:var(--gold2); color:#111; padding:4px 40px; font-size:10px; font-weight:900 }
+.ribbon { 
+  position:absolute; top:15px; left:-35px; 
+  transform:rotate(-45deg); 
+  background:var(--gold2); 
+  color:#111; 
+  padding:4px 40px; 
+  font-size:10px; 
+  font-weight:900;
+  box-shadow: 0 4px 20px rgba(215,170,82,.2);
+}
 
 /* ===== STEPS ===== */
 .steps { grid-template-columns:repeat(4,1fr) }
@@ -317,20 +492,45 @@ button, input, select { font: inherit }
 .step-num {
   width:58px; height:58px; border-radius:18px;
   display:grid; place-items:center; margin:0 auto 16px;
-  background:rgba(215,170,82,.1);
-  border:1px solid rgba(215,170,82,.25);
-  color:var(--gold2); font-size:20px; font-weight:900
+  background:rgba(215,170,82,.12);
+  border:1px solid rgba(215,170,82,.3);
+  color:var(--gold2);
+  font-size:20px; font-weight:900;
+  text-shadow: 0 0 15px rgba(215,170,82,.1);
 }
-.step h3 { font-size:17px }
-.step p { font-size:12px; color:var(--muted); margin-top:5px }
+.step h3 { 
+  font-size:17px;
+  color: var(--text);
+  font-weight: 800;
+}
+.step p { 
+  font-size:12px; 
+  color:var(--muted); 
+  margin-top:5px;
+  font-weight: 500;
+}
 
 /* ===== REVIEWS ===== */
 .reviews { grid-template-columns:repeat(3,1fr) }
-.review .stars { color:#f1c75b; letter-spacing:2px; margin-bottom:10px }
-.review p { color:#d0d0d3; font-size:14px }
-[data-theme="light"] .review p { color:#3a3a3a; }
-.review strong { display:block; margin-top:14px; font-size:13px }
-.review span { font-size:11px; color:#777 }
+.review .stars { color:#f1c75b; letter-spacing:2px; margin-bottom:10px; font-size:18px }
+.review p { 
+  color:var(--text); 
+  font-size:14px;
+  font-weight: 500;
+}
+[data-theme="light"] .review p { color:#1e1b16; }
+.review strong { 
+  display:block; 
+  margin-top:14px; 
+  font-size:13px;
+  color: var(--gold2);
+  font-weight: 800;
+}
+.review span { 
+  font-size:11px; 
+  color:var(--muted);
+  font-weight: 600;
+}
 
 /* ===== GALLERY ===== */
 .gallery { display:grid; grid-template-columns:1.45fr 1fr 1fr; grid-template-rows:220px 220px; gap:12px }
@@ -339,30 +539,61 @@ button, input, select { font: inherit }
 
 /* ===== CONTACT ===== */
 .contacts { grid-template-columns:repeat(3,1fr) }
-.contact h3 { font-size:18px }
-.role { font-size:11px; color:var(--gold2) }
-.phone { font-size:20px; font-weight:900; margin:13px 0; direction:ltr; text-align:right }
+.contact h3 { 
+  font-size:18px;
+  color: var(--text);
+  font-weight: 800;
+}
+.role { 
+  font-size:11px; 
+  color:var(--gold2);
+  font-weight: 700;
+}
+.phone { 
+  font-size:20px; 
+  font-weight:900; 
+  margin:13px 0; 
+  direction:ltr; 
+  text-align:right;
+  color: var(--text);
+}
 .contact-actions { display:flex; gap:8px }
-.contact-actions a { flex:1; padding:10px; border-radius:11px; text-align:center; font-size:12px; font-weight:900 }
-.call { background:rgba(255,255,255,.07) }
-[data-theme="light"] .call { background: rgba(0,0,0,.04); }
+.contact-actions a { 
+  flex:1; padding:10px; border-radius:11px; 
+  text-align:center; font-size:12px; 
+  font-weight:900 
+}
+.call { 
+  background:rgba(255,255,255,.07);
+  color: var(--text);
+}
+[data-theme="light"] .call { background: rgba(0,0,0,.04); color: #1e1b16; }
 .wa { background:var(--green); color:#06230f }
 
 /* ===== LOCATION ===== */
 .locations { grid-template-columns:1fr 1fr }
 .location { display:flex; justify-content:space-between; align-items:center; gap:15px }
 .location i { font-size:25px; color:var(--gold2) }
-.location p { font-size:13px; color:var(--muted) }
+.location h3 { 
+  color: var(--text);
+  font-weight: 800;
+}
+.location p { 
+  font-size:13px; 
+  color:var(--muted);
+  font-weight: 500;
+}
 .map { white-space:nowrap }
 
 /* ===== SALAWAT ===== */
 .salawat { text-align:center; padding:30px 0 10px; color:var(--muted); font-size:14px; letter-spacing:1px }
-.salawat span { color:var(--gold2); font-size:16px }
+.salawat span { color:var(--gold2); font-size:16px; font-weight:700 }
 .salawat .arabic { font-size:20px; color:var(--gold2); display:block; margin-bottom:5px }
 
 /* ===== FOOTER ===== */
-footer { padding:45px 0 100px; border-top:1px solid var(--line); color:#85878c; font-size:12px }
+footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--muted); font-size:12px }
 .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap }
+.footer-inner div { font-weight: 600; }
 
 /* ===== FLOATING WA ===== */
 .floating-wa {
@@ -384,9 +615,11 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:#85878c; 
 .toast {
   position:fixed; z-index:100;
   top:90px; left:50%; transform:translateX(-50%) translateY(-20px);
-  opacity:0; background:#17191e; border:1px solid var(--line);
+  opacity:0; background:var(--panel); border:1px solid var(--line);
   padding:12px 18px; border-radius:13px; font-size:13px;
-  pointer-events:none; transition:.3s
+  pointer-events:none; transition:.3s;
+  color: var(--text);
+  font-weight: 700;
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0) }
 
@@ -539,7 +772,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:#85878c; 
             <span class="original" id="originalPrice" style="display:none"></span>
             <span class="discount-label" id="discountLabel" style="display:none"></span>
           </span>
-          <span style="font-size:13px;color:var(--muted)" data-i18n="estimate_label">تقديري</span>
+          <span style="font-size:13px;color:var(--muted);font-weight:700" data-i18n="estimate_label">تقديري</span>
         </div>
         <div class="result-details" id="priceDetails" data-i18n="price_details">السعر يشمل جميع الخدمات</div>
       </div>
@@ -576,7 +809,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:#85878c; 
   <div class="grid offers">
     <div class="card offer reveal"><div class="percent">25%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_wedding">العروسة</h3><p data-i18n="off_wedding_desc">عرض خاص على نقل أثاث العرائس.</p></div>
     <div class="card offer featured reveal"><div class="ribbon" data-i18n="off_ribbon">الأكثر طلباً</div><div class="percent">15%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_divorce">المنقولات بعد الطلاق</h3><p data-i18n="off_divorce_desc">خصم خاص على عمليات النقل للفئة المستهدفة.</p></div>
-    <div class="card offer reveal"><div class="percent">10%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_flash">عرض 4 أيام</h3><p data-i18n="off_flash_desc">خصم محدود لمدة أربعة أيام من بداية الحملة.</p><div id="timer" class="gold" style="font-weight:900;margin-top:10px">جاري الحساب...</div></div>
+    <div class="card offer reveal"><div class="percent">10%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_flash">عرض 4 أيام</h3><p data-i18n="off_flash_desc">خصم محدود لمدة أربعة أيام من بداية الحملة.</p><div id="timer" class="gold" style="font-weight:800;margin-top:10px;font-size:14px">جاري الحساب...</div></div>
   </div>
 </div>
 </section>
@@ -728,16 +961,13 @@ themeToggle.addEventListener('click', () => {
 const langToggle = document.getElementById('langToggle');
 const langLabel = document.getElementById('langLabel');
 
-// Translation dictionary (key -> {ar, en})
 const i18n = {
-  // nav
   nav_calc: { ar: 'احجز الآن', en: 'Book Now' },
   nav_offers: { ar: 'العروض', en: 'Offers' },
   nav_services: { ar: 'خدماتنا', en: 'Services' },
   nav_works: { ar: 'أعمالنا', en: 'Our Work' },
   nav_contact: { ar: 'التواصل', en: 'Contact' },
   nav_call: { ar: 'اتصل الآن', en: 'Call Now' },
-  // hero
   hero_badge: { ar: 'نقل آمن • فريق متكامل • خدمة 24/7', en: 'Safe Moving • Full Team • 24/7' },
   hero_title1: { ar: 'ننقل أثاثك', en: 'We Move Your Furniture' },
   hero_title2: { ar: 'بأمان', en: 'Safely' },
@@ -749,7 +979,6 @@ const i18n = {
   stat2: { ar: 'إشراف ومتابعة', en: 'Supervision & Follow-up' },
   stat3: { ar: 'خدمات في فريق واحد', en: 'Services in one team' },
   scroll_note: { ar: 'اسحب لأسفل ↓', en: 'Scroll down ↓' },
-  // services
   services_badge: { ar: 'لماذا الإشراف 515؟', en: 'Why Al-Eshraf 515?' },
   services_title: { ar: 'مش مجرد عربية نقل', en: 'Not Just a Moving Truck' },
   services_desc: { ar: 'من التخطيط والتغليف إلى الفك والتركيب والتسليم، بنجمع لك الخدمات الأساسية في مكان واحد.', en: 'From planning and packing to disassembly, assembly and delivery, we bring all essential services in one place.' },
@@ -761,7 +990,6 @@ const i18n = {
   feat3_desc: { ar: 'فني تكييف وكهربائي ضمن الخدمات حسب احتياج عملية النقل.', en: 'AC and electrical technician as part of the moving service.' },
   feat4_title: { ar: 'متابعة وإشراف', en: 'Follow-up & Supervision' },
   feat4_desc: { ar: 'مشرف يتابع تفاصيل العملية من الحجز حتى استقرار الأثاث.', en: 'A supervisor tracks the process from booking to furniture settling.' },
-  // calc
   calc_badge: { ar: 'احجز خدمتك', en: 'Book Your Service' },
   calc_title: { ar: 'اطلب نقل أثاثك بسهولة', en: 'Request Your Move Easily' },
   calc_desc: { ar: 'أرسل تفاصيل النقل وسيتواصل معك أحد المشرفين لتأكيد الموعد والسعر المناسب.', en: 'Send moving details and one of our supervisors will confirm timing and price.' },
@@ -793,7 +1021,6 @@ const i18n = {
   pt2: { ar: '✓ فك وتركيب حسب الطلب', en: '✓ Disassembly/assembly on demand' },
   pt3: { ar: '✓ ونش وتكييف وكهرباء عند الحاجة', en: '✓ Crane, AC, electrical when needed' },
   pt4: { ar: '✓ متابعة من المشرف حتى التسليم', en: '✓ Supervisor follow-up until delivery' },
-  // offers
   offers_badge: { ar: 'عروض محدودة', en: 'Limited Offers' },
   offers_title: { ar: 'وفّر أكتر على نقلك', en: 'Save More on Your Move' },
   offers_desc: { ar: 'عروض خاصة لفئات محددة — تواصل معنا للتأكد من انطباق العرض على طلبك.', en: 'Special offers for specific categories — contact us to check if the offer applies.' },
@@ -805,7 +1032,6 @@ const i18n = {
   off_divorce_desc: { ar: 'خصم خاص على عمليات النقل للفئة المستهدفة.', en: 'Special discount for the target category.' },
   off_flash: { ar: 'عرض 4 أيام', en: '4-Day Offer' },
   off_flash_desc: { ar: 'خصم محدود لمدة أربعة أيام من بداية الحملة.', en: 'Limited discount for four days from launch.' },
-  // steps
   steps_badge: { ar: 'طريقة العمل', en: 'How We Work' },
   steps_title: { ar: 'من أول مكالمة لحد التسليم', en: 'From First Call to Delivery' },
   step1_title: { ar: 'احجز', en: 'Book' },
@@ -816,7 +1042,6 @@ const i18n = {
   step3_desc: { ar: 'الفريق ينفذ النقل والفك والتركيب حسب الطلب.', en: 'The team carries out moving, disassembly and assembly.' },
   step4_title: { ar: 'نسلّم', en: 'Deliver' },
   step4_desc: { ar: 'متابعة حتى استقرار الأثاث في المكان الجديد.', en: 'Follow-up until furniture is settled in the new place.' },
-  // reviews
   reviews_badge: { ar: 'ثقة العملاء', en: 'Client Trust' },
   reviews_title: { ar: 'الانطباع اللي نريد نسيبه', en: 'The Impression We Want to Leave' },
   reviews_desc: { ar: 'قسم آراء قابل للتعديل — استبدل النصوص بآراء العملاء الحقيقية قبل النشر النهائي.', en: 'Editable reviews section — replace with real client feedback before final publishing.' },
@@ -829,11 +1054,9 @@ const i18n = {
   rev3_text: { ar: '"التواصل والمتابعة كانوا ممتازين، وده خلاني مطمئن أثناء النقل."', en: '"Communication and follow-up were excellent, which made me reassured during the move."' },
   rev3_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
   rev3_tag: { ar: 'نقل منزلي', en: 'Home Moving' },
-  // works
   works_badge: { ar: 'أعمالنا', en: 'Our Work' },
   works_title: { ar: 'نقل مرتب من البداية', en: 'Organized Moving from Start' },
   works_desc: { ar: 'صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.', en: 'Illustrative images. Replace with real work photos for more trust.' },
-  // contact
   contact_badge: { ar: 'تواصل مباشر', en: 'Direct Contact' },
   contact_title: { ar: 'اختار المشرف واتصل', en: 'Choose a Supervisor & Call' },
   contact_desc: { ar: 'كل الأرقام مأخوذة من بيانات الموقع الأصلي.', en: 'All numbers from original site data.' },
@@ -842,7 +1065,6 @@ const i18n = {
   role3: { ar: 'مشرف', en: 'Supervisor' },
   call_btn: { ar: 'اتصال', en: 'Call' },
   wa_btn: { ar: 'واتساب', en: 'WhatsApp' },
-  // location
   location_badge: { ar: 'الموقع', en: 'Location' },
   location_title: { ar: 'خدمة تصل لك', en: 'Service Reaches You' },
   location_desc: { ar: 'القاهرة — مدينة نصر — الحي العاشر، مع إمكانية التواصل لمعرفة نطاق الخدمة.', en: 'Cairo — Nasr City — 10th District, contact us for service area.' },
@@ -850,9 +1072,7 @@ const i18n = {
   loc_nasr_detail: { ar: 'الحي العاشر — القاهرة', en: '10th District — Cairo' },
   loc_map: { ar: 'افتح الخريطة', en: 'Open Map' },
   loc_map_detail: { ar: 'عرض الموقع على Google Maps', en: 'View on Google Maps' },
-  // salawat
   salawat_text: { ar: 'اللهم صلِّ على سيدنا محمد وعلى آله وصحبه وسلم', en: 'O Allah, bless our Prophet Muhammad and his family and companions.' },
-  // footer
   footer_brand: { ar: 'الإشراف 515 — نقل أثاث وعفش', en: 'Al-Eshraf 515 — Furniture Moving' },
   footer_hours: { ar: 'متاح 24 ساعة • فك وتركيب • تكييف • كهرباء', en: '24/7 • Disassembly/Assembly • AC • Electrical' }
 };
@@ -885,7 +1105,6 @@ langToggle.addEventListener('click', () => {
 // ============================================================
 function updateClock() {
   const now = new Date();
-  // Cairo time is UTC+2 (no DST adjustment for simplicity)
   const cairoTime = new Date(now.getTime() + (2 * 60 * 60 * 1000));
   const h = String(cairoTime.getUTCHours()).padStart(2,'0');
   const m = String(cairoTime.getUTCMinutes()).padStart(2,'0');
@@ -896,7 +1115,7 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// 4. PRICE CALCULATOR (unchanged logic)
+// 4. PRICE CALCULATOR
 // ============================================================
 const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
