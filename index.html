@@ -34,21 +34,23 @@
   --text-shadow-gold: 0 0 12px rgba(215,170,82,.15);
 }
 
-/* ===== LIGHT MODE ===== */
+/* ===== LIGHT MODE (أسود للخط + أخضر للعناصر البارزة) ===== */
 [data-theme="light"] {
   --bg: #f2efe8;
   --panel: #e8e4db;
   --panel2: #ddd8ce;
-  --text: #000000; /* أسود صريح */
+  --text: #000000; /* خط أسود */
   --muted: #333333;
   --line: rgba(0,0,0,.12);
   --shadow: 0 25px 60px rgba(0,0,0,.08);
   --card-bg: #ffffff;
   --input-bg: #ffffff;
-  --badge-bg: rgba(215,170,82,.15);
-  --discount-bg: rgba(215,170,82,.08);
+  --gold: #28a745; /* أخضر للأزرار والخلفيات البارزة */
+  --gold2: #000000; /* أسود للنصوص المميزة */
+  --badge-bg: rgba(40, 167, 69, 0.15);
+  --discount-bg: rgba(40, 167, 69, 0.08);
   --calc-result-bg: #f8f5ed;
-  --text-shadow-gold: 0 0 15px rgba(215,170,82,.08);
+  --text-shadow-gold: 0 0 15px rgba(40, 167, 69, 0.08);
 }
 
 * { box-sizing: border-box; margin:0; padding:0 }
@@ -85,11 +87,17 @@ button, input, select { font: inherit }
 }
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(215,170,82,.4);
+  border: 1px solid rgba(40, 167, 69, .4);
   background: var(--badge-bg);
   color: var(--gold2);
   padding: 7px 13px; border-radius: 999px;
   font-size: 13px; font-weight: 800; margin-bottom: 14px;
+  text-shadow: 0 0 10px rgba(40, 167, 69, .1);
+}
+[data-theme="dark"] .badge {
+  border-color: rgba(215,170,82,.4);
+  background: rgba(215,170,82,.12);
+  color: var(--gold2);
   text-shadow: 0 0 10px rgba(215,170,82,.1);
 }
 
@@ -118,14 +126,19 @@ button, input, select { font: inherit }
   border-radius: 30px; transition: 0.2s;
   font-weight: 700;
 }
-.toolbar button:hover { color: var(--gold2); background: rgba(215,170,82,.08) }
+.toolbar button:hover { color: var(--gold2); background: rgba(40, 167, 69, .08); }
+[data-theme="dark"] .toolbar button:hover { background: rgba(215,170,82,.08); color: var(--gold2); }
 .toolbar .clock {
   font-size: 14px; font-weight: 800;
   color: var(--gold2);
   direction: ltr;
-  background: rgba(215,170,82,.1);
+  background: rgba(40, 167, 69, .1);
   padding: 3px 14px; border-radius: 30px;
   white-space: nowrap;
+  text-shadow: 0 0 15px rgba(40, 167, 69, .15);
+}
+[data-theme="dark"] .toolbar .clock {
+  background: rgba(215,170,82,.1);
   text-shadow: 0 0 15px rgba(215,170,82,.15);
 }
 
@@ -143,6 +156,11 @@ button, input, select { font: inherit }
 .brand-mark {
   width:43px; height:43px; border-radius:14px;
   display: grid; place-items: center;
+  background: linear-gradient(145deg,var(--gold2),var(--gold));
+  color:#fff;
+  box-shadow:0 8px 30px rgba(40, 167, 69, .25);
+}
+[data-theme="dark"] .brand-mark {
   background: linear-gradient(145deg,var(--gold2),#a77828);
   color:#111;
   box-shadow:0 8px 30px rgba(215,170,82,.25);
@@ -151,12 +169,18 @@ button, input, select { font: inherit }
 .nav-links { display: flex; gap:25px; color:#cfd0d3; font-size:14px; font-weight:600 }
 .nav-links a:hover { color:var(--gold2) }
 .nav-btn {
-  background:var(--gold2); color:#111;
+  background:var(--gold2); color:#fff;
   padding:9px 16px; border-radius:12px;
   font-weight:900; font-size:13px;
+  box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
+}
+[data-theme="dark"] .nav-btn {
+  background:var(--gold2);
+  color:#111;
   box-shadow: 0 4px 20px rgba(215,170,82,.2);
 }
 [data-theme="light"] .nav-links { color: #3a362f; }
+[data-theme="light"] .nav-links a:hover { color: var(--gold); }
 
 /* ===== HERO ===== */
 .hero {
@@ -206,9 +230,13 @@ button, input, select { font: inherit }
 .btn:hover { transform:translateY(-3px) }
 .btn-gold { 
   background:linear-gradient(135deg,var(--gold2),var(--gold)); 
-  color:#111; 
-  box-shadow:0 12px 35px rgba(215,170,82,.25);
+  color:#fff;
+  box-shadow:0 12px 35px rgba(40, 167, 69, .25);
   font-weight: 900;
+}
+[data-theme="dark"] .btn-gold {
+  color:#111;
+  box-shadow:0 12px 35px rgba(215,170,82,.25);
 }
 .btn-dark { 
   background:rgba(255,255,255,.07); 
@@ -222,8 +250,9 @@ button, input, select { font: inherit }
   display:block; 
   font-size:26px; 
   color:var(--gold2);
-  text-shadow: 0 0 20px rgba(215,170,82,.15);
+  text-shadow: 0 0 20px rgba(40, 167, 69, .15);
 }
+[data-theme="dark"] .stat strong { text-shadow: 0 0 20px rgba(215,170,82,.15); }
 .stat span { font-size:12px; color:var(--muted); font-weight:600 }
 .scroll-note { position:absolute; bottom:26px; right:4%; z-index:4; color:#999; font-size:11px }
 
@@ -241,9 +270,11 @@ button, input, select { font: inherit }
 .feature i {
   width:52px; height:52px; border-radius:16px;
   display:grid; place-items:center;
-  background:rgba(215,170,82,.12);
-  color:var(--gold2); font-size:20px; margin-bottom:17px
+  background:rgba(40, 167, 69, .12);
+  color:var(--gold2);
+  font-size:20px; margin-bottom:17px
 }
+[data-theme="dark"] .feature i { background:rgba(215,170,82,.12); color:var(--gold2); }
 .feature h3 { 
   font-size:18px; 
   margin-bottom:8px;
@@ -294,7 +325,7 @@ button, input, select { font: inherit }
   transition:0.3s;
   font-weight: 600;
 }
-.field input:focus, .field select:focus { border-color:rgba(215,170,82,.7) }
+.field input:focus, .field select:focus { border-color:var(--gold); }
 .services { margin:18px 0 }
 .services-title { 
   font-size:12px; 
@@ -318,19 +349,21 @@ button, input, select { font: inherit }
 }
 [data-theme="light"] .check label { background: #f5f2eb; color: #1a1a1a; }
 .check label i { color:var(--gold2) }
+[data-theme="dark"] .check label i { color:var(--gold2); }
 .check input:checked+label { 
   border-color:var(--gold); 
-  background:rgba(215,170,82,.12); 
+  background:rgba(40, 167, 69, .12); 
   color:var(--text);
 }
-[data-theme="light"] .check input:checked+label { background: rgba(215,170,82,.15); color:#000000; }
+[data-theme="dark"] .check input:checked+label { background:rgba(215,170,82,.12); border-color:var(--gold); }
 
 .discount-section {
   margin:18px 0; padding:16px;
   background:var(--discount-bg);
-  border:1px solid rgba(215,170,82,.25);
+  border:1px solid rgba(40, 167, 69, .25);
   border-radius:16px
 }
+[data-theme="dark"] .discount-section { border-color:rgba(215,170,82,.25); background:var(--discount-bg); }
 .discount-section .title { 
   font-size:13px; 
   color:var(--gold2); 
@@ -339,8 +372,9 @@ button, input, select { font: inherit }
   display:flex; 
   align-items:center; 
   gap:8px;
-  text-shadow: 0 0 12px rgba(215,170,82,.1);
+  text-shadow: 0 0 12px rgba(40, 167, 69, .1);
 }
+[data-theme="dark"] .discount-section .title { text-shadow: 0 0 12px rgba(215,170,82,.1); }
 .discount-options { display:grid; grid-template-columns:1fr 1fr; gap:8px }
 .discount-opt { position:relative }
 .discount-opt input { position:absolute; opacity:0 }
@@ -359,27 +393,29 @@ button, input, select { font: inherit }
 .discount-opt label i { color:var(--gold2); font-size:14px }
 .discount-opt input:checked+label { 
   border-color:var(--gold); 
-  background:rgba(215,170,82,.15); 
+  background:rgba(40, 167, 69, .15); 
   color:var(--text);
-  box-shadow:0 0 30px rgba(215,170,82,.08);
+  box-shadow:0 0 30px rgba(40, 167, 69, .08);
 }
-[data-theme="light"] .discount-opt input:checked+label { color:#000000; }
+[data-theme="dark"] .discount-opt input:checked+label { background:rgba(215,170,82,.15); border-color:var(--gold); box-shadow:0 0 30px rgba(215,170,82,.08); }
 
 .calc-result {
   margin-top:20px; padding:20px;
   border-radius:18px;
   background:var(--calc-result-bg);
-  border:1px solid rgba(215,170,82,.25);
+  border:1px solid rgba(40, 167, 69, .25);
   display:block;
   transition:0.3s;
 }
+[data-theme="dark"] .calc-result { border-color:rgba(215,170,82,.25); }
 .result-top { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap }
 .result-price { 
   font-size:32px; 
   font-weight:900; 
   color:var(--gold2);
-  text-shadow: 0 0 25px rgba(215,170,82,.12);
+  text-shadow: 0 0 25px rgba(40, 167, 69, .12);
 }
+[data-theme="dark"] .result-price { text-shadow: 0 0 25px rgba(215,170,82,.12); }
 .result-price .original { 
   font-size:16px; 
   color:var(--muted); 
@@ -390,13 +426,14 @@ button, input, select { font: inherit }
 .result-price .discount-label { 
   font-size:13px; 
   color:var(--gold2); 
-  background:rgba(215,170,82,.15); 
+  background:rgba(40, 167, 69, .15); 
   padding:2px 12px; 
   border-radius:999px; 
   font-weight:800; 
   margin-right:8px;
-  text-shadow: 0 0 10px rgba(215,170,82,.1);
+  text-shadow: 0 0 10px rgba(40, 167, 69, .1);
 }
+[data-theme="dark"] .result-price .discount-label { background:rgba(215,170,82,.15); text-shadow: 0 0 10px rgba(215,170,82,.1); }
 .result-details { 
   font-size:13px; 
   color:var(--muted); 
@@ -457,8 +494,9 @@ button, input, select { font: inherit }
   font-size:44px; 
   font-weight:900; 
   color:var(--gold2);
-  text-shadow: 0 0 30px rgba(215,170,82,.12);
+  text-shadow: 0 0 30px rgba(40, 167, 69, .12);
 }
+[data-theme="dark"] .offer .percent { text-shadow: 0 0 30px rgba(215,170,82,.12); }
 .offer small { 
   color:var(--muted);
   font-weight: 700;
@@ -474,17 +512,18 @@ button, input, select { font: inherit }
   font-weight: 500;
 }
 [data-theme="light"] .offer p { color:#333333; }
-.offer.featured { border-color:rgba(215,170,82,.45); transform:translateY(-8px) }
+.offer.featured { border-color:var(--gold); transform:translateY(-8px) }
 .ribbon { 
   position:absolute; top:15px; left:-35px; 
   transform:rotate(-45deg); 
   background:var(--gold2); 
-  color:#111; 
+  color:#fff;
   padding:4px 40px; 
   font-size:10px; 
   font-weight:900;
-  box-shadow: 0 4px 20px rgba(215,170,82,.2);
+  box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
 }
+[data-theme="dark"] .ribbon { background:var(--gold2); color:#111; box-shadow: 0 4px 20px rgba(215,170,82,.2); }
 
 /* ===== STEPS ===== */
 .steps { grid-template-columns:repeat(4,1fr) }
@@ -492,12 +531,13 @@ button, input, select { font: inherit }
 .step-num {
   width:58px; height:58px; border-radius:18px;
   display:grid; place-items:center; margin:0 auto 16px;
-  background:rgba(215,170,82,.12);
-  border:1px solid rgba(215,170,82,.3);
+  background:rgba(40, 167, 69, .12);
+  border:1px solid rgba(40, 167, 69, .3);
   color:var(--gold2);
   font-size:20px; font-weight:900;
-  text-shadow: 0 0 15px rgba(215,170,82,.1);
+  text-shadow: 0 0 15px rgba(40, 167, 69, .1);
 }
+[data-theme="dark"] .step-num { background:rgba(215,170,82,.12); border-color:rgba(215,170,82,.3); text-shadow: 0 0 15px rgba(215,170,82,.1); }
 .step h3 { 
   font-size:17px;
   color: var(--text);
@@ -623,6 +663,19 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0) }
 
+/* ===== SPECIAL: FLOORS GROUP (بجوار بعض في جميع الشاشات) ===== */
+.floors-group {
+  grid-column: 1 / -1;
+}
+.floors-group > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.floors-group input {
+  width: 100%;
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   .features,.steps { grid-template-columns:1fr 1fr }
@@ -661,6 +714,10 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
   .calc-side h3 { font-size: 26px; }
   .hero h1 { font-size: 36px; }
   .hero p { font-size: 16px; }
+  /* تأكيد أن حقل الأدوار يظل بجوار بعض في الموبايل */
+  .floors-group > div {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -753,11 +810,15 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
         <div class="field"><label data-i18n="label_to">منطقة التسليم</label><input id="to" placeholder="مثال: التجمع"></div>
         <div class="field"><label data-i18n="label_rooms">عدد الغرف</label><input id="rooms" type="number" min="0" value="0" placeholder="اختياري"></div>
         <div class="field"><label data-i18n="label_acs">عدد أجهزة التكييف</label><input id="acs" type="number" min="0" value="0" placeholder="اختياري"></div>
-        <!-- دمج الأدوار في حقل واحد اختياري -->
-        <div class="field" style="grid-column: 1 / -1;">
-          <label data-i18n="label_floors">عدد الأدوار (من الأرضي إلى الدور المطلوب)</label>
-          <input id="floors" type="number" min="0" value="0" placeholder="اختياري (مثال: 5 تعني الدور الخامس)">
-          <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0، يمكنك تركها 0 إذا كنت في الدور الأرضي</small>
+        
+        <!-- حقل الأدوار (نازل وطالع) بجوار بعض -->
+        <div class="field floors-group">
+          <label data-i18n="label_floors">عدد الأدوار (نازل / طالع)</label>
+          <div>
+            <input id="floorsDown" type="number" min="0" value="0" placeholder="نازل">
+            <input id="floorsUp" type="number" min="0" value="0" placeholder="طالع">
+          </div>
+          <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0، اتركها 0 إذا كنت في الدور الأرضي</small>
         </div>
       </div>
       <div class="services">
@@ -1014,7 +1075,7 @@ const i18n = {
   label_to: { ar: 'منطقة التسليم', en: 'Delivery Area' },
   label_rooms: { ar: 'عدد الغرف', en: 'Number of Rooms' },
   label_acs: { ar: 'عدد أجهزة التكييف', en: 'Number of AC Units' },
-  label_floors: { ar: 'عدد الأدوار (من الأرضي إلى الدور المطلوب)', en: 'Floors (from ground to required floor)' },
+  label_floors: { ar: 'عدد الأدوار (نازل / طالع)', en: 'Floors (Down / Up)' },
   services_required: { ar: 'الخدمات المطلوبة', en: 'Required Services' },
   chk_crane: { ar: 'ونش', en: 'Crane' },
   chk_assembly: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
@@ -1129,7 +1190,7 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// 4. PRICE CALCULATOR (updated for single floors field)
+// 4. PRICE CALCULATOR (with floorsDown & floorsUp)
 // ============================================================
 const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
@@ -1143,8 +1204,8 @@ const COMPANY_PROFIT = 1000;
 function calculateTotal() {
   const rooms = Number(document.getElementById('rooms').value) || 0;
   const acs = Number(document.getElementById('acs').value) || 0;
-  // حقل الأدوار الموحد
-  const floors = Number(document.getElementById('floors').value) || 0;
+  const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
+  const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
   const crane = document.getElementById('crane').checked;
   const assembly = document.getElementById('assembly').checked;
   const acService = document.getElementById('ac').checked;
@@ -1163,10 +1224,10 @@ function calculateTotal() {
   if (acService && acs > 0) { const cost = acs * PRICE_AC_PER_UNIT; total += cost; extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`); }
   else if (acService) { extras.push(`تكييف (0 جهاز)`); }
 
-  // حساب الأدوار: نعتبر أن floor = 0 يعني أرضي، أي لا توجد أدوار إضافية.
-  // الحد الأدنى المجاني هو FLOOR_THRESHOLD أدوار (أي من 0 إلى 4).
-  if (floors > FLOOR_THRESHOLD) {
-    const extraFloors = floors - FLOOR_THRESHOLD;
+  // حساب الأدوار (نازل + طالع)
+  const totalFloors = floorsDown + floorsUp;
+  if (totalFloors > FLOOR_THRESHOLD) {
+    const extraFloors = totalFloors - FLOOR_THRESHOLD;
     const floorCost = extraFloors * EXTRA_FLOOR_PRICE;
     total += floorCost;
     extras.push(`رسوم أدوار إضافية (${extraFloors} دور فوق الـ ${FLOOR_THRESHOLD}) × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
@@ -1209,7 +1270,7 @@ function updatePrice() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  ['rooms', 'acs', 'floors'].forEach(id => {
+  ['rooms', 'acs', 'floorsDown', 'floorsUp'].forEach(id => {
     document.getElementById(id).addEventListener('input', updatePrice);
   });
   ['crane', 'assembly', 'ac', 'electric'].forEach(id => {
@@ -1226,7 +1287,8 @@ function sendCustomerOrder() {
   const to = document.getElementById('to').value.trim();
   const rooms = Number(document.getElementById('rooms').value) || 0;
   const acs = Number(document.getElementById('acs').value) || 0;
-  const floors = Number(document.getElementById('floors').value) || 0;
+  const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
+  const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
 
   if (!from || !to) {
     toast('اكتب منطقة الاستلام والتسليم أولاً');
@@ -1255,7 +1317,9 @@ function sendCustomerOrder() {
 `منطقة التسليم: ${encodeURIComponent(to)}%0A` +
 `عدد الغرف: ${rooms}%0A` +
 `عدد أجهزة التكييف: ${acs}%0A` +
-`عدد الأدوار (من الأرضي للدور المطلوب): ${floors}%0A` +
+`عدد الأدوار نازل: ${floorsDown}%0A` +
+`عدد الأدوار طالع: ${floorsUp}%0A` +
+`إجمالي الأدوار: ${floorsDown + floorsUp}%0A` +
 `الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
 `الخصم المختار: ${encodeURIComponent(discountText)}%0A` +
 `السعر التقديري: ${encodeURIComponent(priceText)}%0A%0A` +
