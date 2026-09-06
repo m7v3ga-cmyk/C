@@ -32,6 +32,7 @@
   --discount-bg: rgba(215,170,82,.08);
   --calc-result-bg: #0a0b0e;
   --text-shadow-gold: 0 0 12px rgba(215,170,82,.15);
+  --nav-transform: translateY(0);
 }
 
 /* ===== LIGHT MODE (أسود للخط + أخضر للعناصر البارزة) ===== */
@@ -142,13 +143,17 @@ button, input, select { font: inherit }
   text-shadow: 0 0 15px rgba(215,170,82,.15);
 }
 
-/* ===== NAV ===== */
+/* ===== NAV (مع تأثير التمرير) ===== */
 .nav {
   position: fixed; z-index: 50;
   top:0; left:0; right:0;
   background: rgba(8,9,11,.72); backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--line);
-  transition: 0.3s;
+  transition: transform 0.3s ease-in-out, background 0.3s;
+  transform: translateY(0);
+}
+.nav.hide {
+  transform: translateY(-100%);
 }
 [data-theme="light"] .nav { background: rgba(242,239,232,.85); }
 .nav-inner { height: 74px; display: flex; align-items: center; justify-content: space-between }
@@ -526,8 +531,12 @@ button, input, select { font: inherit }
 }
 [data-theme="dark"] .ribbon { background:var(--gold2); color:#111; box-shadow: 0 4px 20px rgba(215,170,82,.2); }
 
-/* ===== STEPS ===== */
-.steps { grid-template-columns:repeat(4,1fr) }
+/* ===== STEPS (صف أفقي واحد) ===== */
+.steps { 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
 .step { position:relative; text-align:center }
 .step-num {
   width:58px; height:58px; border-radius:18px;
@@ -732,7 +741,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
-  .features,.steps { grid-template-columns:1fr 1fr }
+  .features { grid-template-columns:1fr 1fr }
   .calc-wrap { grid-template-columns:1fr }
   .offers,.reviews,.contacts { grid-template-columns:1fr }
   .offer.featured { transform:none }
@@ -757,8 +766,8 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
   .nav-btn { padding:8px 11px }
   .brand small { display:none }
   .toolbar button span { display:none }
-  /* عرض أوسع للموبايل (470 بدلاً من 360) */
-  .container { width: 96%; max-width: 470px; }
+  /* عرض أوسع للموبايل (560 بكسل) */
+  .container { width: 96%; max-width: 560px; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .section-head p { max-width: 100%; }
   .result-top { flex-direction: column; align-items: flex-start; }
@@ -766,14 +775,20 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
   .calc-side { padding: 25px; }
   .calc-points { position: relative; bottom: auto; right: auto; left: auto; margin-top: 20px; }
   .calc-side h3 { font-size: 24px; }
-  /* جعل جميع الأقسام 2 columns في الموبايل */
+  /* جعل جميع الأقسام 2 columns */
   .features { grid-template-columns: 1fr 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; }
   .offers { grid-template-columns: 1fr 1fr; }
   .reviews { grid-template-columns: 1fr 1fr; }
   .contacts { grid-template-columns: 1fr 1fr; }
   .locations { grid-template-columns: 1fr 1fr; }
-  /* تأكيد أن حقل الأدوار يظل بجوار بعض */
+  /* تحويل الـ Steps إلى صف أفقي واحد (4 أعمدة) */
+  .steps { 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .step-num { width: 40px; height: 40px; font-size: 16px; }
+  .step h3 { font-size: 13px; }
+  .step p { font-size: 10px; }
   .floors-group > div {
     grid-template-columns: 1fr 1fr;
   }
@@ -784,12 +799,13 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 }
 @media(max-width:400px){
   .features { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
   .offers { grid-template-columns: 1fr; }
   .reviews { grid-template-columns: 1fr; }
   .contacts { grid-template-columns: 1fr; }
   .locations { grid-template-columns: 1fr; }
   .container { max-width: 100%; }
+  /* في الشاشات الصغيرة جداً، الـ steps تصبح عمودين للحفاظ على القراءة */
+  .steps { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -805,8 +821,8 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
   <div class="clock" id="clockDisplay">⏰ 00:00:00</div>
 </div>
 
-<!-- ===== NAV ===== -->
-<nav class="nav">
+<!-- ===== NAV (مع تأثير التمرير) ===== -->
+<nav class="nav" id="mainNav">
   <div class="container nav-inner">
     <a class="brand" href="#home">
       <div class="brand-mark"><i class="fa-solid fa-truck-moving"></i></div>
@@ -985,7 +1001,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 </div>
 </section>
 
-<!-- ===== STEPS ===== -->
+<!-- ===== STEPS (صف أفقي واحد) ===== -->
 <section class="section">
 <div class="container">
   <div class="section-head reveal">
@@ -1285,7 +1301,25 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// 4. NUMBER INPUT WITH +/- BUTTONS
+// 4. NAV SCROLL HIDE/SHOW EFFECT
+// ============================================================
+const nav = document.getElementById('mainNav');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  if (currentScrollY > lastScrollY && currentScrollY > 80) {
+    // التمرير للأسفل - إخفاء الناف بار
+    nav.classList.add('hide');
+  } else {
+    // التمرير للأعلى - إظهار الناف بار
+    nav.classList.remove('hide');
+  }
+  lastScrollY = currentScrollY;
+});
+
+// ============================================================
+// 5. NUMBER INPUT WITH +/- BUTTONS
 // ============================================================
 function changeValue(id, delta) {
   const input = document.getElementById(id);
@@ -1293,14 +1327,13 @@ function changeValue(id, delta) {
   let val = parseInt(input.value) || 0;
   val = Math.max(0, val + delta);
   input.value = val;
-  // Trigger change event
   const event = new Event('input', { bubbles: true });
   input.dispatchEvent(event);
   updatePrice();
 }
 
 // ============================================================
-// 5. PRICE CALCULATOR
+// 6. PRICE CALCULATOR
 // ============================================================
 const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
@@ -1445,7 +1478,7 @@ function toast(t) {
 }
 
 // ============================================================
-// 6. OFFER TIMER
+// 7. OFFER TIMER
 // ============================================================
 function offerTimer() {
   const key = 'ishraf515_offer_end_v2';
@@ -1466,7 +1499,7 @@ setInterval(offerTimer, 1000);
 offerTimer();
 
 // ============================================================
-// 7. REVEAL ON SCROLL
+// 8. REVEAL ON SCROLL
 // ============================================================
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
