@@ -39,14 +39,14 @@
   --bg: #f2efe8;
   --panel: #e8e4db;
   --panel2: #ddd8ce;
-  --text: #000000; /* خط أسود */
+  --text: #000000;
   --muted: #333333;
   --line: rgba(0,0,0,.12);
   --shadow: 0 25px 60px rgba(0,0,0,.08);
   --card-bg: #ffffff;
   --input-bg: #ffffff;
-  --gold: #28a745; /* أخضر للأزرار والخلفيات البارزة */
-  --gold2: #000000; /* أسود للنصوص المميزة */
+  --gold: #28a745;
+  --gold2: #000000;
   --badge-bg: rgba(40, 167, 69, 0.15);
   --discount-bg: rgba(40, 167, 69, 0.08);
   --calc-result-bg: #f8f5ed;
@@ -309,6 +309,7 @@ button, input, select { font: inherit }
   font-weight: 500;
 }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px }
+.field { position:relative; }
 .field label { 
   display:block; 
   font-size:12px; 
@@ -663,7 +664,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0) }
 
-/* ===== SPECIAL: FLOORS GROUP (بجوار بعض في جميع الشاشات) ===== */
+/* ===== SPECIAL: FLOORS GROUP ===== */
 .floors-group {
   grid-column: 1 / -1;
 }
@@ -675,6 +676,59 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 .floors-group input {
   width: 100%;
 }
+
+/* ===== NUMBER INPUT WITH +/- BUTTONS ===== */
+.number-input {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--input-bg);
+  overflow: hidden;
+  height: 50px;
+}
+.number-input button {
+  width: 40px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--gold2);
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.number-input button:hover {
+  background: rgba(40, 167, 69, .1);
+}
+[data-theme="dark"] .number-input button:hover {
+  background: rgba(215,170,82,.1);
+}
+.number-input input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  outline: none;
+  padding: 0 4px;
+  -moz-appearance: textfield;
+}
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+[data-theme="light"] .number-input input { color: #000000; }
+[data-theme="light"] .number-input { background: #ffffff; border-color: var(--line); }
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
@@ -693,31 +747,49 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
 @media(max-width:600px){
   .section { padding:70px 0 }
   .hero { min-height:720px }
-  .hero h1 { letter-spacing:-1px }
+  .hero h1 { letter-spacing:-1px; font-size:32px; }
   .hero p { font-size:15px }
   .hero-stats { gap:17px }
-  .form-grid,.checks,.features,.steps,.locations { grid-template-columns:1fr }
+  .form-grid,.checks { grid-template-columns:1fr }
   .gallery { grid-template-columns:1fr; grid-template-rows:230px 180px 180px }
   .gallery img:first-child { grid-column:auto }
   .calc-side { min-height:430px }
   .nav-btn { padding:8px 11px }
   .brand small { display:none }
   .toolbar button span { display:none }
-  /* تحسين عرض النصوص في الموبايل */
-  .container { width: 95%; }
+  /* عرض أوسع للموبايل (470 بدلاً من 360) */
+  .container { width: 96%; max-width: 470px; }
   .section-head { flex-direction: column; align-items: flex-start; }
   .section-head p { max-width: 100%; }
   .result-top { flex-direction: column; align-items: flex-start; }
-  .result-price { font-size: 28px; }
+  .result-price { font-size: 26px; }
   .calc-side { padding: 25px; }
   .calc-points { position: relative; bottom: auto; right: auto; left: auto; margin-top: 20px; }
-  .calc-side h3 { font-size: 26px; }
-  .hero h1 { font-size: 36px; }
-  .hero p { font-size: 16px; }
-  /* تأكيد أن حقل الأدوار يظل بجوار بعض في الموبايل */
+  .calc-side h3 { font-size: 24px; }
+  /* جعل جميع الأقسام 2 columns في الموبايل */
+  .features { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .offers { grid-template-columns: 1fr 1fr; }
+  .reviews { grid-template-columns: 1fr 1fr; }
+  .contacts { grid-template-columns: 1fr 1fr; }
+  .locations { grid-template-columns: 1fr 1fr; }
+  /* تأكيد أن حقل الأدوار يظل بجوار بعض */
   .floors-group > div {
     grid-template-columns: 1fr 1fr;
   }
+  .number-input button {
+    width: 36px;
+    font-size: 16px;
+  }
+}
+@media(max-width:400px){
+  .features { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .offers { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .contacts { grid-template-columns: 1fr; }
+  .locations { grid-template-columns: 1fr; }
+  .container { max-width: 100%; }
 }
 </style>
 </head>
@@ -808,17 +880,40 @@ footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--mut
       <div class="form-grid">
         <div class="field"><label data-i18n="label_from">منطقة الاستلام</label><input id="from" placeholder="مثال: مدينة نصر"></div>
         <div class="field"><label data-i18n="label_to">منطقة التسليم</label><input id="to" placeholder="مثال: التجمع"></div>
-        <div class="field"><label data-i18n="label_rooms">عدد الغرف</label><input id="rooms" type="number" min="0" value="0" placeholder="اختياري"></div>
-        <div class="field"><label data-i18n="label_acs">عدد أجهزة التكييف</label><input id="acs" type="number" min="0" value="0" placeholder="اختياري"></div>
+        
+        <div class="field">
+          <label data-i18n="label_rooms">عدد الغرف</label>
+          <div class="number-input">
+            <button type="button" onclick="changeValue('rooms', -1)"><i class="fa-solid fa-minus"></i></button>
+            <input type="number" id="rooms" min="0" value="0" readonly>
+            <button type="button" onclick="changeValue('rooms', 1)"><i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="label_acs">عدد أجهزة التكييف</label>
+          <div class="number-input">
+            <button type="button" onclick="changeValue('acs', -1)"><i class="fa-solid fa-minus"></i></button>
+            <input type="number" id="acs" min="0" value="0" readonly>
+            <button type="button" onclick="changeValue('acs', 1)"><i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
         
         <!-- حقل الأدوار (نازل وطالع) بجوار بعض -->
         <div class="field floors-group">
           <label data-i18n="label_floors">عدد الأدوار (نازل / طالع)</label>
           <div>
-            <input id="floorsDown" type="number" min="0" value="0" placeholder="نازل">
-            <input id="floorsUp" type="number" min="0" value="0" placeholder="طالع">
+            <div class="number-input">
+              <button type="button" onclick="changeValue('floorsDown', -1)"><i class="fa-solid fa-minus"></i></button>
+              <input type="number" id="floorsDown" min="0" value="0" readonly>
+              <button type="button" onclick="changeValue('floorsDown', 1)"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="number-input">
+              <button type="button" onclick="changeValue('floorsUp', -1)"><i class="fa-solid fa-minus"></i></button>
+              <input type="number" id="floorsUp" min="0" value="0" readonly>
+              <button type="button" onclick="changeValue('floorsUp', 1)"><i class="fa-solid fa-plus"></i></button>
+            </div>
           </div>
-          <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0، اتركها 0 إذا كنت في الدور الأرضي</small>
+          <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0</small>
         </div>
       </div>
       <div class="services">
@@ -1190,7 +1285,22 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// 4. PRICE CALCULATOR (with floorsDown & floorsUp)
+// 4. NUMBER INPUT WITH +/- BUTTONS
+// ============================================================
+function changeValue(id, delta) {
+  const input = document.getElementById(id);
+  if (!input) return;
+  let val = parseInt(input.value) || 0;
+  val = Math.max(0, val + delta);
+  input.value = val;
+  // Trigger change event
+  const event = new Event('input', { bubbles: true });
+  input.dispatchEvent(event);
+  updatePrice();
+}
+
+// ============================================================
+// 5. PRICE CALCULATOR
 // ============================================================
 const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
@@ -1224,7 +1334,6 @@ function calculateTotal() {
   if (acService && acs > 0) { const cost = acs * PRICE_AC_PER_UNIT; total += cost; extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`); }
   else if (acService) { extras.push(`تكييف (0 جهاز)`); }
 
-  // حساب الأدوار (نازل + طالع)
   const totalFloors = floorsDown + floorsUp;
   if (totalFloors > FLOOR_THRESHOLD) {
     const extraFloors = totalFloors - FLOOR_THRESHOLD;
@@ -1336,7 +1445,7 @@ function toast(t) {
 }
 
 // ============================================================
-// 5. OFFER TIMER
+// 6. OFFER TIMER
 // ============================================================
 function offerTimer() {
   const key = 'ishraf515_offer_end_v2';
@@ -1357,7 +1466,7 @@ setInterval(offerTimer, 1000);
 offerTimer();
 
 // ============================================================
-// 6. REVEAL ON SCROLL
+// 7. REVEAL ON SCROLL
 // ============================================================
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
