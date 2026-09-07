@@ -1,1512 +1,2504 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08090b">
-<meta name="description" content="الإشراف 515 - نقل أثاث وعفش، فك وتركيب، تكييف وكهرباء.">
-<title>الإشراف 515 | نقل أثاث وعفش</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08090b">
+    <meta name="description" content="الإشراف 515 - نقل أثاث وعفش، فك وتركيب، تكييف وكهرباء.">
+    <title>الإشراف 515 | نقل أثاث وعفش</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
-/* ===== BASE ===== */
-:root {
-  --bg: #08090b;
-  --panel: #111317;
-  --panel2: #17191e;
-  --gold: #d7aa52;
-  --gold2: #f5d98a;
-  --gold-light: #fae8b3;
-  --text: #f7f3ea;
-  --muted: #b8b9be;
-  --line: rgba(255,255,255,.09);
-  --green: #25d366;
-  --danger: #ff6b6b;
-  --shadow: 0 25px 80px rgba(0,0,0,.35);
-  --card-bg: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
-  --input-bg: #0b0c0f;
-  --badge-bg: rgba(215,170,82,.12);
-  --discount-bg: rgba(215,170,82,.08);
-  --calc-result-bg: #0a0b0e;
-  --text-shadow-gold: 0 0 12px rgba(215,170,82,.15);
-  --nav-transform: translateY(0);
-}
+    <style>
+        /* ===== BASE ===== */
+        :root {
+            --bg: #08090b;
+            --panel: #111317;
+            --panel2: #17191e;
+            --gold: #d7aa52;
+            --gold2: #f5d98a;
+            --gold-light: #fae8b3;
+            --text: #f7f3ea;
+            --muted: #b8b9be;
+            --line: rgba(255, 255, 255, .09);
+            --green: #25d366;
+            --danger: #ff6b6b;
+            --shadow: 0 25px 80px rgba(0, 0, 0, .35);
+            --card-bg: linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .025));
+            --input-bg: #0b0c0f;
+            --badge-bg: rgba(215, 170, 82, .12);
+            --discount-bg: rgba(215, 170, 82, .08);
+            --calc-result-bg: #0a0b0e;
+            --text-shadow-gold: 0 0 12px rgba(215, 170, 82, .15);
+            --nav-transform: translateY(0);
+            --scroll-progress: 0%;
+            --transition-speed: 0.4s;
+        }
 
-/* ===== LIGHT MODE (أسود للخط + أخضر للعناصر البارزة) ===== */
-[data-theme="light"] {
-  --bg: #f2efe8;
-  --panel: #e8e4db;
-  --panel2: #ddd8ce;
-  --text: #000000;
-  --muted: #333333;
-  --line: rgba(0,0,0,.12);
-  --shadow: 0 25px 60px rgba(0,0,0,.08);
-  --card-bg: #ffffff;
-  --input-bg: #ffffff;
-  --gold: #28a745;
-  --gold2: #000000;
-  --badge-bg: rgba(40, 167, 69, 0.15);
-  --discount-bg: rgba(40, 167, 69, 0.08);
-  --calc-result-bg: #f8f5ed;
-  --text-shadow-gold: 0 0 15px rgba(40, 167, 69, 0.08);
-}
+        [data-theme="light"] {
+            --bg: #f2efe8;
+            --panel: #e8e4db;
+            --panel2: #ddd8ce;
+            --text: #000000;
+            --muted: #333333;
+            --line: rgba(0, 0, 0, .12);
+            --shadow: 0 25px 60px rgba(0, 0, 0, .08);
+            --card-bg: #ffffff;
+            --input-bg: #ffffff;
+            --gold: #28a745;
+            --gold2: #000000;
+            --badge-bg: rgba(40, 167, 69, 0.15);
+            --discount-bg: rgba(40, 167, 69, 0.08);
+            --calc-result-bg: #f8f5ed;
+            --text-shadow-gold: 0 0 15px rgba(40, 167, 69, 0.08);
+        }
 
-* { box-sizing: border-box; margin:0; padding:0 }
-html { scroll-behavior:smooth }
-body {
-  font-family: "Cairo", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.8;
-  overflow-x: hidden;
-  transition: background 0.3s, color 0.3s;
-}
-a { text-decoration: none; color: inherit }
-button, input, select { font: inherit }
-.container { width: min(1120px, 92%); margin: auto }
-.gold { 
-  color: var(--gold2); 
-  text-shadow: var(--text-shadow-gold);
-  font-weight: 700;
-}
-.muted { color: var(--muted) }
-.section { padding: 95px 0 }
-.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 38px }
-.section-head h2 { 
-  font-size: clamp(28px,4vw,44px); 
-  line-height: 1.25;
-  color: var(--text);
-  font-weight: 900;
-}
-.section-head p { 
-  color: var(--muted); 
-  max-width: 560px;
-  font-weight: 500;
-}
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(40, 167, 69, .4);
-  background: var(--badge-bg);
-  color: var(--gold2);
-  padding: 7px 13px; border-radius: 999px;
-  font-size: 13px; font-weight: 800; margin-bottom: 14px;
-  text-shadow: 0 0 10px rgba(40, 167, 69, .1);
-}
-[data-theme="dark"] .badge {
-  border-color: rgba(215,170,82,.4);
-  background: rgba(215,170,82,.12);
-  color: var(--gold2);
-  text-shadow: 0 0 10px rgba(215,170,82,.1);
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+        html {
+            scroll-behavior: smooth
+        }
+        body {
+            font-family: "Cairo", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+        button,
+        input,
+        select {
+            font: inherit
+        }
+        .container {
+            width: min(1120px, 92%);
+            margin: auto
+        }
+        .gold {
+            color: var(--gold2);
+            text-shadow: var(--text-shadow-gold);
+            font-weight: 700;
+        }
+        .muted {
+            color: var(--muted)
+        }
+        .section {
+            padding: 95px 0
+        }
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 38px
+        }
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.25;
+            color: var(--text);
+            font-weight: 900;
+        }
+        .section-head p {
+            color: var(--muted);
+            max-width: 560px;
+            font-weight: 500;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(40, 167, 69, .4);
+            background: var(--badge-bg);
+            color: var(--gold2);
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            text-shadow: 0 0 10px rgba(40, 167, 69, .1);
+        }
+        [data-theme="dark"] .badge {
+            border-color: rgba(215, 170, 82, .4);
+            background: rgba(215, 170, 82, .12);
+            color: var(--gold2);
+            text-shadow: 0 0 10px rgba(215, 170, 82, .1);
+        }
 
-/* ===== TOOLBAR ===== */
-.toolbar {
-  position: fixed; z-index: 60;
-  top: 74px; left: 50%; transform: translateX(-50%);
-  width: auto; max-width: 98%;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 40px;
-  padding: 6px 16px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow);
-  transition: 0.3s;
-}
-.toolbar .sep { width: 1px; height: 24px; background: var(--line); flex-shrink:0 }
-.toolbar button {
-  background: none; border: none;
-  color: var(--muted); font-size: 15px;
-  display: flex; align-items: center; gap: 6px;
-  cursor: pointer; padding: 4px 8px;
-  border-radius: 30px; transition: 0.2s;
-  font-weight: 700;
-}
-.toolbar button:hover { color: var(--gold2); background: rgba(40, 167, 69, .08); }
-[data-theme="dark"] .toolbar button:hover { background: rgba(215,170,82,.08); color: var(--gold2); }
-.toolbar .clock {
-  font-size: 14px; font-weight: 800;
-  color: var(--gold2);
-  direction: ltr;
-  background: rgba(40, 167, 69, .1);
-  padding: 3px 14px; border-radius: 30px;
-  white-space: nowrap;
-  text-shadow: 0 0 15px rgba(40, 167, 69, .15);
-}
-[data-theme="dark"] .toolbar .clock {
-  background: rgba(215,170,82,.1);
-  text-shadow: 0 0 15px rgba(215,170,82,.15);
-}
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 70;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold2), var(--gold));
+            width: var(--scroll-progress);
+            transition: width 0.1s ease-out;
+            box-shadow: 0 0 20px rgba(215, 170, 82, .3);
+        }
+        [data-theme="light"] .scroll-progress {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            box-shadow: 0 0 20px rgba(40, 167, 69, .2);
+        }
 
-/* ===== NAV (مع تأثير التمرير) ===== */
-.nav {
-  position: fixed; z-index: 50;
-  top:0; left:0; right:0;
-  background: rgba(8,9,11,.72); backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--line);
-  transition: transform 0.3s ease-in-out, background 0.3s;
-  transform: translateY(0);
-}
-.nav.hide {
-  transform: translateY(-100%);
-}
-[data-theme="light"] .nav { background: rgba(242,239,232,.85); }
-.nav-inner { height: 74px; display: flex; align-items: center; justify-content: space-between }
-.brand { display: flex; align-items: center; gap: 11px; font-weight: 900 }
-.brand-mark {
-  width:43px; height:43px; border-radius:14px;
-  display: grid; place-items: center;
-  background: linear-gradient(145deg,var(--gold2),var(--gold));
-  color:#fff;
-  box-shadow:0 8px 30px rgba(40, 167, 69, .25);
-}
-[data-theme="dark"] .brand-mark {
-  background: linear-gradient(145deg,var(--gold2),#a77828);
-  color:#111;
-  box-shadow:0 8px 30px rgba(215,170,82,.25);
-}
-.brand small { display: block; color: var(--muted); font-size:10px; font-weight:700 }
-.nav-links { display: flex; gap:25px; color:#cfd0d3; font-size:14px; font-weight:600 }
-.nav-links a:hover { color:var(--gold2) }
-.nav-btn {
-  background:var(--gold2); color:#fff;
-  padding:9px 16px; border-radius:12px;
-  font-weight:900; font-size:13px;
-  box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
-}
-[data-theme="dark"] .nav-btn {
-  background:var(--gold2);
-  color:#111;
-  box-shadow: 0 4px 20px rgba(215,170,82,.2);
-}
-[data-theme="light"] .nav-links { color: #3a362f; }
-[data-theme="light"] .nav-links a:hover { color: var(--gold); }
+        /* ===== TOOLBAR ===== */
+        .toolbar {
+            position: fixed;
+            z-index: 60;
+            top: 74px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            max-width: 98%;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 40px;
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .toolbar .sep {
+            width: 1px;
+            height: 24px;
+            background: var(--line);
+            flex-shrink: 0
+        }
+        .toolbar button {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 30px;
+            transition: 0.2s;
+            font-weight: 700;
+        }
+        .toolbar button:hover {
+            color: var(--gold2);
+            background: rgba(40, 167, 69, .08);
+        }
+        [data-theme="dark"] .toolbar button:hover {
+            background: rgba(215, 170, 82, .08);
+            color: var(--gold2);
+        }
+        .toolbar .clock {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gold2);
+            direction: ltr;
+            background: rgba(40, 167, 69, .1);
+            padding: 3px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+            text-shadow: 0 0 15px rgba(40, 167, 69, .15);
+        }
+        [data-theme="dark"] .toolbar .clock {
+            background: rgba(215, 170, 82, .1);
+            text-shadow: 0 0 15px rgba(215, 170, 82, .15);
+        }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 760px; display: flex; align-items: center;
-  position: relative; padding-top: 74px; overflow: hidden;
-  background:
-    linear-gradient(90deg, var(--bg) 0%, var(--bg) 43%, rgba(8,9,11,.35) 100%),
-    url("FB_IMG_1788305116589_7969540872088037072.webp") center/cover;
-  transition: 0.3s;
-}
-[data-theme="light"] .hero {
-  background:
-    linear-gradient(90deg, var(--bg) 0%, var(--bg) 43%, rgba(242,239,232,.6) 100%),
-    url("FB_IMG_1788305116589_7969540872088037072.webp") center/cover;
-}
-.hero:after { content:""; position:absolute; inset:auto 0 0; height:180px; background:linear-gradient(transparent,var(--bg)) }
-.hero-content { position:relative; z-index:2; max-width:730px }
-.hero h1 { 
-  font-size:clamp(42px,6vw,76px); 
-  line-height:1.08; 
-  font-weight:900; 
-  letter-spacing:-2px; 
-  margin-bottom:22px;
-  color: var(--text);
-}
-.hero h1 span { 
-  background:linear-gradient(90deg,#fff,var(--gold2)); 
-  -webkit-background-clip:text; 
-  color:transparent;
-  font-weight: 900;
-}
-.hero p { 
-  font-size:18px; 
-  color: #d8d8db; 
-  max-width:650px; 
-  margin-bottom:30px;
-  font-weight: 500;
-}
-[data-theme="light"] .hero p { color: #1a1a1a; }
-.hero-actions { display:flex; flex-wrap:wrap; gap:12px }
-.btn {
-  border:0; cursor:pointer;
-  display:inline-flex; align-items:center; justify-content:center;
-  gap:10px; padding:14px 21px; border-radius:14px;
-  font-weight:900; transition:.25s
-}
-.btn:hover { transform:translateY(-3px) }
-.btn-gold { 
-  background:linear-gradient(135deg,var(--gold2),var(--gold)); 
-  color:#fff;
-  box-shadow:0 12px 35px rgba(40, 167, 69, .25);
-  font-weight: 900;
-}
-[data-theme="dark"] .btn-gold {
-  color:#111;
-  box-shadow:0 12px 35px rgba(215,170,82,.25);
-}
-.btn-dark { 
-  background:rgba(255,255,255,.07); 
-  border:1px solid var(--line); 
-  color:white;
-  font-weight: 700;
-}
-[data-theme="light"] .btn-dark { background: rgba(0,0,0,.04); color: #1e1b16; }
-.hero-stats { display:flex; flex-wrap:wrap; gap:25px; margin-top:45px }
-.stat strong { 
-  display:block; 
-  font-size:26px; 
-  color:var(--gold2);
-  text-shadow: 0 0 20px rgba(40, 167, 69, .15);
-}
-[data-theme="dark"] .stat strong { text-shadow: 0 0 20px rgba(215,170,82,.15); }
-.stat span { font-size:12px; color:var(--muted); font-weight:600 }
-.scroll-note { position:absolute; bottom:26px; right:4%; z-index:4; color:#999; font-size:11px }
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed;
+            z-index: 50;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(8, 9, 11, .72);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line);
+            transition: transform 0.3s ease-in-out, background 0.3s;
+            transform: translateY(0);
+        }
+        .nav.hide {
+            transform: translateY(-100%);
+        }
+        [data-theme="light"] .nav {
+            background: rgba(242, 239, 232, .85);
+        }
+        .nav-inner {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-weight: 900
+        }
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, var(--gold2), var(--gold));
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(40, 167, 69, .25);
+            flex-shrink: 0;
+        }
+        [data-theme="dark"] .brand-mark {
+            background: linear-gradient(145deg, var(--gold2), #a77828);
+            color: #111;
+            box-shadow: 0 8px 30px rgba(215, 170, 82, .25);
+        }
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            color: #cfd0d3;
+            font-size: 14px;
+            font-weight: 600
+        }
+        .nav-links a:hover {
+            color: var(--gold2)
+        }
+        .nav-btn {
+            background: var(--gold2);
+            color: #fff;
+            padding: 9px 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .nav-btn:hover {
+            transform: scale(1.04);
+        }
+        [data-theme="dark"] .nav-btn {
+            background: var(--gold2);
+            color: #111;
+            box-shadow: 0 4px 20px rgba(215, 170, 82, .2);
+        }
+        [data-theme="light"] .nav-links {
+            color: #3a362f;
+        }
+        [data-theme="light"] .nav-links a:hover {
+            color: var(--gold);
+        }
 
-/* ===== CARDS ===== */
-.grid { display:grid; gap:18px }
-.features { grid-template-columns:repeat(4,1fr) }
-.card {
-  background: var(--card-bg);
-  border:1px solid var(--line);
-  border-radius:22px; padding:26px;
-  box-shadow:var(--shadow);
-  transition: 0.3s;
-}
-[data-theme="light"] .card { background: #ffffff; }
-.feature i {
-  width:52px; height:52px; border-radius:16px;
-  display:grid; place-items:center;
-  background:rgba(40, 167, 69, .12);
-  color:var(--gold2);
-  font-size:20px; margin-bottom:17px
-}
-[data-theme="dark"] .feature i { background:rgba(215,170,82,.12); color:var(--gold2); }
-.feature h3 { 
-  font-size:18px; 
-  margin-bottom:8px;
-  color: var(--text);
-  font-weight: 800;
-}
-.feature p { 
-  font-size:13px; 
-  color:var(--muted);
-  font-weight: 500;
-}
+        /* ===== HAMBURGER ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+            color: var(--text);
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--text);
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
 
-/* ===== CALC ===== */
-.calc-wrap { display:grid; grid-template-columns:1fr .75fr; gap:22px; align-items:stretch }
-.form-card {
-  background: var(--panel);
-  border:1px solid var(--line);
-  border-radius:28px; padding:30px;
-  transition: 0.3s;
-}
-[data-theme="light"] .form-card { background: #ffffff; }
-.form-card h3 { 
-  font-size:25px; 
-  margin-bottom:5px;
-  color: var(--text);
-  font-weight: 900;
-}
-.form-card .hint { 
-  color:var(--muted); 
-  font-size:13px; 
-  margin-bottom:25px;
-  font-weight: 500;
-}
-.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px }
-.field { position:relative; }
-.field label { 
-  display:block; 
-  font-size:12px; 
-  color:var(--muted); 
-  margin-bottom:7px;
-  font-weight: 700;
-}
-.field input, .field select {
-  width:100%; height:50px;
-  border:1px solid var(--line);
-  background:var(--input-bg);
-  color:var(--text);
-  border-radius:13px; padding:0 14px; outline:none;
-  transition:0.3s;
-  font-weight: 600;
-}
-.field input:focus, .field select:focus { border-color:var(--gold); }
-.services { margin:18px 0 }
-.services-title { 
-  font-size:12px; 
-  color:var(--muted); 
-  margin-bottom:9px;
-  font-weight: 700;
-}
-.checks { display:grid; grid-template-columns:1fr 1fr; gap:10px }
-.check { position:relative }
-.check input { position:absolute; opacity:0 }
-.check label {
-  display:flex; align-items:center; gap:9px;
-  border:1px solid var(--line);
-  padding:11px 12px; border-radius:12px;
-  color:var(--muted); 
-  font-size:13px; 
-  cursor:pointer;
-  transition:0.2s;
-  background: var(--input-bg);
-  font-weight: 600;
-}
-[data-theme="light"] .check label { background: #f5f2eb; color: #1a1a1a; }
-.check label i { color:var(--gold2) }
-[data-theme="dark"] .check label i { color:var(--gold2); }
-.check input:checked+label { 
-  border-color:var(--gold); 
-  background:rgba(40, 167, 69, .12); 
-  color:var(--text);
-}
-[data-theme="dark"] .check input:checked+label { background:rgba(215,170,82,.12); border-color:var(--gold); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 74px;
+            left: 0;
+            right: 0;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            padding: 20px 24px;
+            z-index: 49;
+            flex-direction: column;
+            gap: 16px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu a {
+            color: var(--text);
+            font-weight: 700;
+            font-size: 16px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .mobile-menu a:hover {
+            color: var(--gold2);
+        }
 
-.discount-section {
-  margin:18px 0; padding:16px;
-  background:var(--discount-bg);
-  border:1px solid rgba(40, 167, 69, .25);
-  border-radius:16px
-}
-[data-theme="dark"] .discount-section { border-color:rgba(215,170,82,.25); background:var(--discount-bg); }
-.discount-section .title { 
-  font-size:13px; 
-  color:var(--gold2); 
-  font-weight:800; 
-  margin-bottom:10px; 
-  display:flex; 
-  align-items:center; 
-  gap:8px;
-  text-shadow: 0 0 12px rgba(40, 167, 69, .1);
-}
-[data-theme="dark"] .discount-section .title { text-shadow: 0 0 12px rgba(215,170,82,.1); }
-.discount-options { display:grid; grid-template-columns:1fr 1fr; gap:8px }
-.discount-opt { position:relative }
-.discount-opt input { position:absolute; opacity:0 }
-.discount-opt label {
-  display:flex; align-items:center; justify-content:center; gap:6px;
-  border:1px solid var(--line);
-  padding:10px; border-radius:12px;
-  color:var(--muted); 
-  font-size:12px; 
-  cursor:pointer;
-  transition:.2s;
-  background: var(--input-bg);
-  font-weight: 700;
-}
-[data-theme="light"] .discount-opt label { background: #f5f2eb; color:#1a1a1a; }
-.discount-opt label i { color:var(--gold2); font-size:14px }
-.discount-opt input:checked+label { 
-  border-color:var(--gold); 
-  background:rgba(40, 167, 69, .15); 
-  color:var(--text);
-  box-shadow:0 0 30px rgba(40, 167, 69, .08);
-}
-[data-theme="dark"] .discount-opt input:checked+label { background:rgba(215,170,82,.15); border-color:var(--gold); box-shadow:0 0 30px rgba(215,170,82,.08); }
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 760px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 74px;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, var(--bg) 0%, var(--bg) 43%, rgba(8, 9, 11, .35) 100%),
+                url("FB_IMG_1788305116589_7969540872088037072.webp") center/cover;
+            transition: 0.3s;
+        }
+        [data-theme="light"] .hero {
+            background:
+                linear-gradient(90deg, var(--bg) 0%, var(--bg) 43%, rgba(242, 239, 232, .6) 100%),
+                url("FB_IMG_1788305116589_7969540872088037072.webp") center/cover;
+        }
+        .hero:after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 180px;
+            background: linear-gradient(transparent, var(--bg))
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 730px
+        }
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.08;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+            color: var(--text);
+        }
+        .hero h1 span {
+            background: linear-gradient(90deg, #fff, var(--gold2));
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 900;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #d8d8db;
+            max-width: 650px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        [data-theme="light"] .hero p {
+            color: #1a1a1a;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+        .btn {
+            border: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 21px;
+            border-radius: 14px;
+            font-weight: 900;
+            transition: .25s
+        }
+        .btn:hover {
+            transform: translateY(-3px)
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold2), var(--gold));
+            color: #fff;
+            box-shadow: 0 12px 35px rgba(40, 167, 69, .25);
+            font-weight: 900;
+        }
+        [data-theme="dark"] .btn-gold {
+            color: #111;
+            box-shadow: 0 12px 35px rgba(215, 170, 82, .25);
+        }
+        .btn-dark {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid var(--line);
+            color: white;
+            font-weight: 700;
+        }
+        [data-theme="light"] .btn-dark {
+            background: rgba(0, 0, 0, .04);
+            color: #1e1b16;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 45px
+        }
+        .stat strong {
+            display: block;
+            font-size: 26px;
+            color: var(--gold2);
+            text-shadow: 0 0 20px rgba(40, 167, 69, .15);
+        }
+        [data-theme="dark"] .stat strong {
+            text-shadow: 0 0 20px rgba(215, 170, 82, .15);
+        }
+        .stat span {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600
+        }
+        .scroll-note {
+            position: absolute;
+            bottom: 26px;
+            right: 4%;
+            z-index: 4;
+            color: #999;
+            font-size: 11px;
+            animation: bounceDown 2s infinite;
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(8px);
+            }
+        }
 
-.calc-result {
-  margin-top:20px; padding:20px;
-  border-radius:18px;
-  background:var(--calc-result-bg);
-  border:1px solid rgba(40, 167, 69, .25);
-  display:block;
-  transition:0.3s;
-}
-[data-theme="dark"] .calc-result { border-color:rgba(215,170,82,.25); }
-.result-top { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap }
-.result-price { 
-  font-size:32px; 
-  font-weight:900; 
-  color:var(--gold2);
-  text-shadow: 0 0 25px rgba(40, 167, 69, .12);
-}
-[data-theme="dark"] .result-price { text-shadow: 0 0 25px rgba(215,170,82,.12); }
-.result-price .original { 
-  font-size:16px; 
-  color:var(--muted); 
-  text-decoration:line-through; 
-  margin-left:10px; 
-  font-weight:500 
-}
-.result-price .discount-label { 
-  font-size:13px; 
-  color:var(--gold2); 
-  background:rgba(40, 167, 69, .15); 
-  padding:2px 12px; 
-  border-radius:999px; 
-  font-weight:800; 
-  margin-right:8px;
-  text-shadow: 0 0 10px rgba(40, 167, 69, .1);
-}
-[data-theme="dark"] .result-price .discount-label { background:rgba(215,170,82,.15); text-shadow: 0 0 10px rgba(215,170,82,.1); }
-.result-details { 
-  font-size:13px; 
-  color:var(--muted); 
-  margin-top:7px; 
-  line-height:1.6;
-  font-weight: 500;
-}
-[data-theme="light"] .result-details { color:#333333; }
+        /* ===== CARDS ===== */
+        .grid {
+            display: grid;
+            gap: 18px
+        }
+        .features {
+            grid-template-columns: repeat(4, 1fr)
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(215, 170, 82, .2);
+        }
+        [data-theme="light"] .card {
+            background: #ffffff;
+        }
+        .feature i {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: rgba(40, 167, 69, .12);
+            color: var(--gold2);
+            font-size: 20px;
+            margin-bottom: 17px
+        }
+        [data-theme="dark"] .feature i {
+            background: rgba(215, 170, 82, .12);
+            color: var(--gold2);
+        }
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 800;
+        }
+        .feature p {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+        }
 
-.calc-side {
-  position:relative; overflow:hidden; border-radius:28px; padding:35px;
-  background:
-    linear-gradient(180deg,rgba(8,9,11,.42),rgba(8,9,11,.96)),
-    url("1000008879.jpg") center/cover;
-  transition:0.3s;
-}
-[data-theme="light"] .calc-side {
-  background:
-    linear-gradient(180deg,rgba(242,239,232,.6),rgba(242,239,232,.95)),
-    url("1000008879.jpg") center/cover;
-}
-.calc-side h3 { 
-  font-size:31px; 
-  line-height:1.35; 
-  position:relative;
-  color: var(--text);
-  font-weight: 900;
-}
-.calc-side p { 
-  color: #d0d0d4; 
-  position:relative; 
-  margin-top:15px;
-  font-weight: 500;
-}
-[data-theme="light"] .calc-side p { color: #1a1a1a; }
-.calc-points {
-  position:absolute; bottom:30px; right:35px; left:35px;
-  display:grid; gap:9px
-}
-.calc-points div {
-  font-size:13px;
-  background:rgba(0,0,0,.38); backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.08);
-  padding:9px 12px; border-radius:12px;
-  color: var(--text);
-  font-weight: 600;
-}
-[data-theme="light"] .calc-points div { 
-  background: rgba(255,255,255,.75); 
-  border-color: rgba(0,0,0,.06); 
-  color:#000000; 
-}
+        /* ===== CALC ===== */
+        .calc-wrap {
+            display: grid;
+            grid-template-columns: 1fr .75fr;
+            gap: 22px;
+            align-items: stretch
+        }
+        .form-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+        [data-theme="light"] .form-card {
+            background: #ffffff;
+        }
+        .form-card h3 {
+            font-size: 25px;
+            margin-bottom: 5px;
+            color: var(--text);
+            font-weight: 900;
+        }
+        .form-card .hint {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px
+        }
+        .field {
+            position: relative;
+        }
+        .field label {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 7px;
+            font-weight: 700;
+        }
+        .field input,
+        .field select {
+            width: 100%;
+            height: 50px;
+            border: 1px solid var(--line);
+            background: var(--input-bg);
+            color: var(--text);
+            border-radius: 13px;
+            padding: 0 14px;
+            outline: none;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--gold);
+        }
+        .field input.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, .15);
+        }
+        .field .validation-msg {
+            font-size: 11px;
+            color: var(--danger);
+            margin-top: 4px;
+            font-weight: 600;
+            display: none;
+        }
+        .field .validation-msg.show {
+            display: block;
+        }
+        .services {
+            margin: 18px 0
+        }
+        .services-title {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 9px;
+            font-weight: 700;
+        }
+        .checks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+        .check {
+            position: relative
+        }
+        .check input {
+            position: absolute;
+            opacity: 0
+        }
+        .check label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid var(--line);
+            padding: 11px 12px;
+            border-radius: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: var(--input-bg);
+            font-weight: 600;
+        }
+        [data-theme="light"] .check label {
+            background: #f5f2eb;
+            color: #1a1a1a;
+        }
+        .check label i {
+            color: var(--gold2)
+        }
+        [data-theme="dark"] .check label i {
+            color: var(--gold2);
+        }
+        .check input:checked+label {
+            border-color: var(--gold);
+            background: rgba(40, 167, 69, .12);
+            color: var(--text);
+        }
+        [data-theme="dark"] .check input:checked+label {
+            background: rgba(215, 170, 82, .12);
+            border-color: var(--gold);
+        }
 
-/* ===== OFFERS ===== */
-.offers { grid-template-columns:repeat(3,1fr) }
-.offer { position:relative; overflow:hidden }
-.offer .percent { 
-  font-size:44px; 
-  font-weight:900; 
-  color:var(--gold2);
-  text-shadow: 0 0 30px rgba(40, 167, 69, .12);
-}
-[data-theme="dark"] .offer .percent { text-shadow: 0 0 30px rgba(215,170,82,.12); }
-.offer small { 
-  color:var(--muted);
-  font-weight: 700;
-}
-.offer h3 { 
-  margin:15px 0 5px;
-  color: var(--text);
-  font-weight: 800;
-}
-.offer p { 
-  color:var(--muted); 
-  font-size:13px;
-  font-weight: 500;
-}
-[data-theme="light"] .offer p { color:#333333; }
-.offer.featured { border-color:var(--gold); transform:translateY(-8px) }
-.ribbon { 
-  position:absolute; top:15px; left:-35px; 
-  transform:rotate(-45deg); 
-  background:var(--gold2); 
-  color:#fff;
-  padding:4px 40px; 
-  font-size:10px; 
-  font-weight:900;
-  box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
-}
-[data-theme="dark"] .ribbon { background:var(--gold2); color:#111; box-shadow: 0 4px 20px rgba(215,170,82,.2); }
+        .discount-section {
+            margin: 18px 0;
+            padding: 16px;
+            background: var(--discount-bg);
+            border: 1px solid rgba(40, 167, 69, .25);
+            border-radius: 16px
+        }
+        [data-theme="dark"] .discount-section {
+            border-color: rgba(215, 170, 82, .25);
+            background: var(--discount-bg);
+        }
+        .discount-section .title {
+            font-size: 13px;
+            color: var(--gold2);
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 12px rgba(40, 167, 69, .1);
+        }
+        [data-theme="dark"] .discount-section .title {
+            text-shadow: 0 0 12px rgba(215, 170, 82, .1);
+        }
+        .discount-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+        .discount-opt {
+            position: relative
+        }
+        .discount-opt input {
+            position: absolute;
+            opacity: 0
+        }
+        .discount-opt label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 1px solid var(--line);
+            padding: 10px;
+            border-radius: 12px;
+            color: var(--muted);
+            font-size: 12px;
+            cursor: pointer;
+            transition: .2s;
+            background: var(--input-bg);
+            font-weight: 700;
+        }
+        [data-theme="light"] .discount-opt label {
+            background: #f5f2eb;
+            color: #1a1a1a;
+        }
+        .discount-opt label i {
+            color: var(--gold2);
+            font-size: 14px
+        }
+        .discount-opt input:checked+label {
+            border-color: var(--gold);
+            background: rgba(40, 167, 69, .15);
+            color: var(--text);
+            box-shadow: 0 0 30px rgba(40, 167, 69, .08);
+        }
+        [data-theme="dark"] .discount-opt input:checked+label {
+            background: rgba(215, 170, 82, .15);
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(215, 170, 82, .08);
+        }
 
-/* ===== STEPS (صف أفقي واحد) ===== */
-.steps { 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-.step { position:relative; text-align:center }
-.step-num {
-  width:58px; height:58px; border-radius:18px;
-  display:grid; place-items:center; margin:0 auto 16px;
-  background:rgba(40, 167, 69, .12);
-  border:1px solid rgba(40, 167, 69, .3);
-  color:var(--gold2);
-  font-size:20px; font-weight:900;
-  text-shadow: 0 0 15px rgba(40, 167, 69, .1);
-}
-[data-theme="dark"] .step-num { background:rgba(215,170,82,.12); border-color:rgba(215,170,82,.3); text-shadow: 0 0 15px rgba(215,170,82,.1); }
-.step h3 { 
-  font-size:17px;
-  color: var(--text);
-  font-weight: 800;
-}
-.step p { 
-  font-size:12px; 
-  color:var(--muted); 
-  margin-top:5px;
-  font-weight: 500;
-}
+        .calc-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 18px;
+            background: var(--calc-result-bg);
+            border: 1px solid rgba(40, 167, 69, .25);
+            display: block;
+            transition: 0.3s;
+        }
+        [data-theme="dark"] .calc-result {
+            border-color: rgba(215, 170, 82, .25);
+        }
+        .result-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+        .result-price {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gold2);
+            text-shadow: 0 0 25px rgba(40, 167, 69, .12);
+        }
+        [data-theme="dark"] .result-price {
+            text-shadow: 0 0 25px rgba(215, 170, 82, .12);
+        }
+        .result-price .original {
+            font-size: 16px;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-left: 10px;
+            font-weight: 500
+        }
+        .result-price .discount-label {
+            font-size: 13px;
+            color: var(--gold2);
+            background: rgba(40, 167, 69, .15);
+            padding: 2px 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            margin-right: 8px;
+            text-shadow: 0 0 10px rgba(40, 167, 69, .1);
+        }
+        [data-theme="dark"] .result-price .discount-label {
+            background: rgba(215, 170, 82, .15);
+            text-shadow: 0 0 10px rgba(215, 170, 82, .1);
+        }
+        .result-details {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 7px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        [data-theme="light"] .result-details {
+            color: #333333;
+        }
+        .result-breakdown {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+            padding-top: 8px;
+            border-top: 1px solid var(--line);
+            font-weight: 500;
+            line-height: 1.7;
+        }
+        .result-breakdown span {
+            display: inline-block;
+            background: rgba(40, 167, 69, .06);
+            padding: 0 8px;
+            border-radius: 6px;
+            margin: 2px 0;
+        }
+        [data-theme="dark"] .result-breakdown span {
+            background: rgba(215, 170, 82, .06);
+        }
 
-/* ===== REVIEWS ===== */
-.reviews { grid-template-columns:repeat(3,1fr) }
-.review .stars { color:#f1c75b; letter-spacing:2px; margin-bottom:10px; font-size:18px }
-.review p { 
-  color:var(--text); 
-  font-size:14px;
-  font-weight: 500;
-}
-[data-theme="light"] .review p { color:#000000; }
-.review strong { 
-  display:block; 
-  margin-top:14px; 
-  font-size:13px;
-  color: var(--gold2);
-  font-weight: 800;
-}
-.review span { 
-  font-size:11px; 
-  color:var(--muted);
-  font-weight: 600;
-}
+        .calc-side {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 35px;
+            background:
+                linear-gradient(180deg, rgba(8, 9, 11, .42), rgba(8, 9, 11, .96)),
+                url("1000008879.jpg") center/cover;
+            transition: 0.3s;
+        }
+        [data-theme="light"] .calc-side {
+            background:
+                linear-gradient(180deg, rgba(242, 239, 232, .6), rgba(242, 239, 232, .95)),
+                url("1000008879.jpg") center/cover;
+        }
+        .calc-side h3 {
+            font-size: 31px;
+            line-height: 1.35;
+            position: relative;
+            color: var(--text);
+            font-weight: 900;
+        }
+        .calc-side p {
+            color: #d0d0d4;
+            position: relative;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        [data-theme="light"] .calc-side p {
+            color: #1a1a1a;
+        }
+        .calc-points {
+            position: absolute;
+            bottom: 30px;
+            right: 35px;
+            left: 35px;
+            display: grid;
+            gap: 9px
+        }
+        .calc-points div {
+            font-size: 13px;
+            background: rgba(0, 0, 0, .38);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 9px 12px;
+            border-radius: 12px;
+            color: var(--text);
+            font-weight: 600;
+        }
+        [data-theme="light"] .calc-points div {
+            background: rgba(255, 255, 255, .75);
+            border-color: rgba(0, 0, 0, .06);
+            color: #000000;
+        }
 
-/* ===== GALLERY ===== */
-.gallery { display:grid; grid-template-columns:1.45fr 1fr 1fr; grid-template-rows:220px 220px; gap:12px }
-.gallery img { width:100%; height:100%; object-fit:cover; border-radius:18px; border:1px solid var(--line); filter:saturate(.85) }
-.gallery img:first-child { grid-row:1/3 }
+        /* ===== OFFERS ===== */
+        .offers {
+            grid-template-columns: repeat(3, 1fr)
+        }
+        .offer {
+            position: relative;
+            overflow: hidden
+        }
+        .offer .percent {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--gold2);
+            text-shadow: 0 0 30px rgba(40, 167, 69, .12);
+        }
+        [data-theme="dark"] .offer .percent {
+            text-shadow: 0 0 30px rgba(215, 170, 82, .12);
+        }
+        .offer small {
+            color: var(--muted);
+            font-weight: 700;
+        }
+        .offer h3 {
+            margin: 15px 0 5px;
+            color: var(--text);
+            font-weight: 800;
+        }
+        .offer p {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        [data-theme="light"] .offer p {
+            color: #333333;
+        }
+        .offer.featured {
+            border-color: var(--gold);
+            transform: translateY(-8px)
+        }
+        .ribbon {
+            position: absolute;
+            top: 15px;
+            left: -35px;
+            transform: rotate(-45deg);
+            background: var(--gold2);
+            color: #fff;
+            padding: 4px 40px;
+            font-size: 10px;
+            font-weight: 900;
+            box-shadow: 0 4px 20px rgba(40, 167, 69, .2);
+        }
+        [data-theme="dark"] .ribbon {
+            background: var(--gold2);
+            color: #111;
+            box-shadow: 0 4px 20px rgba(215, 170, 82, .2);
+        }
 
-/* ===== CONTACT ===== */
-.contacts { grid-template-columns:repeat(3,1fr) }
-.contact h3 { 
-  font-size:18px;
-  color: var(--text);
-  font-weight: 800;
-}
-.role { 
-  font-size:11px; 
-  color:var(--gold2);
-  font-weight: 700;
-}
-.phone { 
-  font-size:20px; 
-  font-weight:900; 
-  margin:13px 0; 
-  direction:ltr; 
-  text-align:right;
-  color: var(--text);
-}
-.contact-actions { display:flex; gap:8px }
-.contact-actions a { 
-  flex:1; padding:10px; border-radius:11px; 
-  text-align:center; font-size:12px; 
-  font-weight:900 
-}
-.call { 
-  background:rgba(255,255,255,.07);
-  color: var(--text);
-}
-[data-theme="light"] .call { background: rgba(0,0,0,.04); color: #000000; }
-.wa { background:var(--green); color:#06230f }
+        /* ===== STEPS ===== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .step {
+            position: relative;
+            text-align: center
+        }
+        .step-num {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 16px;
+            background: rgba(40, 167, 69, .12);
+            border: 1px solid rgba(40, 167, 69, .3);
+            color: var(--gold2);
+            font-size: 20px;
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(40, 167, 69, .1);
+            transition: 0.3s;
+        }
+        .step:hover .step-num {
+            transform: scale(1.08);
+            border-color: var(--gold);
+        }
+        [data-theme="dark"] .step-num {
+            background: rgba(215, 170, 82, .12);
+            border-color: rgba(215, 170, 82, .3);
+            text-shadow: 0 0 15px rgba(215, 170, 82, .1);
+        }
+        .step h3 {
+            font-size: 17px;
+            color: var(--text);
+            font-weight: 800;
+        }
+        .step p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 5px;
+            font-weight: 500;
+        }
 
-/* ===== LOCATION ===== */
-.locations { grid-template-columns:1fr 1fr }
-.location { display:flex; justify-content:space-between; align-items:center; gap:15px }
-.location i { font-size:25px; color:var(--gold2) }
-.location h3 { 
-  color: var(--text);
-  font-weight: 800;
-}
-.location p { 
-  font-size:13px; 
-  color:var(--muted);
-  font-weight: 500;
-}
-.map { white-space:nowrap }
+        /* ===== REVIEWS ===== */
+        .reviews {
+            grid-template-columns: repeat(3, 1fr)
+        }
+        .review .stars {
+            color: #f1c75b;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-size: 18px
+        }
+        .review p {
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        [data-theme="light"] .review p {
+            color: #000000;
+        }
+        .review strong {
+            display: block;
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--gold2);
+            font-weight: 800;
+        }
+        .review span {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 600;
+        }
 
-/* ===== SALAWAT ===== */
-.salawat { text-align:center; padding:30px 0 10px; color:var(--muted); font-size:14px; letter-spacing:1px }
-.salawat span { color:var(--gold2); font-size:16px; font-weight:700 }
-.salawat .arabic { font-size:20px; color:var(--gold2); display:block; margin-bottom:5px }
+        /* ===== GALLERY ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr 1fr;
+            grid-template-rows: 220px 220px;
+            gap: 12px
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            filter: saturate(.85);
+            transition: 0.3s;
+            opacity: 0;
+            animation: fadeInImg 0.6s ease forwards;
+        }
+        .gallery img:hover {
+            transform: scale(1.02);
+            filter: saturate(1);
+            border-color: var(--gold);
+        }
+        .gallery img:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .gallery img:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+        .gallery img:nth-child(3) {
+            animation-delay: 0.25s;
+        }
+        .gallery img:nth-child(4) {
+            animation-delay: 0.35s;
+        }
+        .gallery img:first-child {
+            grid-row: 1/3
+        }
+        @keyframes fadeInImg {
+            to {
+                opacity: 1;
+            }
+        }
 
-/* ===== FOOTER ===== */
-footer { padding:45px 0 100px; border-top:1px solid var(--line); color:var(--muted); font-size:12px }
-.footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap }
-.footer-inner div { font-weight: 600; }
+        /* ===== CONTACT ===== */
+        .contacts {
+            grid-template-columns: repeat(3, 1fr)
+        }
+        .contact h3 {
+            font-size: 18px;
+            color: var(--text);
+            font-weight: 800;
+        }
+        .role {
+            font-size: 11px;
+            color: var(--gold2);
+            font-weight: 700;
+        }
+        .phone {
+            font-size: 20px;
+            font-weight: 900;
+            margin: 13px 0;
+            direction: ltr;
+            text-align: right;
+            color: var(--text);
+        }
+        .contact-actions {
+            display: flex;
+            gap: 8px
+        }
+        .contact-actions a {
+            flex: 1;
+            padding: 10px;
+            border-radius: 11px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 900;
+            transition: 0.2s;
+        }
+        .contact-actions a:hover {
+            transform: translateY(-2px);
+        }
+        .call {
+            background: rgba(255, 255, 255, .07);
+            color: var(--text);
+        }
+        [data-theme="light"] .call {
+            background: rgba(0, 0, 0, .04);
+            color: #000000;
+        }
+        .wa {
+            background: var(--green);
+            color: #06230f
+        }
+        .wa:hover {
+            background: #1da85c;
+        }
 
-/* ===== FLOATING WA ===== */
-.floating-wa {
-  position:fixed; z-index:60;
-  left:20px; bottom:20px;
-  width:58px; height:58px; border-radius:50%;
-  display:grid; place-items:center;
-  background:var(--green); color:#05200e; font-size:25px;
-  box-shadow:0 12px 35px rgba(37,211,102,.3);
-  animation:pulse 2s infinite
-}
-@keyframes pulse { 50%{ box-shadow:0 12px 45px rgba(37,211,102,.05),0 0 0 10px rgba(37,211,102,.04) } }
+        /* ===== LOCATION ===== */
+        .locations {
+            grid-template-columns: 1fr 1fr
+        }
+        .location {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px
+        }
+        .location i {
+            font-size: 25px;
+            color: var(--gold2)
+        }
+        .location h3 {
+            color: var(--text);
+            font-weight: 800;
+        }
+        .location p {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        .map {
+            white-space: nowrap
+        }
 
-/* ===== REVEAL ===== */
-.reveal { opacity:0; transform:translateY(20px); transition:.7s }
-.reveal.visible { opacity:1; transform:none }
+        /* ===== BACK TO TOP ===== */
+        .back-top {
+            position: fixed;
+            z-index: 55;
+            bottom: 90px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gold2);
+            color: #111;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(215, 170, 82, .25);
+            transition: 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-top.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+        [data-theme="light"] .back-top {
+            background: #28a745;
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(40, 167, 69, .25);
+        }
 
-/* ===== TOAST ===== */
-.toast {
-  position:fixed; z-index:100;
-  top:90px; left:50%; transform:translateX(-50%) translateY(-20px);
-  opacity:0; background:var(--panel); border:1px solid var(--line);
-  padding:12px 18px; border-radius:13px; font-size:13px;
-  pointer-events:none; transition:.3s;
-  color: var(--text);
-  font-weight: 700;
-}
-.toast.show { opacity:1; transform:translateX(-50%) translateY(0) }
+        /* ===== SALAWAT ===== */
+        .salawat {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: var(--muted);
+            font-size: 14px;
+            letter-spacing: 1px
+        }
+        .salawat span {
+            color: var(--gold2);
+            font-size: 16px;
+            font-weight: 700
+        }
+        .salawat .arabic {
+            font-size: 20px;
+            color: var(--gold2);
+            display: block;
+            margin-bottom: 5px
+        }
 
-/* ===== SPECIAL: FLOORS GROUP ===== */
-.floors-group {
-  grid-column: 1 / -1;
-}
-.floors-group > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.floors-group input {
-  width: 100%;
-}
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 45px 0 100px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap
+        }
+        .footer-inner div {
+            font-weight: 600;
+        }
 
-/* ===== NUMBER INPUT WITH +/- BUTTONS ===== */
-.number-input {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  background: var(--input-bg);
-  overflow: hidden;
-  height: 50px;
-}
-.number-input button {
-  width: 40px;
-  height: 100%;
-  border: none;
-  background: transparent;
-  color: var(--gold2);
-  font-size: 18px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.number-input button:hover {
-  background: rgba(40, 167, 69, .1);
-}
-[data-theme="dark"] .number-input button:hover {
-  background: rgba(215,170,82,.1);
-}
-.number-input input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  text-align: center;
-  font-weight: 700;
-  font-size: 16px;
-  outline: none;
-  padding: 0 4px;
-  -moz-appearance: textfield;
-}
-.number-input input::-webkit-outer-spin-button,
-.number-input input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-[data-theme="light"] .number-input input { color: #000000; }
-[data-theme="light"] .number-input { background: #ffffff; border-color: var(--line); }
+        /* ===== FLOATING WA ===== */
+        .floating-wa {
+            position: fixed;
+            z-index: 60;
+            left: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            color: #05200e;
+            font-size: 25px;
+            box-shadow: 0 12px 35px rgba(37, 211, 102, .3);
+            animation: pulse 2s infinite;
+            transition: 0.2s;
+        }
+        .floating-wa:hover {
+            transform: scale(1.08);
+        }
+        @keyframes pulse {
+            50% {
+                box-shadow: 0 12px 45px rgba(37, 211, 102, .05), 0 0 0 10px rgba(37, 211, 102, .04)
+            }
+        }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .features { grid-template-columns:1fr 1fr }
-  .calc-wrap { grid-template-columns:1fr }
-  .offers,.reviews,.contacts { grid-template-columns:1fr }
-  .offer.featured { transform:none }
-  .gallery { grid-template-columns:1fr 1fr; grid-template-rows:250px 180px }
-  .gallery img:first-child { grid-row:auto; grid-column:1/3 }
-  .nav-links { display:none }
-  .discount-options { grid-template-columns:1fr }
-  .toolbar { gap:8px; padding:4px 10px; flex-wrap:wrap; top:68px; justify-content:center }
-  .toolbar .sep { display:none }
-  .toolbar button { font-size:12px; padding:2px 6px }
-}
-@media(max-width:600px){
-  .section { padding:70px 0 }
-  .hero { min-height:720px }
-  .hero h1 { letter-spacing:-1px; font-size:32px; }
-  .hero p { font-size:15px }
-  .hero-stats { gap:17px }
-  .form-grid,.checks { grid-template-columns:1fr }
-  .gallery { grid-template-columns:1fr; grid-template-rows:230px 180px 180px }
-  .gallery img:first-child { grid-column:auto }
-  .calc-side { min-height:430px }
-  .nav-btn { padding:8px 11px }
-  .brand small { display:none }
-  .toolbar button span { display:none }
-  /* عرض أوسع للموبايل (560 بكسل) */
-  .container { width: 96%; max-width: 560px; }
-  .section-head { flex-direction: column; align-items: flex-start; }
-  .section-head p { max-width: 100%; }
-  .result-top { flex-direction: column; align-items: flex-start; }
-  .result-price { font-size: 26px; }
-  .calc-side { padding: 25px; }
-  .calc-points { position: relative; bottom: auto; right: auto; left: auto; margin-top: 20px; }
-  .calc-side h3 { font-size: 24px; }
-  /* جعل جميع الأقسام 2 columns */
-  .features { grid-template-columns: 1fr 1fr; }
-  .offers { grid-template-columns: 1fr 1fr; }
-  .reviews { grid-template-columns: 1fr 1fr; }
-  .contacts { grid-template-columns: 1fr 1fr; }
-  .locations { grid-template-columns: 1fr 1fr; }
-  /* تحويل الـ Steps إلى صف أفقي واحد (4 أعمدة) */
-  .steps { 
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }
-  .step-num { width: 40px; height: 40px; font-size: 16px; }
-  .step h3 { font-size: 13px; }
-  .step p { font-size: 10px; }
-  .floors-group > div {
-    grid-template-columns: 1fr 1fr;
-  }
-  .number-input button {
-    width: 36px;
-    font-size: 16px;
-  }
-}
-@media(max-width:400px){
-  .features { grid-template-columns: 1fr; }
-  .offers { grid-template-columns: 1fr; }
-  .reviews { grid-template-columns: 1fr; }
-  .contacts { grid-template-columns: 1fr; }
-  .locations { grid-template-columns: 1fr; }
-  .container { max-width: 100%; }
-  /* في الشاشات الصغيرة جداً، الـ steps تصبح عمودين للحفاظ على القراءة */
-  .steps { grid-template-columns: 1fr 1fr; }
-}
-</style>
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: .7s
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: none
+        }
+        .reveal.delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal.delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal.delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal.delay-4 {
+            transition-delay: 0.32s;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            z-index: 100;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            opacity: 0;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            padding: 12px 18px;
+            border-radius: 13px;
+            font-size: 13px;
+            pointer-events: none;
+            transition: .3s;
+            color: var(--text);
+            font-weight: 700;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+
+        /* ===== FLOORS ===== */
+        .floors-group {
+            grid-column: 1 / -1;
+        }
+        .floors-group>div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .floors-group input {
+            width: 100%;
+        }
+
+        /* ===== NUMBER INPUT ===== */
+        .number-input {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: var(--input-bg);
+            overflow: hidden;
+            height: 50px;
+        }
+        .number-input button {
+            width: 40px;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: var(--gold2);
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .number-input button:hover {
+            background: rgba(40, 167, 69, .1);
+        }
+        [data-theme="dark"] .number-input button:hover {
+            background: rgba(215, 170, 82, .1);
+        }
+        .number-input input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            outline: none;
+            padding: 0 4px;
+            -moz-appearance: textfield;
+        }
+        .number-input input::-webkit-outer-spin-button,
+        .number-input input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        [data-theme="light"] .number-input input {
+            color: #000000;
+        }
+        [data-theme="light"] .number-input {
+            background: #ffffff;
+            border-color: var(--line);
+        }
+
+        /* ===== SMART SUGGESTIONS ===== */
+        .suggestions {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            margin-top: 4px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: var(--shadow);
+        }
+        .suggestions.show {
+            display: block;
+        }
+        .suggestions div {
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            transition: 0.15s;
+        }
+        .suggestions div:hover {
+            background: rgba(40, 167, 69, .08);
+            color: var(--gold2);
+        }
+        [data-theme="light"] .suggestions {
+            background: #fff;
+        }
+        [data-theme="light"] .suggestions div:hover {
+            background: rgba(40, 167, 69, .05);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:900px) {
+            .features {
+                grid-template-columns: 1fr 1fr
+            }
+            .calc-wrap {
+                grid-template-columns: 1fr
+            }
+            .offers,
+            .reviews,
+            .contacts {
+                grid-template-columns: 1fr
+            }
+            .offer.featured {
+                transform: none
+            }
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 250px 180px
+            }
+            .gallery img:first-child {
+                grid-row: auto;
+                grid-column: 1/3
+            }
+            .nav-links {
+                display: none
+            }
+            .hamburger {
+                display: flex;
+            }
+            .mobile-menu {
+                display: flex;
+            }
+            .discount-options {
+                grid-template-columns: 1fr
+            }
+            .toolbar {
+                gap: 8px;
+                padding: 4px 10px;
+                flex-wrap: wrap;
+                top: 68px;
+                justify-content: center
+            }
+            .toolbar .sep {
+                display: none
+            }
+            .toolbar button {
+                font-size: 12px;
+                padding: 2px 6px
+            }
+            .calc-points {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                left: auto;
+                margin-top: 20px;
+            }
+        }
+        @media(max-width:600px) {
+            .section {
+                padding: 70px 0
+            }
+            .hero {
+                min-height: 720px
+            }
+            .hero h1 {
+                letter-spacing: -1px;
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 15px
+            }
+            .hero-stats {
+                gap: 17px
+            }
+            .form-grid,
+            .checks {
+                grid-template-columns: 1fr
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: 230px 180px 180px
+            }
+            .gallery img:first-child {
+                grid-column: auto
+            }
+            .calc-side {
+                min-height: 430px
+            }
+            .nav-btn {
+                padding: 8px 11px
+            }
+            .brand small {
+                display: none
+            }
+            .toolbar button span {
+                display: none
+            }
+            .container {
+                width: 96%;
+                max-width: 560px;
+            }
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-head p {
+                max-width: 100%;
+            }
+            .result-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .result-price {
+                font-size: 26px;
+            }
+            .calc-side {
+                padding: 25px;
+            }
+            .calc-side h3 {
+                font-size: 24px;
+            }
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+            .offers {
+                grid-template-columns: 1fr 1fr;
+            }
+            .reviews {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contacts {
+                grid-template-columns: 1fr 1fr;
+            }
+            .locations {
+                grid-template-columns: 1fr 1fr;
+            }
+            .steps {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .step-num {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            .step h3 {
+                font-size: 13px;
+            }
+            .step p {
+                font-size: 10px;
+            }
+            .floors-group>div {
+                grid-template-columns: 1fr 1fr;
+            }
+            .number-input button {
+                width: 36px;
+                font-size: 16px;
+            }
+            .back-top {
+                bottom: 80px;
+                right: 14px;
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+            .floating-wa {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                left: 14px;
+                bottom: 14px;
+            }
+            .mobile-menu {
+                padding: 16px 20px;
+            }
+        }
+        @media(max-width:400px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .offers {
+                grid-template-columns: 1fr;
+            }
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+            .contacts {
+                grid-template-columns: 1fr;
+            }
+            .locations {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                max-width: 100%;
+            }
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- ===== TOOLBAR ===== -->
-<div class="toolbar" id="toolbar">
-  <button id="langToggle" title="تبديل اللغة"><i class="fa-solid fa-globe"></i> <span id="langLabel">العربية</span></button>
-  <span class="sep"></span>
-  <button id="themeToggle" title="تبديل الوضع"><i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeLabel">ليلي</span></button>
-  <span class="sep"></span>
-  <div class="clock" id="clockDisplay">⏰ 00:00:00</div>
-</div>
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- ===== NAV (مع تأثير التمرير) ===== -->
-<nav class="nav" id="mainNav">
-  <div class="container nav-inner">
-    <a class="brand" href="#home">
-      <div class="brand-mark"><i class="fa-solid fa-truck-moving"></i></div>
-      <div>الإشراف 515<small>نقل أثاث وعفش باحتراف</small></div>
-    </a>
-    <div class="nav-links">
-      <a href="#calculator" data-i18n="nav_calc">احجز الآن</a>
-      <a href="#offers" data-i18n="nav_offers">العروض</a>
-      <a href="#services" data-i18n="nav_services">خدماتنا</a>
-      <a href="#works" data-i18n="nav_works">أعمالنا</a>
-      <a href="#contact" data-i18n="nav_contact">التواصل</a>
+    <!-- ===== TOOLBAR ===== -->
+    <div class="toolbar" id="toolbar">
+        <button id="langToggle" title="تبديل اللغة"><i class="fa-solid fa-globe"></i> <span id="langLabel">العربية</span></button>
+        <span class="sep"></span>
+        <button id="themeToggle" title="تبديل الوضع"><i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeLabel">ليلي</span></button>
+        <span class="sep"></span>
+        <div class="clock" id="clockDisplay">⏰ 00:00:00</div>
     </div>
-    <a class="nav-btn" href="tel:01116870575"><i class="fa-solid fa-phone"></i> <span data-i18n="nav_call">اتصل الآن</span></a>
-  </div>
-</nav>
 
-<!-- ===== HERO ===== -->
-<header class="hero" id="home">
-  <div class="container">
-    <div class="hero-content">
-      <div class="badge"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="hero_badge">نقل آمن • فريق متكامل • خدمة 24/7</span></div>
-      <h1><span data-i18n="hero_title1">ننقل أثاثك</span> <span data-i18n="hero_title2">بأمان</span><br><span data-i18n="hero_title3">يليق به.</span></h1>
-      <p data-i18n="hero_desc">الإشراف 515 لنقل الأثاث والعفش مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#calculator"><i class="fa-solid fa-calculator"></i> <span data-i18n="hero_calc_btn">احسب سعر النقل</span></a>
-        <a class="btn btn-dark" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20الاستفسار%20عن%20نقل%20الأثاث"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="hero_wa_btn">اطلب على واتساب</span></a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><strong>24/7</strong><span data-i18n="stat1">متاحين لخدمتك</span></div>
-        <div class="stat"><strong>515</strong><span data-i18n="stat2">إشراف ومتابعة</span></div>
-        <div class="stat"><strong>4</strong><span data-i18n="stat3">خدمات في فريق واحد</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-note" data-i18n="scroll_note">اسحب لأسفل ↓</div>
-</header>
-
-<!-- ===== SERVICES ===== -->
-<section class="section" id="services">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="services_badge">لماذا الإشراف 515؟</div>
-      <h2 data-i18n="services_title">مش مجرد عربية نقل</h2>
-    </div>
-    <p data-i18n="services_desc">من التخطيط والتغليف إلى الفك والتركيب والتسليم، بنجمع لك الخدمات الأساسية في مكان واحد.</p>
-  </div>
-  <div class="grid features">
-    <div class="card feature reveal"><i class="fa-solid fa-box-open"></i><h3 data-i18n="feat1_title">حماية للأثاث</h3><p data-i18n="feat1_desc">تعامل منظم مع القطع أثناء النقل وتقليل فرص الخدوش والتلف.</p></div>
-    <div class="card feature reveal"><i class="fa-solid fa-screwdriver-wrench"></i><h3 data-i18n="feat2_title">فك وتركيب</h3><p data-i18n="feat2_desc">نجارين متخصصين للتعامل مع غرف النوم، الدواليب والأثاث المركب.</p></div>
-    <div class="card feature reveal"><i class="fa-solid fa-snowflake"></i><h3 data-i18n="feat3_title">تكييف وكهرباء</h3><p data-i18n="feat3_desc">فني تكييف وكهربائي ضمن الخدمات حسب احتياج عملية النقل.</p></div>
-    <div class="card feature reveal"><i class="fa-solid fa-headset"></i><h3 data-i18n="feat4_title">متابعة وإشراف</h3><p data-i18n="feat4_desc">مشرف يتابع تفاصيل العملية من الحجز حتى استقرار الأثاث.</p></div>
-  </div>
-</div>
-</section>
-
-<!-- ===== CALCULATOR ===== -->
-<section class="section" id="calculator">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="calc_badge">احجز خدمتك</div>
-      <h2 data-i18n="calc_title">اطلب نقل أثاثك بسهولة</h2>
-    </div>
-    <p data-i18n="calc_desc">أرسل تفاصيل النقل وسيتواصل معك أحد المشرفين لتأكيد الموعد والسعر المناسب.</p>
-  </div>
-  <div class="calc-wrap">
-    <div class="form-card reveal">
-      <h3 data-i18n="calc_form_title">طلب نقل</h3>
-      <div class="hint" data-i18n="calc_form_hint">أدخل البيانات الأساسية لإرسال طلبك مباشرة على واتساب.</div>
-      <div class="form-grid">
-        <div class="field"><label data-i18n="label_from">منطقة الاستلام</label><input id="from" placeholder="مثال: مدينة نصر"></div>
-        <div class="field"><label data-i18n="label_to">منطقة التسليم</label><input id="to" placeholder="مثال: التجمع"></div>
-        
-        <div class="field">
-          <label data-i18n="label_rooms">عدد الغرف</label>
-          <div class="number-input">
-            <button type="button" onclick="changeValue('rooms', -1)"><i class="fa-solid fa-minus"></i></button>
-            <input type="number" id="rooms" min="0" value="0" readonly>
-            <button type="button" onclick="changeValue('rooms', 1)"><i class="fa-solid fa-plus"></i></button>
-          </div>
-        </div>
-        <div class="field">
-          <label data-i18n="label_acs">عدد أجهزة التكييف</label>
-          <div class="number-input">
-            <button type="button" onclick="changeValue('acs', -1)"><i class="fa-solid fa-minus"></i></button>
-            <input type="number" id="acs" min="0" value="0" readonly>
-            <button type="button" onclick="changeValue('acs', 1)"><i class="fa-solid fa-plus"></i></button>
-          </div>
-        </div>
-        
-        <!-- حقل الأدوار (نازل وطالع) بجوار بعض -->
-        <div class="field floors-group">
-          <label data-i18n="label_floors">عدد الأدوار (نازل / طالع)</label>
-          <div>
-            <div class="number-input">
-              <button type="button" onclick="changeValue('floorsDown', -1)"><i class="fa-solid fa-minus"></i></button>
-              <input type="number" id="floorsDown" min="0" value="0" readonly>
-              <button type="button" onclick="changeValue('floorsDown', 1)"><i class="fa-solid fa-plus"></i></button>
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+        <div class="container nav-inner">
+            <a class="brand" href="#home">
+                <div class="brand-mark"><i class="fa-solid fa-truck-moving"></i></div>
+                <div>الإشراف 515<small>نقل أثاث وعفش باحتراف</small></div>
+            </a>
+            <div class="nav-links">
+                <a href="#calculator" data-i18n="nav_calc">احجز الآن</a>
+                <a href="#offers" data-i18n="nav_offers">العروض</a>
+                <a href="#services" data-i18n="nav_services">خدماتنا</a>
+                <a href="#works" data-i18n="nav_works">أعمالنا</a>
+                <a href="#contact" data-i18n="nav_contact">التواصل</a>
             </div>
-            <div class="number-input">
-              <button type="button" onclick="changeValue('floorsUp', -1)"><i class="fa-solid fa-minus"></i></button>
-              <input type="number" id="floorsUp" min="0" value="0" readonly>
-              <button type="button" onclick="changeValue('floorsUp', 1)"><i class="fa-solid fa-plus"></i></button>
+            <a class="nav-btn" href="tel:01116870575"><i class="fa-solid fa-phone"></i> <span data-i18n="nav_call">اتصل الآن</span></a>
+            <button class="hamburger" id="hamburger" aria-label="القائمة">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#calculator" data-i18n="nav_calc" onclick="closeMobileMenu()">احجز الآن</a>
+        <a href="#offers" data-i18n="nav_offers" onclick="closeMobileMenu()">العروض</a>
+        <a href="#services" data-i18n="nav_services" onclick="closeMobileMenu()">خدماتنا</a>
+        <a href="#works" data-i18n="nav_works" onclick="closeMobileMenu()">أعمالنا</a>
+        <a href="#contact" data-i18n="nav_contact" onclick="closeMobileMenu()">التواصل</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="hero_badge">نقل آمن • فريق متكامل • خدمة 24/7</span></div>
+                <h1><span data-i18n="hero_title1">ننقل أثاثك</span> <span data-i18n="hero_title2">بأمان</span><br><span data-i18n="hero_title3">يليق به.</span></h1>
+                <p data-i18n="hero_desc">الإشراف 515 لنقل الأثاث والعفش مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-gold" href="#calculator"><i class="fa-solid fa-calculator"></i> <span data-i18n="hero_calc_btn">احسب سعر النقل</span></a>
+                    <a class="btn btn-dark" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20الاستفسار%20عن%20نقل%20الأثاث"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="hero_wa_btn">اطلب على واتساب</span></a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat"><strong>24/7</strong><span data-i18n="stat1">متاحين لخدمتك</span></div>
+                    <div class="stat"><strong>515</strong><span data-i18n="stat2">إشراف ومتابعة</span></div>
+                    <div class="stat"><strong>4</strong><span data-i18n="stat3">خدمات في فريق واحد</span></div>
+                </div>
             </div>
-          </div>
-          <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0</small>
         </div>
-      </div>
-      <div class="services">
-        <div class="services-title" data-i18n="services_required">الخدمات المطلوبة</div>
-        <div class="checks">
-          <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box"></i> <span data-i18n="chk_crane">ونش</span></label></div>
-          <div class="check"><input type="checkbox" id="assembly"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="chk_assembly">فك وتركيب</span></label></div>
-          <div class="check"><input type="checkbox" id="ac"><label for="ac"><i class="fa-solid fa-snowflake"></i> <span data-i18n="chk_ac">تركيب تكييف</span></label></div>
-          <div class="check"><input type="checkbox" id="electric"><label for="electric"><i class="fa-solid fa-bolt"></i> <span data-i18n="chk_electric">كهرباء</span></label></div>
+        <div class="scroll-note" data-i18n="scroll_note">اسحب لأسفل ↓</div>
+    </header>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="services_badge">لماذا الإشراف 515؟</div>
+                    <h2 data-i18n="services_title">مش مجرد عربية نقل</h2>
+                </div>
+                <p data-i18n="services_desc">من التخطيط والتغليف إلى الفك والتركيب والتسليم، بنجمع لك الخدمات الأساسية في مكان واحد.</p>
+            </div>
+            <div class="grid features">
+                <div class="card feature reveal delay-1"><i class="fa-solid fa-box-open"></i><h3 data-i18n="feat1_title">حماية للأثاث</h3><p data-i18n="feat1_desc">تعامل منظم مع القطع أثناء النقل وتقليل فرص الخدوش والتلف.</p></div>
+                <div class="card feature reveal delay-2"><i class="fa-solid fa-screwdriver-wrench"></i><h3 data-i18n="feat2_title">فك وتركيب</h3><p data-i18n="feat2_desc">نجارين متخصصين للتعامل مع غرف النوم، الدواليب والأثاث المركب.</p></div>
+                <div class="card feature reveal delay-3"><i class="fa-solid fa-snowflake"></i><h3 data-i18n="feat3_title">تكييف وكهرباء</h3><p data-i18n="feat3_desc">فني تكييف وكهربائي ضمن الخدمات حسب احتياج عملية النقل.</p></div>
+                <div class="card feature reveal delay-4"><i class="fa-solid fa-headset"></i><h3 data-i18n="feat4_title">متابعة وإشراف</h3><p data-i18n="feat4_desc">مشرف يتابع تفاصيل العملية من الحجز حتى استقرار الأثاث.</p></div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="discount-section">
-        <div class="title"><i class="fa-solid fa-tags"></i> <span data-i18n="discount_title">اختر الخصم المناسب لك</span></div>
-        <div class="discount-options">
-          <div class="discount-opt"><input type="radio" name="discount" id="discountNone" value="0" checked><label for="discountNone"><i class="fa-solid fa-xmark"></i> <span data-i18n="disc_none">بدون خصم</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountWedding" value="25"><label for="discountWedding"><i class="fa-solid fa-ring"></i> <span data-i18n="disc_wedding">عروسة 25%</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountDivorce" value="15"><label for="discountDivorce"><i class="fa-solid fa-heart-crack"></i> <span data-i18n="disc_divorce">منقولات 15%</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountFlash" value="10"><label for="discountFlash"><i class="fa-solid fa-bolt"></i> <span data-i18n="disc_flash">عرض سريع 10%</span></label></div>
+    <!-- ===== CALCULATOR ===== -->
+    <section class="section" id="calculator">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="calc_badge">احجز خدمتك</div>
+                    <h2 data-i18n="calc_title">اطلب نقل أثاثك بسهولة</h2>
+                </div>
+                <p data-i18n="calc_desc">أرسل تفاصيل النقل وسيتواصل معك أحد المشرفين لتأكيد الموعد والسعر المناسب.</p>
+            </div>
+            <div class="calc-wrap">
+                <div class="form-card reveal">
+                    <h3 data-i18n="calc_form_title">طلب نقل</h3>
+                    <div class="hint" data-i18n="calc_form_hint">أدخل البيانات الأساسية لإرسال طلبك مباشرة على واتساب.</div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label data-i18n="label_from">منطقة الاستلام</label>
+                            <input id="from" placeholder="مثال: مدينة نصر" autocomplete="off">
+                            <div class="suggestions" id="fromSuggestions"></div>
+                            <div class="validation-msg" id="fromError">من فضلك اكتب منطقة الاستلام</div>
+                        </div>
+                        <div class="field">
+                            <label data-i18n="label_to">منطقة التسليم</label>
+                            <input id="to" placeholder="مثال: التجمع" autocomplete="off">
+                            <div class="suggestions" id="toSuggestions"></div>
+                            <div class="validation-msg" id="toError">من فضلك اكتب منطقة التسليم</div>
+                        </div>
+
+                        <div class="field">
+                            <label data-i18n="label_rooms">عدد الغرف</label>
+                            <div class="number-input">
+                                <button type="button" onclick="changeValue('rooms', -1)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="rooms" min="0" value="0" readonly>
+                                <button type="button" onclick="changeValue('rooms', 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label data-i18n="label_acs">عدد أجهزة التكييف</label>
+                            <div class="number-input">
+                                <button type="button" onclick="changeValue('acs', -1)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="acs" min="0" value="0" readonly>
+                                <button type="button" onclick="changeValue('acs', 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="field floors-group">
+                            <label data-i18n="label_floors">عدد الأدوار (نازل / طالع)</label>
+                            <div>
+                                <div class="number-input">
+                                    <button type="button" onclick="changeValue('floorsDown', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="floorsDown" min="0" value="0" readonly>
+                                    <button type="button" onclick="changeValue('floorsDown', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <div class="number-input">
+                                    <button type="button" onclick="changeValue('floorsUp', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="floorsUp" min="0" value="0" readonly>
+                                    <button type="button" onclick="changeValue('floorsUp', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <small style="color:var(--muted);font-size:11px;display:block;margin-top:4px;">الأرضي = 0</small>
+                        </div>
+                    </div>
+                    <div class="services">
+                        <div class="services-title" data-i18n="services_required">الخدمات المطلوبة</div>
+                        <div class="checks">
+                            <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box"></i> <span data-i18n="chk_crane">ونش</span></label></div>
+                            <div class="check"><input type="checkbox" id="assembly"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="chk_assembly">فك وتركيب</span></label></div>
+                            <div class="check"><input type="checkbox" id="ac"><label for="ac"><i class="fa-solid fa-snowflake"></i> <span data-i18n="chk_ac">تركيب تكييف</span></label></div>
+                            <div class="check"><input type="checkbox" id="electric"><label for="electric"><i class="fa-solid fa-bolt"></i> <span data-i18n="chk_electric">كهرباء</span></label></div>
+                        </div>
+                    </div>
+
+                    <div class="discount-section">
+                        <div class="title"><i class="fa-solid fa-tags"></i> <span data-i18n="discount_title">اختر الخصم المناسب لك</span></div>
+                        <div class="discount-options">
+                            <div class="discount-opt"><input type="radio" name="discount" id="discountNone" value="0" checked><label for="discountNone"><i class="fa-solid fa-xmark"></i> <span data-i18n="disc_none">بدون خصم</span></label></div>
+                            <div class="discount-opt"><input type="radio" name="discount" id="discountWedding" value="25"><label for="discountWedding"><i class="fa-solid fa-ring"></i> <span data-i18n="disc_wedding">عروسة 25%</span></label></div>
+                            <div class="discount-opt"><input type="radio" name="discount" id="discountDivorce" value="15"><label for="discountDivorce"><i class="fa-solid fa-heart-crack"></i> <span data-i18n="disc_divorce">منقولات 15%</span></label></div>
+                            <div class="discount-opt"><input type="radio" name="discount" id="discountFlash" value="10"><label for="discountFlash"><i class="fa-solid fa-bolt"></i> <span data-i18n="disc_flash">عرض سريع 10%</span></label></div>
+                        </div>
+                    </div>
+
+                    <div class="calc-result" id="priceDisplay">
+                        <div class="result-top">
+                            <span>
+                                <span class="result-price" id="estimatedPrice">5500 ج.م</span>
+                                <span class="original" id="originalPrice" style="display:none"></span>
+                                <span class="discount-label" id="discountLabel" style="display:none"></span>
+                            </span>
+                            <span style="font-size:13px;color:var(--muted);font-weight:700" data-i18n="estimate_label">تقديري</span>
+                        </div>
+                        <div class="result-details" id="priceDetails">السعر يشمل جميع الخدمات</div>
+                        <div class="result-breakdown" id="priceBreakdown"></div>
+                    </div>
+
+                    <button class="btn btn-gold" style="width:100%" onclick="sendCustomerOrder()">
+                        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="send_btn">إرسال طلب النقل</span>
+                    </button>
+                </div>
+                <div class="calc-side reveal">
+                    <div class="badge" data-i18n="calc_side_badge">الإشراف 515</div>
+                    <h3 data-i18n="calc_side_title">سيب علينا الحسبة والتنظيم</h3>
+                    <p data-i18n="calc_side_desc">نقدم لك سعرًا شاملًا لكل التفاصيل، دون تكاليف مخفية.</p>
+                    <div class="calc-points">
+                        <div data-i18n="pt1">✓ سيارة نقل وعمالة متخصصة</div>
+                        <div data-i18n="pt2">✓ فك وتركيب حسب الطلب</div>
+                        <div data-i18n="pt3">✓ ونش وتكييف وكهرباء عند الحاجة</div>
+                        <div data-i18n="pt4">✓ متابعة من المشرف حتى التسليم</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="calc-result" id="priceDisplay">
-        <div class="result-top">
-          <span>
-            <span class="result-price" id="estimatedPrice">5500 ج.م</span>
-            <span class="original" id="originalPrice" style="display:none"></span>
-            <span class="discount-label" id="discountLabel" style="display:none"></span>
-          </span>
-          <span style="font-size:13px;color:var(--muted);font-weight:700" data-i18n="estimate_label">تقديري</span>
+    </section>
+
+    <!-- ===== OFFERS ===== -->
+    <section class="section" id="offers">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="offers_badge">عروض محدودة</div>
+                    <h2 data-i18n="offers_title">وفّر أكتر على نقلك</h2>
+                </div>
+                <p data-i18n="offers_desc">عروض خاصة لفئات محددة — تواصل معنا للتأكد من انطباق العرض على طلبك.</p>
+            </div>
+            <div class="grid offers">
+                <div class="card offer reveal delay-1"><div class="percent">25%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_wedding">العروسة</h3><p data-i18n="off_wedding_desc">عرض خاص على نقل أثاث العرائس.</p></div>
+                <div class="card offer featured reveal delay-2"><div class="ribbon" data-i18n="off_ribbon">الأكثر طلباً</div><div class="percent">15%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_divorce">المنقولات بعد الطلاق</h3><p data-i18n="off_divorce_desc">خصم خاص على عمليات النقل للفئة المستهدفة.</p></div>
+                <div class="card offer reveal delay-3"><div class="percent">10%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_flash">عرض 4 أيام</h3><p data-i18n="off_flash_desc">خصم محدود لمدة أربعة أيام من بداية الحملة.</p><div id="timer" class="gold" style="font-weight:800;margin-top:10px;font-size:14px">جاري الحساب...</div></div>
+            </div>
         </div>
-        <div class="result-details" id="priceDetails" data-i18n="price_details">السعر يشمل جميع الخدمات</div>
-      </div>
+    </section>
 
-      <button class="btn btn-gold" style="width:100%" onclick="sendCustomerOrder()">
-        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="send_btn">إرسال طلب النقل</span>
-      </button>
+    <!-- ===== STEPS ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="steps_badge">طريقة العمل</div>
+                    <h2 data-i18n="steps_title">من أول مكالمة لحد التسليم</h2>
+                </div>
+            </div>
+            <div class="grid steps">
+                <div class="step reveal delay-1"><div class="step-num">01</div><h3 data-i18n="step1_title">احجز</h3><p data-i18n="step1_desc">ابعت تفاصيل النقل وحدد الموعد.</p></div>
+                <div class="step reveal delay-2"><div class="step-num">02</div><h3 data-i18n="step2_title">نراجع</h3><p data-i18n="step2_desc">نحدد حجم الأثاث والخدمات المطلوبة.</p></div>
+                <div class="step reveal delay-3"><div class="step-num">03</div><h3 data-i18n="step3_title">ننقل</h3><p data-i18n="step3_desc">الفريق ينفذ النقل والفك والتركيب حسب الطلب.</p></div>
+                <div class="step reveal delay-4"><div class="step-num">04</div><h3 data-i18n="step4_title">نسلّم</h3><p data-i18n="step4_desc">متابعة حتى استقرار الأثاث في المكان الجديد.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="reviews_badge">ثقة العملاء</div>
+                    <h2 data-i18n="reviews_title">الانطباع اللي نريد نسيبه</h2>
+                </div>
+                <p data-i18n="reviews_desc">قسم آراء قابل للتعديل — استبدل النصوص بآراء العملاء الحقيقية قبل النشر النهائي.</p>
+            </div>
+            <div class="grid reviews">
+                <div class="card review reveal delay-1"><div class="stars">★★★★★</div><p data-i18n="rev1_text">"التعامل كان منظم والفريق تابع التفاصيل من البداية للنهاية."</p><strong data-i18n="rev1_name">عميل الإشراف 515</strong><span data-i18n="rev1_tag">نقل أثاث</span></div>
+                <div class="card review reveal delay-2"><div class="stars">★★★★★</div><p data-i18n="rev2_text">"أهم حاجة عندي كانت الفك والتركيب، والخدمة كانت واضحة وسريعة."</p><strong data-i18n="rev2_name">عميل الإشراف 515</strong><span data-i18n="rev2_tag">فك وتركيب</span></div>
+                <div class="card review reveal delay-3"><div class="stars">★★★★★</div><p data-i18n="rev3_text">"التواصل والمتابعة كانوا ممتازين، وده خلاني مطمئن أثناء النقل."</p><strong data-i18n="rev3_name">عميل الإشراف 515</strong><span data-i18n="rev3_tag">نقل منزلي</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WORKS ===== -->
+    <section class="section" id="works">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="works_badge">أعمالنا</div>
+                    <h2 data-i18n="works_title">نقل مرتب من البداية</h2>
+                </div>
+                <p data-i18n="works_desc">صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.</p>
+            </div>
+            <div class="gallery reveal">
+                <img src="1000008882.jpg" alt="نقل أثاث باستخدام ونش رفع الأثاث" loading="lazy">
+                <img src="1000008883.jpg" alt="نقل وتغليف الأثاث داخل سيارة النقل" loading="lazy">
+                <img src="1000008879.jpg" alt="نقل أثاث مع ونش خارجي" loading="lazy">
+                <img src="1000008884.jpg" alt="نقل أثاث وفك وتركيب باستخدام الونش" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="contact_badge">تواصل مباشر</div>
+                    <h2 data-i18n="contact_title">اختار المشرف واتصل</h2>
+                </div>
+                <p data-i18n="contact_desc">كل الأرقام مأخوذة من بيانات الموقع الأصلي.</p>
+            </div>
+            <div class="grid contacts">
+                <div class="card contact reveal delay-1"><h3>م. محمود مدحت</h3><div class="role" data-i18n="role1">مشرف أول</div><div class="phone">01116870575</div><div class="contact-actions"><a class="call" href="tel:01116870575" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201116870575" data-i18n="wa_btn">واتساب</a></div></div>
+                <div class="card contact reveal delay-2"><h3>م. محمود أحمد</h3><div class="role" data-i18n="role2">مشرف ثاني</div><div class="phone">01110758232</div><div class="contact-actions"><a class="call" href="tel:01110758232" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201110758232" data-i18n="wa_btn">واتساب</a></div></div>
+                <div class="card contact reveal delay-3"><h3>م. يوسف حسن</h3><div class="role" data-i18n="role3">مشرف</div><div class="phone">01559887180</div><div class="contact-actions"><a class="call" href="tel:01559887180" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201559887180" data-i18n="wa_btn">واتساب</a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LOCATION ===== -->
+    <section class="section" id="location">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <div class="badge" data-i18n="location_badge">الموقع</div>
+                    <h2 data-i18n="location_title">خدمة تصل لك</h2>
+                </div>
+                <p data-i18n="location_desc">القاهرة — مدينة نصر — الحي العاشر، مع إمكانية التواصل لمعرفة نطاق الخدمة.</p>
+            </div>
+            <div class="grid locations">
+                <div class="card location reveal delay-1"><div><h3 data-i18n="loc_nasr">مدينة نصر</h3><p data-i18n="loc_nasr_detail">الحي العاشر — القاهرة</p></div><i class="fa-solid fa-location-dot"></i></div>
+                <a class="card location map reveal delay-2" href="https://www.google.com/maps/search/?api=1&query=Nasr%20City%20Cairo" target="_blank"><div><h3 data-i18n="loc_map">افتح الخريطة</h3><p data-i18n="loc_map_detail">عرض الموقع على Google Maps</p></div><i class="fa-solid fa-map-location-dot"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SALAWAT ===== -->
+    <div class="container">
+        <div class="salawat reveal">
+            <span class="arabic">ﷺ</span>
+            <span data-i18n="salawat_text">اللهم صلِّ على سيدنا محمد وعلى آله وصحبه وسلم</span>
+        </div>
     </div>
-    <div class="calc-side reveal">
-      <div class="badge" data-i18n="calc_side_badge">الإشراف 515</div>
-      <h3 data-i18n="calc_side_title">سيب علينا الحسبة والتنظيم</h3>
-      <p data-i18n="calc_side_desc">نقدم لك سعرًا شاملًا لكل التفاصيل، دون تكاليف مخفية.</p>
-      <div class="calc-points">
-        <div data-i18n="pt1">✓ سيارة نقل وعمالة متخصصة</div>
-        <div data-i18n="pt2">✓ فك وتركيب حسب الطلب</div>
-        <div data-i18n="pt3">✓ ونش وتكييف وكهرباء عند الحاجة</div>
-        <div data-i18n="pt4">✓ متابعة من المشرف حتى التسليم</div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
 
-<!-- ===== OFFERS ===== -->
-<section class="section" id="offers">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="offers_badge">عروض محدودة</div>
-      <h2 data-i18n="offers_title">وفّر أكتر على نقلك</h2>
-    </div>
-    <p data-i18n="offers_desc">عروض خاصة لفئات محددة — تواصل معنا للتأكد من انطباق العرض على طلبك.</p>
-  </div>
-  <div class="grid offers">
-    <div class="card offer reveal"><div class="percent">25%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_wedding">العروسة</h3><p data-i18n="off_wedding_desc">عرض خاص على نقل أثاث العرائس.</p></div>
-    <div class="card offer featured reveal"><div class="ribbon" data-i18n="off_ribbon">الأكثر طلباً</div><div class="percent">15%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_divorce">المنقولات بعد الطلاق</h3><p data-i18n="off_divorce_desc">خصم خاص على عمليات النقل للفئة المستهدفة.</p></div>
-    <div class="card offer reveal"><div class="percent">10%</div><small data-i18n="off_discount">خصم</small><h3 data-i18n="off_flash">عرض 4 أيام</h3><p data-i18n="off_flash_desc">خصم محدود لمدة أربعة أيام من بداية الحملة.</p><div id="timer" class="gold" style="font-weight:800;margin-top:10px;font-size:14px">جاري الحساب...</div></div>
-  </div>
-</div>
-</section>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container footer-inner">
+            <div>© 2026 <span data-i18n="footer_brand">الإشراف 515 — نقل أثاث وعفش</span></div>
+            <div data-i18n="footer_hours">متاح 24 ساعة • فك وتركيب • تكييف • كهرباء</div>
+        </div>
+    </footer>
 
-<!-- ===== STEPS (صف أفقي واحد) ===== -->
-<section class="section">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="steps_badge">طريقة العمل</div>
-      <h2 data-i18n="steps_title">من أول مكالمة لحد التسليم</h2>
-    </div>
-  </div>
-  <div class="grid steps">
-    <div class="step reveal"><div class="step-num">01</div><h3 data-i18n="step1_title">احجز</h3><p data-i18n="step1_desc">ابعت تفاصيل النقل وحدد الموعد.</p></div>
-    <div class="step reveal"><div class="step-num">02</div><h3 data-i18n="step2_title">نراجع</h3><p data-i18n="step2_desc">نحدد حجم الأثاث والخدمات المطلوبة.</p></div>
-    <div class="step reveal"><div class="step-num">03</div><h3 data-i18n="step3_title">ننقل</h3><p data-i18n="step3_desc">الفريق ينفذ النقل والفك والتركيب حسب الطلب.</p></div>
-    <div class="step reveal"><div class="step-num">04</div><h3 data-i18n="step4_title">نسلّم</h3><p data-i18n="step4_desc">متابعة حتى استقرار الأثاث في المكان الجديد.</p></div>
-  </div>
-</div>
-</section>
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-top" id="backTop" aria-label="العودة للأعلى"><i class="fa-solid fa-chevron-up"></i></button>
 
-<!-- ===== REVIEWS ===== -->
-<section class="section">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="reviews_badge">ثقة العملاء</div>
-      <h2 data-i18n="reviews_title">الانطباع اللي نريد نسيبه</h2>
-    </div>
-    <p data-i18n="reviews_desc">قسم آراء قابل للتعديل — استبدل النصوص بآراء العملاء الحقيقية قبل النشر النهائي.</p>
-  </div>
-  <div class="grid reviews">
-    <div class="card review reveal"><div class="stars">★★★★★</div><p data-i18n="rev1_text">"التعامل كان منظم والفريق تابع التفاصيل من البداية للنهاية."</p><strong data-i18n="rev1_name">عميل الإشراف 515</strong><span data-i18n="rev1_tag">نقل أثاث</span></div>
-    <div class="card review reveal"><div class="stars">★★★★★</div><p data-i18n="rev2_text">"أهم حاجة عندي كانت الفك والتركيب، والخدمة كانت واضحة وسريعة."</p><strong data-i18n="rev2_name">عميل الإشراف 515</strong><span data-i18n="rev2_tag">فك وتركيب</span></div>
-    <div class="card review reveal"><div class="stars">★★★★★</div><p data-i18n="rev3_text">"التواصل والمتابعة كانوا ممتازين، وده خلاني مطمئن أثناء النقل."</p><strong data-i18n="rev3_name">عميل الإشراف 515</strong><span data-i18n="rev3_tag">نقل منزلي</span></div>
-  </div>
-</div>
-</section>
+    <!-- ===== FLOATING WA ===== -->
+    <a class="floating-wa" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20طلب%20خدمة%20نقل%20أثاث" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
-<!-- ===== WORKS ===== -->
-<section class="section" id="works">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="works_badge">أعمالنا</div>
-      <h2 data-i18n="works_title">نقل مرتب من البداية</h2>
-    </div>
-    <p data-i18n="works_desc">صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.</p>
-  </div>
-  <div class="gallery reveal">
-    <img src="1000008882.jpg" alt="نقل أثاث باستخدام ونش رفع الأثاث">
-    <img src="1000008883.jpg" alt="نقل وتغليف الأثاث داخل سيارة النقل">
-    <img src="1000008879.jpg" alt="نقل أثاث مع ونش خارجي">
-    <img src="1000008884.jpg" alt="نقل أثاث وفك وتركيب باستخدام الونش">
-  </div>
-</div>
-</section>
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
 
-<!-- ===== CONTACT ===== -->
-<section class="section" id="contact">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="contact_badge">تواصل مباشر</div>
-      <h2 data-i18n="contact_title">اختار المشرف واتصل</h2>
-    </div>
-    <p data-i18n="contact_desc">كل الأرقام مأخوذة من بيانات الموقع الأصلي.</p>
-  </div>
-  <div class="grid contacts">
-    <div class="card contact reveal"><h3>م. محمود مدحت</h3><div class="role" data-i18n="role1">مشرف أول</div><div class="phone">01116870575</div><div class="contact-actions"><a class="call" href="tel:01116870575" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201116870575" data-i18n="wa_btn">واتساب</a></div></div>
-    <div class="card contact reveal"><h3>م. محمود أحمد</h3><div class="role" data-i18n="role2">مشرف ثاني</div><div class="phone">01110758232</div><div class="contact-actions"><a class="call" href="tel:01110758232" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201110758232" data-i18n="wa_btn">واتساب</a></div></div>
-    <div class="card contact reveal"><h3>م. يوسف حسن</h3><div class="role" data-i18n="role3">مشرف</div><div class="phone">01559887180</div><div class="contact-actions"><a class="call" href="tel:01559887180" data-i18n="call_btn">اتصال</a><a class="wa" href="https://wa.me/201559887180" data-i18n="wa_btn">واتساب</a></div></div>
-  </div>
-</div>
-</section>
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ============================================================
+        // 1. THEME TOGGLE
+        // ============================================================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeLabel = document.getElementById('themeLabel');
 
-<!-- ===== LOCATION ===== -->
-<section class="section" id="location">
-<div class="container">
-  <div class="section-head reveal">
-    <div>
-      <div class="badge" data-i18n="location_badge">الموقع</div>
-      <h2 data-i18n="location_title">خدمة تصل لك</h2>
-    </div>
-    <p data-i18n="location_desc">القاهرة — مدينة نصر — الحي العاشر، مع إمكانية التواصل لمعرفة نطاق الخدمة.</p>
-  </div>
-  <div class="grid locations">
-    <div class="card location reveal"><div><h3 data-i18n="loc_nasr">مدينة نصر</h3><p data-i18n="loc_nasr_detail">الحي العاشر — القاهرة</p></div><i class="fa-solid fa-location-dot"></i></div>
-    <a class="card location map reveal" href="https://www.google.com/maps/search/?api=1&query=Nasr%20City%20Cairo" target="_blank"><div><h3 data-i18n="loc_map">افتح الخريطة</h3><p data-i18n="loc_map_detail">عرض الموقع على Google Maps</p></div><i class="fa-solid fa-map-location-dot"></i></a>
-  </div>
-</div>
-</section>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('ishraf_theme', theme);
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeLabel.textContent = 'نهاري';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeLabel.textContent = 'ليلي';
+            }
+        }
 
-<!-- ===== SALAWAT ===== -->
-<div class="container">
-  <div class="salawat reveal">
-    <span class="arabic">ﷺ</span>
-    <span data-i18n="salawat_text">اللهم صلِّ على سيدنا محمد وعلى آله وصحبه وسلم</span>
-  </div>
-</div>
+        const savedTheme = localStorage.getItem('ishraf_theme') || 'dark';
+        setTheme(savedTheme);
 
-<!-- ===== FOOTER ===== -->
-<footer>
-<div class="container footer-inner">
-  <div>© 2026 <span data-i18n="footer_brand">الإشراف 515 — نقل أثاث وعفش</span></div>
-  <div data-i18n="footer_hours">متاح 24 ساعة • فك وتركيب • تكييف • كهرباء</div>
-</div>
-</footer>
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
 
-<!-- ===== FLOATING WA ===== -->
-<a class="floating-wa" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20طلب%20خدمة%20نقل%20أثاث" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        // ============================================================
+        // 2. LANGUAGE TOGGLE
+        // ============================================================
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
 
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast"></div>
+        const i18n = {
+            nav_calc: { ar: 'احجز الآن', en: 'Book Now' },
+            nav_offers: { ar: 'العروض', en: 'Offers' },
+            nav_services: { ar: 'خدماتنا', en: 'Services' },
+            nav_works: { ar: 'أعمالنا', en: 'Our Work' },
+            nav_contact: { ar: 'التواصل', en: 'Contact' },
+            nav_call: { ar: 'اتصل الآن', en: 'Call Now' },
+            hero_badge: { ar: 'نقل آمن • فريق متكامل • خدمة 24/7', en: 'Safe Moving • Full Team • 24/7' },
+            hero_title1: { ar: 'ننقل أثاثك', en: 'We Move Your Furniture' },
+            hero_title2: { ar: 'بأمان', en: 'Safely' },
+            hero_title3: { ar: 'يليق به.', en: 'As It Deserves.' },
+            hero_desc: { ar: 'الإشراف 515 لنقل الأثاث والعفش مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.',
+                en: 'Al-Eshraf 515 for furniture moving with disassembly, assembly, AC and electrical work. From the first call until every piece settles in its place.' },
+            hero_calc_btn: { ar: 'احسب سعر النقل', en: 'Calculate Moving Cost' },
+            hero_wa_btn: { ar: 'اطلب على واتساب', en: 'Order on WhatsApp' },
+            stat1: { ar: 'متاحين لخدمتك', en: 'Available for you' },
+            stat2: { ar: 'إشراف ومتابعة', en: 'Supervision & Follow-up' },
+            stat3: { ar: 'خدمات في فريق واحد', en: 'Services in one team' },
+            scroll_note: { ar: 'اسحب لأسفل ↓', en: 'Scroll down ↓' },
+            services_badge: { ar: 'لماذا الإشراف 515؟', en: 'Why Al-Eshraf 515?' },
+            services_title: { ar: 'مش مجرد عربية نقل', en: 'Not Just a Moving Truck' },
+            services_desc: { ar: 'من التخطيط والتغليف إلى الفك والتركيب والتسليم، بنجمع لك الخدمات الأساسية في مكان واحد.',
+                en: 'From planning and packing to disassembly, assembly and delivery, we bring all essential services in one place.' },
+            feat1_title: { ar: 'حماية للأثاث', en: 'Furniture Protection' },
+            feat1_desc: { ar: 'تعامل منظم مع القطع أثناء النقل وتقليل فرص الخدوش والتلف.', en: 'Organized handling during moving, reducing scratches and damage.' },
+            feat2_title: { ar: 'فك وتركيب', en: 'Disassembly & Assembly' },
+            feat2_desc: { ar: 'نجارين متخصصين للتعامل مع غرف النوم، الدواليب والأثاث المركب.',
+                en: 'Specialized carpenters for bedrooms, wardrobes and assembled furniture.' },
+            feat3_title: { ar: 'تكييف وكهرباء', en: 'AC & Electrical' },
+            feat3_desc: { ar: 'فني تكييف وكهربائي ضمن الخدمات حسب احتياج عملية النقل.', en: 'AC and electrical technician as part of the moving service.' },
+            feat4_title: { ar: 'متابعة وإشراف', en: 'Follow-up & Supervision' },
+            feat4_desc: { ar: 'مشرف يتابع تفاصيل العملية من الحجز حتى استقرار الأثاث.', en: 'A supervisor tracks the process from booking to furniture settling.' },
+            calc_badge: { ar: 'احجز خدمتك', en: 'Book Your Service' },
+            calc_title: { ar: 'اطلب نقل أثاثك بسهولة', en: 'Request Your Move Easily' },
+            calc_desc: { ar: 'أرسل تفاصيل النقل وسيتواصل معك أحد المشرفين لتأكيد الموعد والسعر المناسب.',
+                en: 'Send moving details and one of our supervisors will confirm timing and price.' },
+            calc_form_title: { ar: 'طلب نقل', en: 'Moving Request' },
+            calc_form_hint: { ar: 'أدخل البيانات الأساسية لإرسال طلبك مباشرة على واتساب.', en: 'Enter basic details to send your request directly on WhatsApp.' },
+            label_from: { ar: 'منطقة الاستلام', en: 'Pickup Area' },
+            label_to: { ar: 'منطقة التسليم', en: 'Delivery Area' },
+            label_rooms: { ar: 'عدد الغرف', en: 'Number of Rooms' },
+            label_acs: { ar: 'عدد أجهزة التكييف', en: 'Number of AC Units' },
+            label_floors: { ar: 'عدد الأدوار (نازل / طالع)', en: 'Floors (Down / Up)' },
+            services_required: { ar: 'الخدمات المطلوبة', en: 'Required Services' },
+            chk_crane: { ar: 'ونش', en: 'Crane' },
+            chk_assembly: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
+            chk_ac: { ar: 'تركيب تكييف', en: 'AC Installation' },
+            chk_electric: { ar: 'كهرباء', en: 'Electrical' },
+            discount_title: { ar: 'اختر الخصم المناسب لك', en: 'Choose Your Discount' },
+            disc_none: { ar: 'بدون خصم', en: 'No Discount' },
+            disc_wedding: { ar: 'عروسة 25%', en: 'Bride 25%' },
+            disc_divorce: { ar: 'منقولات 15%', en: 'Divorce 15%' },
+            disc_flash: { ar: 'عرض سريع 10%', en: 'Flash Offer 10%' },
+            estimate_label: { ar: 'تقديري', en: 'Estimate' },
+            price_details: { ar: 'السعر يشمل جميع الخدمات', en: 'Price includes all services' },
+            send_btn: { ar: 'إرسال طلب النقل', en: 'Send Moving Request' },
+            calc_side_badge: { ar: 'الإشراف 515', en: 'Al-Eshraf 515' },
+            calc_side_title: { ar: 'سيب علينا الحسبة والتنظيم', en: 'Leave the Math & Organization to Us' },
+            calc_side_desc: { ar: 'نقدم لك سعرًا شاملًا لكل التفاصيل، دون تكاليف مخفية.', en: 'We give you a comprehensive price for all details, no hidden costs.' },
+            pt1: { ar: '✓ سيارة نقل وعمالة متخصصة', en: '✓ Moving truck & specialized labor' },
+            pt2: { ar: '✓ فك وتركيب حسب الطلب', en: '✓ Disassembly/assembly on demand' },
+            pt3: { ar: '✓ ونش وتكييف وكهرباء عند الحاجة', en: '✓ Crane, AC, electrical when needed' },
+            pt4: { ar: '✓ متابعة من المشرف حتى التسليم', en: '✓ Supervisor follow-up until delivery' },
+            offers_badge: { ar: 'عروض محدودة', en: 'Limited Offers' },
+            offers_title: { ar: 'وفّر أكتر على نقلك', en: 'Save More on Your Move' },
+            offers_desc: { ar: 'عروض خاصة لفئات محددة — تواصل معنا للتأكد من انطباق العرض على طلبك.',
+                en: 'Special offers for specific categories — contact us to check if the offer applies.' },
+            off_discount: { ar: 'خصم', en: 'Discount' },
+            off_wedding: { ar: 'العروسة', en: 'Bride' },
+            off_wedding_desc: { ar: 'عرض خاص على نقل أثاث العرائس.', en: 'Special offer for bridal furniture moving.' },
+            off_ribbon: { ar: 'الأكثر طلباً', en: 'Most Requested' },
+            off_divorce: { ar: 'المنقولات بعد الطلاق', en: 'Divorce Transfers' },
+            off_divorce_desc: { ar: 'خصم خاص على عمليات النقل للفئة المستهدفة.', en: 'Special discount for the target category.' },
+            off_flash: { ar: 'عرض 4 أيام', en: '4-Day Offer' },
+            off_flash_desc: { ar: 'خصم محدود لمدة أربعة أيام من بداية الحملة.', en: 'Limited discount for four days from launch.' },
+            steps_badge: { ar: 'طريقة العمل', en: 'How We Work' },
+            steps_title: { ar: 'من أول مكالمة لحد التسليم', en: 'From First Call to Delivery' },
+            step1_title: { ar: 'احجز', en: 'Book' },
+            step1_desc: { ar: 'ابعت تفاصيل النقل وحدد الموعد.', en: 'Send moving details and set the date.' },
+            step2_title: { ar: 'نراجع', en: 'Review' },
+            step2_desc: { ar: 'نحدد حجم الأثاث والخدمات المطلوبة.', en: 'We determine furniture volume and required services.' },
+            step3_title: { ar: 'ننقل', en: 'Move' },
+            step3_desc: { ar: 'الفريق ينفذ النقل والفك والتركيب حسب الطلب.', en: 'The team carries out moving, disassembly and assembly.' },
+            step4_title: { ar: 'نسلّم', en: 'Deliver' },
+            step4_desc: { ar: 'متابعة حتى استقرار الأثاث في المكان الجديد.', en: 'Follow-up until furniture is settled in the new place.' },
+            reviews_badge: { ar: 'ثقة العملاء', en: 'Client Trust' },
+            reviews_title: { ar: 'الانطباع اللي نريد نسيبه', en: 'The Impression We Want to Leave' },
+            reviews_desc: { ar: 'قسم آراء قابل للتعديل — استبدل النصوص بآراء العملاء الحقيقية قبل النشر النهائي.',
+                en: 'Editable reviews section — replace with real client feedback before final publishing.' },
+            rev1_text: { ar: '"التعامل كان منظم والفريق تابع التفاصيل من البداية للنهاية."',
+                en: '"The handling was organized and the team followed details from start to finish."' },
+            rev1_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
+            rev1_tag: { ar: 'نقل أثاث', en: 'Furniture Moving' },
+            rev2_text: { ar: '"أهم حاجة عندي كانت الفك والتركيب، والخدمة كانت واضحة وسريعة."',
+                en: '"The most important thing for me was disassembly and assembly, and the service was clear and fast."' },
+            rev2_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
+            rev2_tag: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
+            rev3_text: { ar: '"التواصل والمتابعة كانوا ممتازين، وده خلاني مطمئن أثناء النقل."',
+                en: '"Communication and follow-up were excellent, which made me reassured during the move."' },
+            rev3_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
+            rev3_tag: { ar: 'نقل منزلي', en: 'Home Moving' },
+            works_badge: { ar: 'أعمالنا', en: 'Our Work' },
+            works_title: { ar: 'نقل مرتب من البداية', en: 'Organized Moving from Start' },
+            works_desc: { ar: 'صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.',
+                en: 'Illustrative images. Replace with real work photos for more trust.' },
+            contact_badge: { ar: 'تواصل مباشر', en: 'Direct Contact' },
+            contact_title: { ar: 'اختار المشرف واتصل', en: 'Choose a Supervisor & Call' },
+            contact_desc: { ar: 'كل الأرقام مأخوذة من بيانات الموقع الأصلي.', en: 'All numbers from original site data.' },
+            role1: { ar: 'مشرف أول', en: 'Senior Supervisor' },
+            role2: { ar: 'مشرف ثاني', en: 'Second Supervisor' },
+            role3: { ar: 'مشرف', en: 'Supervisor' },
+            call_btn: { ar: 'اتصال', en: 'Call' },
+            wa_btn: { ar: 'واتساب', en: 'WhatsApp' },
+            location_badge: { ar: 'الموقع', en: 'Location' },
+            location_title: { ar: 'خدمة تصل لك', en: 'Service Reaches You' },
+            location_desc: { ar: 'القاهرة — مدينة نصر — الحي العاشر، مع إمكانية التواصل لمعرفة نطاق الخدمة.',
+                en: 'Cairo — Nasr City — 10th District, contact us for service area.' },
+            loc_nasr: { ar: 'مدينة نصر', en: 'Nasr City' },
+            loc_nasr_detail: { ar: 'الحي العاشر — القاهرة', en: '10th District — Cairo' },
+            loc_map: { ar: 'افتح الخريطة', en: 'Open Map' },
+            loc_map_detail: { ar: 'عرض الموقع على Google Maps', en: 'View on Google Maps' },
+            salawat_text: { ar: 'اللهم صلِّ على سيدنا محمد وعلى آله وصحبه وسلم', en: 'O Allah, bless our Prophet Muhammad and his family and companions.' },
+            footer_brand: { ar: 'الإشراف 515 — نقل أثاث وعفش', en: 'Al-Eshraf 515 — Furniture Moving' },
+            footer_hours: { ar: 'متاح 24 ساعة • فك وتركيب • تكييف • كهرباء', en: '24/7 • Disassembly/Assembly • AC • Electrical' }
+        };
 
-<!-- ===== SCRIPTS ===== -->
-<script>
-// ============================================================
-// 1. THEME TOGGLE (Light / Dark)
-// ============================================================
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const themeLabel = document.getElementById('themeLabel');
+        let currentLang = localStorage.getItem('ishraf_lang') || 'ar';
 
-function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('ishraf_theme', theme);
-  if (theme === 'light') {
-    themeIcon.className = 'fa-solid fa-sun';
-    themeLabel.textContent = 'نهاري';
-  } else {
-    themeIcon.className = 'fa-solid fa-moon';
-    themeLabel.textContent = 'ليلي';
-  }
-}
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('ishraf_lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            langLabel.textContent = lang === 'ar' ? 'العربية' : 'English';
 
-const savedTheme = localStorage.getItem('ishraf_theme') || 'dark';
-setTheme(savedTheme);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[key] && i18n[key][lang]) {
+                    el.textContent = i18n[key][lang];
+                }
+            });
+        }
 
-themeToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  setTheme(current === 'dark' ? 'light' : 'dark');
-});
+        setLang(currentLang);
 
-// ============================================================
-// 2. LANGUAGE TOGGLE (Arabic / English)
-// ============================================================
-const langToggle = document.getElementById('langToggle');
-const langLabel = document.getElementById('langLabel');
+        langToggle.addEventListener('click', () => {
+            setLang(currentLang === 'ar' ? 'en' : 'ar');
+        });
 
-const i18n = {
-  nav_calc: { ar: 'احجز الآن', en: 'Book Now' },
-  nav_offers: { ar: 'العروض', en: 'Offers' },
-  nav_services: { ar: 'خدماتنا', en: 'Services' },
-  nav_works: { ar: 'أعمالنا', en: 'Our Work' },
-  nav_contact: { ar: 'التواصل', en: 'Contact' },
-  nav_call: { ar: 'اتصل الآن', en: 'Call Now' },
-  hero_badge: { ar: 'نقل آمن • فريق متكامل • خدمة 24/7', en: 'Safe Moving • Full Team • 24/7' },
-  hero_title1: { ar: 'ننقل أثاثك', en: 'We Move Your Furniture' },
-  hero_title2: { ar: 'بأمان', en: 'Safely' },
-  hero_title3: { ar: 'يليق به.', en: 'As It Deserves.' },
-  hero_desc: { ar: 'الإشراف 515 لنقل الأثاث والعفش مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.', en: 'Al-Eshraf 515 for furniture moving with disassembly, assembly, AC and electrical work. From the first call until every piece settles in its place.' },
-  hero_calc_btn: { ar: 'احسب سعر النقل', en: 'Calculate Moving Cost' },
-  hero_wa_btn: { ar: 'اطلب على واتساب', en: 'Order on WhatsApp' },
-  stat1: { ar: 'متاحين لخدمتك', en: 'Available for you' },
-  stat2: { ar: 'إشراف ومتابعة', en: 'Supervision & Follow-up' },
-  stat3: { ar: 'خدمات في فريق واحد', en: 'Services in one team' },
-  scroll_note: { ar: 'اسحب لأسفل ↓', en: 'Scroll down ↓' },
-  services_badge: { ar: 'لماذا الإشراف 515؟', en: 'Why Al-Eshraf 515?' },
-  services_title: { ar: 'مش مجرد عربية نقل', en: 'Not Just a Moving Truck' },
-  services_desc: { ar: 'من التخطيط والتغليف إلى الفك والتركيب والتسليم، بنجمع لك الخدمات الأساسية في مكان واحد.', en: 'From planning and packing to disassembly, assembly and delivery, we bring all essential services in one place.' },
-  feat1_title: { ar: 'حماية للأثاث', en: 'Furniture Protection' },
-  feat1_desc: { ar: 'تعامل منظم مع القطع أثناء النقل وتقليل فرص الخدوش والتلف.', en: 'Organized handling during moving, reducing scratches and damage.' },
-  feat2_title: { ar: 'فك وتركيب', en: 'Disassembly & Assembly' },
-  feat2_desc: { ar: 'نجارين متخصصين للتعامل مع غرف النوم، الدواليب والأثاث المركب.', en: 'Specialized carpenters for bedrooms, wardrobes and assembled furniture.' },
-  feat3_title: { ar: 'تكييف وكهرباء', en: 'AC & Electrical' },
-  feat3_desc: { ar: 'فني تكييف وكهربائي ضمن الخدمات حسب احتياج عملية النقل.', en: 'AC and electrical technician as part of the moving service.' },
-  feat4_title: { ar: 'متابعة وإشراف', en: 'Follow-up & Supervision' },
-  feat4_desc: { ar: 'مشرف يتابع تفاصيل العملية من الحجز حتى استقرار الأثاث.', en: 'A supervisor tracks the process from booking to furniture settling.' },
-  calc_badge: { ar: 'احجز خدمتك', en: 'Book Your Service' },
-  calc_title: { ar: 'اطلب نقل أثاثك بسهولة', en: 'Request Your Move Easily' },
-  calc_desc: { ar: 'أرسل تفاصيل النقل وسيتواصل معك أحد المشرفين لتأكيد الموعد والسعر المناسب.', en: 'Send moving details and one of our supervisors will confirm timing and price.' },
-  calc_form_title: { ar: 'طلب نقل', en: 'Moving Request' },
-  calc_form_hint: { ar: 'أدخل البيانات الأساسية لإرسال طلبك مباشرة على واتساب.', en: 'Enter basic details to send your request directly on WhatsApp.' },
-  label_from: { ar: 'منطقة الاستلام', en: 'Pickup Area' },
-  label_to: { ar: 'منطقة التسليم', en: 'Delivery Area' },
-  label_rooms: { ar: 'عدد الغرف', en: 'Number of Rooms' },
-  label_acs: { ar: 'عدد أجهزة التكييف', en: 'Number of AC Units' },
-  label_floors: { ar: 'عدد الأدوار (نازل / طالع)', en: 'Floors (Down / Up)' },
-  services_required: { ar: 'الخدمات المطلوبة', en: 'Required Services' },
-  chk_crane: { ar: 'ونش', en: 'Crane' },
-  chk_assembly: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
-  chk_ac: { ar: 'تركيب تكييف', en: 'AC Installation' },
-  chk_electric: { ar: 'كهرباء', en: 'Electrical' },
-  discount_title: { ar: 'اختر الخصم المناسب لك', en: 'Choose Your Discount' },
-  disc_none: { ar: 'بدون خصم', en: 'No Discount' },
-  disc_wedding: { ar: 'عروسة 25%', en: 'Bride 25%' },
-  disc_divorce: { ar: 'منقولات 15%', en: 'Divorce 15%' },
-  disc_flash: { ar: 'عرض سريع 10%', en: 'Flash Offer 10%' },
-  estimate_label: { ar: 'تقديري', en: 'Estimate' },
-  price_details: { ar: 'السعر يشمل جميع الخدمات', en: 'Price includes all services' },
-  send_btn: { ar: 'إرسال طلب النقل', en: 'Send Moving Request' },
-  calc_side_badge: { ar: 'الإشراف 515', en: 'Al-Eshraf 515' },
-  calc_side_title: { ar: 'سيب علينا الحسبة والتنظيم', en: 'Leave the Math & Organization to Us' },
-  calc_side_desc: { ar: 'نقدم لك سعرًا شاملًا لكل التفاصيل، دون تكاليف مخفية.', en: 'We give you a comprehensive price for all details, no hidden costs.' },
-  pt1: { ar: '✓ سيارة نقل وعمالة متخصصة', en: '✓ Moving truck & specialized labor' },
-  pt2: { ar: '✓ فك وتركيب حسب الطلب', en: '✓ Disassembly/assembly on demand' },
-  pt3: { ar: '✓ ونش وتكييف وكهرباء عند الحاجة', en: '✓ Crane, AC, electrical when needed' },
-  pt4: { ar: '✓ متابعة من المشرف حتى التسليم', en: '✓ Supervisor follow-up until delivery' },
-  offers_badge: { ar: 'عروض محدودة', en: 'Limited Offers' },
-  offers_title: { ar: 'وفّر أكتر على نقلك', en: 'Save More on Your Move' },
-  offers_desc: { ar: 'عروض خاصة لفئات محددة — تواصل معنا للتأكد من انطباق العرض على طلبك.', en: 'Special offers for specific categories — contact us to check if the offer applies.' },
-  off_discount: { ar: 'خصم', en: 'Discount' },
-  off_wedding: { ar: 'العروسة', en: 'Bride' },
-  off_wedding_desc: { ar: 'عرض خاص على نقل أثاث العرائس.', en: 'Special offer for bridal furniture moving.' },
-  off_ribbon: { ar: 'الأكثر طلباً', en: 'Most Requested' },
-  off_divorce: { ar: 'المنقولات بعد الطلاق', en: 'Divorce Transfers' },
-  off_divorce_desc: { ar: 'خصم خاص على عمليات النقل للفئة المستهدفة.', en: 'Special discount for the target category.' },
-  off_flash: { ar: 'عرض 4 أيام', en: '4-Day Offer' },
-  off_flash_desc: { ar: 'خصم محدود لمدة أربعة أيام من بداية الحملة.', en: 'Limited discount for four days from launch.' },
-  steps_badge: { ar: 'طريقة العمل', en: 'How We Work' },
-  steps_title: { ar: 'من أول مكالمة لحد التسليم', en: 'From First Call to Delivery' },
-  step1_title: { ar: 'احجز', en: 'Book' },
-  step1_desc: { ar: 'ابعت تفاصيل النقل وحدد الموعد.', en: 'Send moving details and set the date.' },
-  step2_title: { ar: 'نراجع', en: 'Review' },
-  step2_desc: { ar: 'نحدد حجم الأثاث والخدمات المطلوبة.', en: 'We determine furniture volume and required services.' },
-  step3_title: { ar: 'ننقل', en: 'Move' },
-  step3_desc: { ar: 'الفريق ينفذ النقل والفك والتركيب حسب الطلب.', en: 'The team carries out moving, disassembly and assembly.' },
-  step4_title: { ar: 'نسلّم', en: 'Deliver' },
-  step4_desc: { ar: 'متابعة حتى استقرار الأثاث في المكان الجديد.', en: 'Follow-up until furniture is settled in the new place.' },
-  reviews_badge: { ar: 'ثقة العملاء', en: 'Client Trust' },
-  reviews_title: { ar: 'الانطباع اللي نريد نسيبه', en: 'The Impression We Want to Leave' },
-  reviews_desc: { ar: 'قسم آراء قابل للتعديل — استبدل النصوص بآراء العملاء الحقيقية قبل النشر النهائي.', en: 'Editable reviews section — replace with real client feedback before final publishing.' },
-  rev1_text: { ar: '"التعامل كان منظم والفريق تابع التفاصيل من البداية للنهاية."', en: '"The handling was organized and the team followed details from start to finish."' },
-  rev1_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
-  rev1_tag: { ar: 'نقل أثاث', en: 'Furniture Moving' },
-  rev2_text: { ar: '"أهم حاجة عندي كانت الفك والتركيب، والخدمة كانت واضحة وسريعة."', en: '"The most important thing for me was disassembly and assembly, and the service was clear and fast."' },
-  rev2_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
-  rev2_tag: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
-  rev3_text: { ar: '"التواصل والمتابعة كانوا ممتازين، وده خلاني مطمئن أثناء النقل."', en: '"Communication and follow-up were excellent, which made me reassured during the move."' },
-  rev3_name: { ar: 'عميل الإشراف 515', en: 'Al-Eshraf 515 Client' },
-  rev3_tag: { ar: 'نقل منزلي', en: 'Home Moving' },
-  works_badge: { ar: 'أعمالنا', en: 'Our Work' },
-  works_title: { ar: 'نقل مرتب من البداية', en: 'Organized Moving from Start' },
-  works_desc: { ar: 'صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.', en: 'Illustrative images. Replace with real work photos for more trust.' },
-  contact_badge: { ar: 'تواصل مباشر', en: 'Direct Contact' },
-  contact_title: { ar: 'اختار المشرف واتصل', en: 'Choose a Supervisor & Call' },
-  contact_desc: { ar: 'كل الأرقام مأخوذة من بيانات الموقع الأصلي.', en: 'All numbers from original site data.' },
-  role1: { ar: 'مشرف أول', en: 'Senior Supervisor' },
-  role2: { ar: 'مشرف ثاني', en: 'Second Supervisor' },
-  role3: { ar: 'مشرف', en: 'Supervisor' },
-  call_btn: { ar: 'اتصال', en: 'Call' },
-  wa_btn: { ar: 'واتساب', en: 'WhatsApp' },
-  location_badge: { ar: 'الموقع', en: 'Location' },
-  location_title: { ar: 'خدمة تصل لك', en: 'Service Reaches You' },
-  location_desc: { ar: 'القاهرة — مدينة نصر — الحي العاشر، مع إمكانية التواصل لمعرفة نطاق الخدمة.', en: 'Cairo — Nasr City — 10th District, contact us for service area.' },
-  loc_nasr: { ar: 'مدينة نصر', en: 'Nasr City' },
-  loc_nasr_detail: { ar: 'الحي العاشر — القاهرة', en: '10th District — Cairo' },
-  loc_map: { ar: 'افتح الخريطة', en: 'Open Map' },
-  loc_map_detail: { ar: 'عرض الموقع على Google Maps', en: 'View on Google Maps' },
-  salawat_text: { ar: 'اللهم صلِّ على سيدنا محمد وعلى آله وصحبه وسلم', en: 'O Allah, bless our Prophet Muhammad and his family and companions.' },
-  footer_brand: { ar: 'الإشراف 515 — نقل أثاث وعفش', en: 'Al-Eshraf 515 — Furniture Moving' },
-  footer_hours: { ar: 'متاح 24 ساعة • فك وتركيب • تكييف • كهرباء', en: '24/7 • Disassembly/Assembly • AC • Electrical' }
-};
+        // ============================================================
+        // 3. CLOCK (Cairo Time GMT+2)
+        // ============================================================
+        function updateClock() {
+            const now = new Date();
+            const cairoTime = new Date(now.getTime() + (2 * 60 * 60 * 1000));
+            const h = String(cairoTime.getUTCHours()).padStart(2, '0');
+            const m = String(cairoTime.getUTCMinutes()).padStart(2, '0');
+            const s = String(cairoTime.getUTCSeconds()).padStart(2, '0');
+            document.getElementById('clockDisplay').textContent = `⏰ ${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-let currentLang = localStorage.getItem('ishraf_lang') || 'ar';
+        // ============================================================
+        // 4. NAV SCROLL HIDE/SHOW + SCROLL PROGRESS
+        // ============================================================
+        const nav = document.getElementById('mainNav');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backTop = document.getElementById('backTop');
+        let lastScrollY = window.scrollY;
 
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('ishraf_lang', lang);
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  langLabel.textContent = lang === 'ar' ? 'العربية' : 'English';
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? (currentScrollY / maxScroll) * 100 : 0;
+            document.documentElement.style.setProperty('--scroll-progress', progress + '%');
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (i18n[key] && i18n[key][lang]) {
-      el.textContent = i18n[key][lang];
-    }
-  });
-}
+            if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                nav.classList.add('hide');
+            } else {
+                nav.classList.remove('hide');
+            }
+            lastScrollY = currentScrollY;
 
-setLang(currentLang);
+            // Back to top
+            if (currentScrollY > 400) {
+                backTop.classList.add('show');
+            } else {
+                backTop.classList.remove('show');
+            }
+        });
 
-langToggle.addEventListener('click', () => {
-  setLang(currentLang === 'ar' ? 'en' : 'ar');
-});
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-// ============================================================
-// 3. CLOCK (Cairo Time GMT+2)
-// ============================================================
-function updateClock() {
-  const now = new Date();
-  const cairoTime = new Date(now.getTime() + (2 * 60 * 60 * 1000));
-  const h = String(cairoTime.getUTCHours()).padStart(2,'0');
-  const m = String(cairoTime.getUTCMinutes()).padStart(2,'0');
-  const s = String(cairoTime.getUTCSeconds()).padStart(2,'0');
-  document.getElementById('clockDisplay').textContent = `⏰ ${h}:${m}:${s}`;
-}
-setInterval(updateClock, 1000);
-updateClock();
+        // ============================================================
+        // 5. MOBILE MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-// ============================================================
-// 4. NAV SCROLL HIDE/SHOW EFFECT
-// ============================================================
-const nav = document.getElementById('mainNav');
-let lastScrollY = window.scrollY;
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
 
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY;
-  if (currentScrollY > lastScrollY && currentScrollY > 80) {
-    // التمرير للأسفل - إخفاء الناف بار
-    nav.classList.add('hide');
-  } else {
-    // التمرير للأعلى - إظهار الناف بار
-    nav.classList.remove('hide');
-  }
-  lastScrollY = currentScrollY;
-});
+        function closeMobileMenu() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('open');
+        }
 
-// ============================================================
-// 5. NUMBER INPUT WITH +/- BUTTONS
-// ============================================================
-function changeValue(id, delta) {
-  const input = document.getElementById(id);
-  if (!input) return;
-  let val = parseInt(input.value) || 0;
-  val = Math.max(0, val + delta);
-  input.value = val;
-  const event = new Event('input', { bubbles: true });
-  input.dispatchEvent(event);
-  updatePrice();
-}
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav') && !e.target.closest('.mobile-menu')) {
+                closeMobileMenu();
+            }
+        });
 
-// ============================================================
-// 6. PRICE CALCULATOR
-// ============================================================
-const PRICE_CAR = 2500;
-const PRICE_LABOR = 2000;
-const PRICE_CRANE = 2000;
-const PRICE_ASSEMBLY_PER_ROOM = 350;
-const PRICE_AC_PER_UNIT = 700;
-const EXTRA_FLOOR_PRICE = 150;
-const FLOOR_THRESHOLD = 5;
-const COMPANY_PROFIT = 1000;
+        // ============================================================
+        // 6. SMART SUGGESTIONS
+        // ============================================================
+        const AREAS = ['مدينة نصر', 'التجمع الخامس', 'التجمع الثالث', 'الرحاب', 'مدينتي', 'الشروق', 'العبور', 'أكتوبر', 'الشيخ زايد',
+            'المهندسين', 'الدقي', 'الزمالك', 'المعادي', 'مصر الجديدة', 'المنيل', 'جاردن سيتي', 'وسط البلد', 'شبرا', 'روض الفرج',
+            'المرج', 'حلوان', 'التبين', 'المقطم', 'المنتزه', 'الساحل', 'العجوزة', 'فيصل', 'الهرم', 'حدائق أكتوبر', 'بدر',
+            'العاصمة الإدارية', 'الشرقية', 'الغربية'
+        ];
 
-function calculateTotal() {
-  const rooms = Number(document.getElementById('rooms').value) || 0;
-  const acs = Number(document.getElementById('acs').value) || 0;
-  const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
-  const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
-  const crane = document.getElementById('crane').checked;
-  const assembly = document.getElementById('assembly').checked;
-  const acService = document.getElementById('ac').checked;
+        function setupSuggestions(inputId, suggestionsId) {
+            const input = document.getElementById(inputId);
+            const container = document.getElementById(suggestionsId);
+            if (!input || !container) return;
 
-  let discountPercent = 0;
-  document.querySelectorAll('input[name="discount"]').forEach(r => {
-    if (r.checked) discountPercent = Number(r.value);
-  });
+            input.addEventListener('input', function() {
+                const val = this.value.trim();
+                if (val.length < 1) {
+                    container.classList.remove('show');
+                    return;
+                }
+                const matches = AREAS.filter(a => a.includes(val));
+                if (matches.length === 0) {
+                    container.classList.remove('show');
+                    return;
+                }
+                container.innerHTML = matches.map(m =>
+                    `<div onclick="selectSuggestion('${inputId}','${m}')">${m}</div>`
+                ).join('');
+                container.classList.add('show');
+            });
 
-  let total = PRICE_CAR + PRICE_LABOR;
-  let details = `أساسي: عربية ${PRICE_CAR} + عمال ${PRICE_LABOR}`;
-  let extras = [];
-  if (crane) { total += PRICE_CRANE; extras.push(`ونش ${PRICE_CRANE}`); }
-  if (assembly && rooms > 0) { const cost = rooms * PRICE_ASSEMBLY_PER_ROOM; total += cost; extras.push(`فك/تركيب ${rooms} غرفة × ${PRICE_ASSEMBLY_PER_ROOM} = ${cost}`); }
-  else if (assembly) { extras.push(`فك/تركيب (0 غرفة)`); }
-  if (acService && acs > 0) { const cost = acs * PRICE_AC_PER_UNIT; total += cost; extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`); }
-  else if (acService) { extras.push(`تكييف (0 جهاز)`); }
+            input.addEventListener('blur', () => {
+                setTimeout(() => container.classList.remove('show'), 200);
+            });
 
-  const totalFloors = floorsDown + floorsUp;
-  if (totalFloors > FLOOR_THRESHOLD) {
-    const extraFloors = totalFloors - FLOOR_THRESHOLD;
-    const floorCost = extraFloors * EXTRA_FLOOR_PRICE;
-    total += floorCost;
-    extras.push(`رسوم أدوار إضافية (${extraFloors} دور فوق الـ ${FLOOR_THRESHOLD}) × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
-  }
+            input.addEventListener('focus', function() {
+                if (this.value.trim().length > 0) {
+                    this.dispatchEvent(new Event('input'));
+                }
+            });
+        }
 
-  const originalTotal = total;
-  total += COMPANY_PROFIT;
-  const originalWithProfit = total;
+        function selectSuggestion(inputId, value) {
+            document.getElementById(inputId).value = value;
+            document.getElementById(inputId + 'Suggestions').classList.remove('show');
+            validateField(inputId);
+        }
 
-  let discountAmount = 0;
-  let finalTotal = total;
-  if (discountPercent > 0) {
-    discountAmount = (total * discountPercent) / 100;
-    finalTotal = total - discountAmount;
-  }
+        setupSuggestions('from', 'fromSuggestions');
+        setupSuggestions('to', 'toSuggestions');
 
-  let detailText = details;
-  if (extras.length) detailText += ' + ' + extras.join(' + ');
-  detailText += ' (شامل جميع الخدمات)';
+        // ============================================================
+        // 7. NUMBER INPUT WITH +/- BUTTONS
+        // ============================================================
+        function changeValue(id, delta) {
+            const input = document.getElementById(id);
+            if (!input) return;
+            let val = parseInt(input.value) || 0;
+            val = Math.max(0, val + delta);
+            input.value = val;
+            const event = new Event('input', { bubbles: true });
+            input.dispatchEvent(event);
+            updatePrice();
+        }
 
-  return { total: Math.round(finalTotal), originalTotal: Math.round(originalWithProfit), detailText, discountPercent, discountAmount: Math.round(discountAmount) };
-}
+        // ============================================================
+        // 8. VALIDATION
+        // ============================================================
+        function validateField(id) {
+            const input = document.getElementById(id);
+            const error = document.getElementById(id + 'Error');
+            if (!input || !error) return true;
+            const valid = input.value.trim().length > 0;
+            if (!valid) {
+                input.classList.add('error');
+                error.classList.add('show');
+            } else {
+                input.classList.remove('error');
+                error.classList.remove('show');
+            }
+            return valid;
+        }
 
-function updatePrice() {
-  const { total, originalTotal, detailText, discountPercent, discountAmount } = calculateTotal();
-  const priceEl = document.getElementById('estimatedPrice');
-  const originalEl = document.getElementById('originalPrice');
-  const discountLabel = document.getElementById('discountLabel');
-  priceEl.textContent = total + ' ج.م';
-  if (discountPercent > 0) {
-    originalEl.style.display = 'inline';
-    originalEl.textContent = originalTotal + ' ج.م';
-    discountLabel.style.display = 'inline';
-    discountLabel.textContent = `خصم ${discountPercent}% (وفرت ${discountAmount} ج.م)`;
-  } else {
-    originalEl.style.display = 'none';
-    discountLabel.style.display = 'none';
-  }
-  document.getElementById('priceDetails').textContent = detailText;
-}
+        document.getElementById('from').addEventListener('blur', () => validateField('from'));
+        document.getElementById('to').addEventListener('blur', () => validateField('to'));
 
-document.addEventListener('DOMContentLoaded', function() {
-  ['rooms', 'acs', 'floorsDown', 'floorsUp'].forEach(id => {
-    document.getElementById(id).addEventListener('input', updatePrice);
-  });
-  ['crane', 'assembly', 'ac', 'electric'].forEach(id => {
-    document.getElementById(id).addEventListener('change', updatePrice);
-  });
-  document.querySelectorAll('input[name="discount"]').forEach(el => {
-    el.addEventListener('change', updatePrice);
-  });
-  updatePrice();
-});
+        // ============================================================
+        // 9. PRICE CALCULATOR (Smart Detailed)
+        // ============================================================
+        const PRICE_CAR = 2500;
+        const PRICE_LABOR = 2000;
+        const PRICE_CRANE = 2000;
+        const PRICE_ASSEMBLY_PER_ROOM = 350;
+        const PRICE_AC_PER_UNIT = 700;
+        const EXTRA_FLOOR_PRICE = 150;
+        const FLOOR_THRESHOLD = 5;
+        const COMPANY_PROFIT = 1000;
 
-function sendCustomerOrder() {
-  const from = document.getElementById('from').value.trim();
-  const to = document.getElementById('to').value.trim();
-  const rooms = Number(document.getElementById('rooms').value) || 0;
-  const acs = Number(document.getElementById('acs').value) || 0;
-  const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
-  const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
+        function calculateTotal() {
+            const rooms = Number(document.getElementById('rooms').value) || 0;
+            const acs = Number(document.getElementById('acs').value) || 0;
+            const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
+            const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
+            const crane = document.getElementById('crane').checked;
+            const assembly = document.getElementById('assembly').checked;
+            const acService = document.getElementById('ac').checked;
 
-  if (!from || !to) {
-    toast('اكتب منطقة الاستلام والتسليم أولاً');
-    return;
-  }
+            let discountPercent = 0;
+            document.querySelectorAll('input[name="discount"]').forEach(r => {
+                if (r.checked) discountPercent = Number(r.value);
+            });
 
-  const services = [];
-  if (document.getElementById('crane').checked) services.push('ونش');
-  if (document.getElementById('assembly').checked) services.push('فك وتركيب');
-  if (document.getElementById('ac').checked) services.push('تكييف');
-  if (document.getElementById('electric').checked) services.push('كهرباء');
+            let total = PRICE_CAR + PRICE_LABOR;
+            let breakdown = [`سيارة نقل ${PRICE_CAR}`, `عمالة ${PRICE_LABOR}`];
+            let extras = [];
 
-  let discountText = 'بدون خصم';
-  document.querySelectorAll('input[name="discount"]').forEach(r => {
-    if (r.checked && Number(r.value) > 0) {
-      const names = { '25': 'عروسة 25%', '15': 'منقولات 15%', '10': 'عرض سريع 10%' };
-      discountText = names[r.value] || `خصم ${r.value}%`;
-    }
-  });
+            if (crane) { total += PRICE_CRANE;
+                extras.push(`ونش ${PRICE_CRANE}`); }
+            if (assembly && rooms > 0) {
+                const cost = rooms * PRICE_ASSEMBLY_PER_ROOM;
+                total += cost;
+                extras.push(`فك/تركيب ${rooms} غرفة × ${PRICE_ASSEMBLY_PER_ROOM} = ${cost}`);
+            } else if (assembly) { extras.push(`فك/تركيب (0 غرفة)`); }
+            if (acService && acs > 0) {
+                const cost = acs * PRICE_AC_PER_UNIT;
+                total += cost;
+                extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`);
+            } else if (acService) { extras.push(`تكييف (0 جهاز)`); }
 
-  const priceText = document.getElementById('estimatedPrice').textContent;
+            const totalFloors = floorsDown + floorsUp;
+            if (totalFloors > FLOOR_THRESHOLD) {
+                const extraFloors = totalFloors - FLOOR_THRESHOLD;
+                const floorCost = extraFloors * EXTRA_FLOOR_PRICE;
+                total += floorCost;
+                extras.push(`رسوم أدوار إضافية (${extraFloors} دور فوق الـ ${FLOOR_THRESHOLD}) × ${EXTRA_FLOOR_PRICE} = ${floorCost}`);
+            }
 
-  const msg =
-`السلام عليكم، أريد طلب نقل أثاث من الإشراف 515%0A%0A` +
-`منطقة الاستلام: ${encodeURIComponent(from)}%0A` +
-`منطقة التسليم: ${encodeURIComponent(to)}%0A` +
-`عدد الغرف: ${rooms}%0A` +
-`عدد أجهزة التكييف: ${acs}%0A` +
-`عدد الأدوار نازل: ${floorsDown}%0A` +
-`عدد الأدوار طالع: ${floorsUp}%0A` +
-`إجمالي الأدوار: ${floorsDown + floorsUp}%0A` +
-`الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
-`الخصم المختار: ${encodeURIComponent(discountText)}%0A` +
-`السعر التقديري: ${encodeURIComponent(priceText)}%0A%0A` +
-`برجاء التواصل معي لتأكيد السعر والموعد.`;
+            const originalTotal = total;
+            total += COMPANY_PROFIT;
+            breakdown.push(`إشراف ومتابعة ${COMPANY_PROFIT}`);
+            const originalWithProfit = total;
 
-  window.open('https://wa.me/201116870575?text=' + msg, '_blank');
-}
+            let discountAmount = 0;
+            let finalTotal = total;
+            if (discountPercent > 0) {
+                discountAmount = (total * discountPercent) / 100;
+                finalTotal = total - discountAmount;
+            }
 
-function toast(t) {
-  const el = document.getElementById('toast');
-  el.textContent = t;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2600);
-}
+            let detailText = breakdown.join(' + ');
+            if (extras.length) detailText += ' + ' + extras.join(' + ');
+            detailText += ' (شامل الخدمات)';
 
-// ============================================================
-// 7. OFFER TIMER
-// ============================================================
-function offerTimer() {
-  const key = 'ishraf515_offer_end_v2';
-  let end = localStorage.getItem(key);
-  if (!end || Number(end) < Date.now()) {
-    end = Date.now() + 4 * 24 * 60 * 60 * 1000;
-    localStorage.setItem(key, end);
-  }
-  const diff = Math.max(0, Number(end) - Date.now());
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor(diff % 86400000 / 3600000);
-  const m = Math.floor(diff % 3600000 / 60000);
-  const s = Math.floor(diff % 60000 / 1000);
-  document.getElementById('timer').textContent =
-    `ينتهي خلال ${d}ي ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-}
-setInterval(offerTimer, 1000);
-offerTimer();
+            return {
+                total: Math.round(finalTotal),
+                originalTotal: Math.round(originalWithProfit),
+                detailText,
+                discountPercent,
+                discountAmount: Math.round(discountAmount),
+                breakdownItems: [...breakdown, ...extras]
+            };
+        }
 
-// ============================================================
-// 8. REVEAL ON SCROLL
-// ============================================================
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+        function updatePrice() {
+            const { total, originalTotal, detailText, discountPercent, discountAmount, breakdownItems } = calculateTotal();
+            const priceEl = document.getElementById('estimatedPrice');
+            const originalEl = document.getElementById('originalPrice');
+            const discountLabel = document.getElementById('discountLabel');
+            const breakdownEl = document.getElementById('priceBreakdown');
+
+            priceEl.textContent = total + ' ج.م';
+
+            if (discountPercent > 0) {
+                originalEl.style.display = 'inline';
+                originalEl.textContent = originalTotal + ' ج.م';
+                discountLabel.style.display = 'inline';
+                discountLabel.textContent = `خصم ${discountPercent}% (وفرت ${discountAmount} ج.م)`;
+            } else {
+                originalEl.style.display = 'none';
+                discountLabel.style.display = 'none';
+            }
+
+            document.getElementById('priceDetails').textContent = detailText;
+
+            // تفصيل محسن
+            const discountText = discountPercent > 0 ? ` | خصم ${discountPercent}% = -${discountAmount} ج.م` : '';
+            breakdownEl.innerHTML = breakdownItems.map(item =>
+                `<span>${item}</span>`
+            ).join(' + ') + `<span style="color:var(--gold2);font-weight:800;"> = ${total} ج.م${discountText}</span>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            ['rooms', 'acs', 'floorsDown', 'floorsUp'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updatePrice);
+            });
+            ['crane', 'assembly', 'ac', 'electric'].forEach(id => {
+                document.getElementById(id).addEventListener('change', updatePrice);
+            });
+            document.querySelectorAll('input[name="discount"]').forEach(el => {
+                el.addEventListener('change', updatePrice);
+            });
+            updatePrice();
+        });
+
+        // ============================================================
+        // 10. SEND ORDER
+        // ============================================================
+        function sendCustomerOrder() {
+            const from = document.getElementById('from').value.trim();
+            const to = document.getElementById('to').value.trim();
+
+            const fromValid = validateField('from');
+            const toValid = validateField('to');
+
+            if (!fromValid || !toValid) {
+                toast('اكتب منطقة الاستلام والتسليم أولاً');
+                return;
+            }
+
+            const rooms = Number(document.getElementById('rooms').value) || 0;
+            const acs = Number(document.getElementById('acs').value) || 0;
+            const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
+            const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
+
+            const services = [];
+            if (document.getElementById('crane').checked) services.push('ونش');
+            if (document.getElementById('assembly').checked) services.push('فك وتركيب');
+            if (document.getElementById('ac').checked) services.push('تكييف');
+            if (document.getElementById('electric').checked) services.push('كهرباء');
+
+            let discountText = 'بدون خصم';
+            document.querySelectorAll('input[name="discount"]').forEach(r => {
+                if (r.checked && Number(r.value) > 0) {
+                    const names = { '25': 'عروسة 25%', '15': 'منقولات 15%', '10': 'عرض سريع 10%' };
+                    discountText = names[r.value] || `خصم ${r.value}%`;
+                }
+            });
+
+            const priceText = document.getElementById('estimatedPrice').textContent;
+            const detailsText = document.getElementById('priceDetails').textContent;
+
+            const msg =
+                `السلام عليكم، أريد طلب نقل أثاث من الإشراف 515%0A%0A` +
+                `منطقة الاستلام: ${encodeURIComponent(from)}%0A` +
+                `منطقة التسليم: ${encodeURIComponent(to)}%0A` +
+                `عدد الغرف: ${rooms}%0A` +
+                `عدد أجهزة التكييف: ${acs}%0A` +
+                `عدد الأدوار نازل: ${floorsDown}%0A` +
+                `عدد الأدوار طالع: ${floorsUp}%0A` +
+                `إجمالي الأدوار: ${floorsDown + floorsUp}%0A` +
+                `الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
+                `الخصم المختار: ${encodeURIComponent(discountText)}%0A` +
+                `السعر التقديري: ${encodeURIComponent(priceText)}%0A` +
+                `التفاصيل: ${encodeURIComponent(detailsText)}%0A%0A` +
+                `برجاء التواصل معي لتأكيد السعر والموعد.`;
+
+            window.open('https://wa.me/201116870575?text=' + msg, '_blank');
+        }
+
+        function toast(t) {
+            const el = document.getElementById('toast');
+            el.textContent = t;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 2600);
+        }
+
+        // ============================================================
+        // 11. OFFER TIMER
+        // ============================================================
+        function offerTimer() {
+            const key = 'ishraf515_offer_end_v2';
+            let end = localStorage.getItem(key);
+            if (!end || Number(end) < Date.now()) {
+                end = Date.now() + 4 * 24 * 60 * 60 * 1000;
+                localStorage.setItem(key, end);
+            }
+            const diff = Math.max(0, Number(end) - Date.now());
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor(diff % 86400000 / 3600000);
+            const m = Math.floor(diff % 3600000 / 60000);
+            const s = Math.floor(diff % 60000 / 1000);
+            document.getElementById('timer').textContent =
+                `ينتهي خلال ${d}ي ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+        setInterval(offerTimer, 1000);
+        offerTimer();
+
+        // ============================================================
+        // 12. REVEAL ON SCROLL (with stagger)
+        // ============================================================
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: .12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // ============================================================
+        // 13. KEYBOARD SHORTCUT: ESC to close mobile menu
+        // ============================================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMobileMenu();
+        });
+
+        // ============================================================
+        // 14. TOUCH FRIENDLY: Fix number inputs on mobile
+        // ============================================================
+        document.querySelectorAll('.number-input input').forEach(inp => {
+            inp.addEventListener('focus', function() {
+                this.select();
+            });
+        });
+
+        console.log('🚛 الإشراف 515 — تم التحميل بنجاح!');
+        console.log('✨ التعديلات الذكية: شريط تقدم، قائمة موبايل، اقتراحات المناطق، تفصيل السعر، زر العودة للأعلى.');
+    </script>
 </body>
 </html>
