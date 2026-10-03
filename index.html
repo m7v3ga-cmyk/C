@@ -14,21 +14,21 @@
 <style>
 /* ===== GOLDEN NIGHT THEME (match cover image) ===== */
 :root {
-  --bg: #0a0e1a;              /* deep navy night */
+  --bg: #0a0e1a;
   --bg-2: #0f1424;
-  --surface: #131a2c;         /* card surface */
+  --surface: #131a2c;
   --surface-2: #1a2338;
-  --fg: #f7ecd2;              /* warm cream */
+  --fg: #f7ecd2;
   --fg-2: #f7ecd2;
-  --muted: #a89a78;           /* muted gold-grey */
+  --muted: #a89a78;
   --meta: #a89a78;
   --border: rgba(212, 165, 72, 0.22);
   --border-soft: rgba(212, 165, 72, 0.14);
 
-  --accent: #d4a548;          /* rich gold */
-  --accent-2: #f5d98a;        /* light gold */
-  --accent-3: #b8863a;        /* deep gold */
-  --accent-on: #0a0e1a;       /* dark text on gold */
+  --accent: #d4a548;
+  --accent-2: #f5d98a;
+  --accent-3: #b8863a;
+  --accent-on: #0a0e1a;
   --accent-hover: #f5d98a;
   --accent-active: #b8863a;
   --gold-grad: linear-gradient(135deg, #f5d98a 0%, #d4a548 45%, #b8863a 100%);
@@ -36,6 +36,7 @@
   --success: #25d366;
   --warn: #ffd11a;
   --danger: #d03238;
+  --fb-blue: #1877f2;
 
   --font-display: "Cairo", Inter, ui-sans-serif, system-ui, sans-serif;
   --font-body: "Cairo", Inter, Helvetica, Arial, ui-sans-serif, sans-serif;
@@ -237,6 +238,11 @@ button, input, select { font: inherit }
   border: 1px solid var(--border);
   color: var(--fg);
   font-weight: 700;
+}
+.btn-fb {
+  background: var(--fb-blue);
+  color: #fff;
+  font-weight: 800;
 }
 .hero-stats { display:flex; flex-wrap:wrap; gap:35px; margin-top:45px }
 .stat strong {
@@ -568,40 +574,77 @@ button, input, select { font: inherit }
 .gallery img:hover { transform: scale(1.02); border-color: var(--accent); }
 .gallery img:first-child { grid-row:1/3 }
 
-/* ===== CONTACT ===== */
-.contacts { grid-template-columns:repeat(3,1fr) }
+/* ===== CONTACT (single centered card) ===== */
+.contacts {
+  display: grid;
+  grid-template-columns: minmax(0, 520px);
+  justify-content: center;
+  gap: 18px;
+}
+.contact {
+  text-align: center;
+  padding: 40px 30px;
+  background: linear-gradient(160deg, rgba(19,26,44,0.95), rgba(15,20,36,0.9));
+  border: 1px solid var(--accent);
+  box-shadow: var(--elev-glow);
+}
+.contact .contact-logo {
+  width: 90px; height: 90px; border-radius: 50%;
+  margin: 0 auto 18px;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 30px rgba(212, 165, 72, 0.35);
+  background: #000;
+}
+.contact .contact-logo img { width: 100%; height: 100%; object-fit: cover; }
 .contact h3 {
-  font-size: var(--text-base);
+  font-size: var(--text-xl);
   color: var(--fg);
-  font-weight: 800;
+  font-weight: 900;
+  margin-bottom: 8px;
 }
 .role {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--accent-2);
   font-weight: 700;
+  margin-bottom: 14px;
 }
 .phone {
-  font-size: var(--text-lg);
+  font-size: var(--text-2xl);
   font-weight:900;
-  margin:13px 0;
+  margin:13px 0 22px;
   direction:ltr;
-  text-align:right;
-  color: var(--fg);
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.contact-actions { display:flex; gap:8px }
+.contact-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
 .contact-actions a {
-  flex:1; padding:10px; border-radius: var(--radius-sm);
-  text-align:center; font-size: var(--text-xs);
+  padding:14px 10px;
+  border-radius: var(--radius-sm);
+  text-align:center;
+  font-size: var(--text-sm);
   font-weight:900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   transition: transform var(--motion-fast) var(--ease-standard);
 }
-.contact-actions a:hover { transform: scale(1.02); }
+.contact-actions a:hover { transform: scale(1.04); }
+.contact-actions a i { font-size: 16px; }
 .call {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border);
   color: var(--fg);
 }
 .wa { background: #25d366; color: #05200e; }
+.fb { background: var(--fb-blue); color: #fff; }
 
 /* ===== LOCATION ===== */
 .locations { grid-template-columns:1fr 1fr }
@@ -625,8 +668,23 @@ button, input, select { font: inherit }
 
 /* ===== FOOTER ===== */
 footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--muted); font-size: var(--text-xs) }
-.footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap }
+.footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center }
 .footer-inner div { font-weight: 600 }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  color: var(--accent-2);
+  transition: all var(--motion-fast) var(--ease-standard);
+}
+.footer-social a:hover {
+  background: var(--accent);
+  color: var(--accent-on);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.footer-social a.fb-link:hover { background: var(--fb-blue); color: #fff; border-color: var(--fb-blue); }
 
 /* ===== FLOATING WA ===== */
 .floating-wa {
@@ -715,7 +773,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
 @media(max-width:900px){
   .features { grid-template-columns:1fr 1fr }
   .calc-wrap { grid-template-columns:1fr }
-  .offers,.reviews,.contacts { grid-template-columns:1fr }
+  .offers,.reviews { grid-template-columns:1fr }
   .offer.featured { transform:none }
   .gallery { grid-template-columns:1fr 1fr; grid-template-rows:250px 180px }
   .gallery img:first-child { grid-row:auto; grid-column:1/3 }
@@ -750,7 +808,6 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   .features { grid-template-columns: 1fr 1fr; }
   .offers { grid-template-columns: 1fr 1fr; }
   .reviews { grid-template-columns: 1fr 1fr; }
-  .contacts { grid-template-columns: 1fr 1fr; }
   .locations { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .step-num { width: 40px; height: 40px; font-size: var(--text-sm); }
@@ -758,12 +815,17 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   .step p { font-size: 10px; }
   .floors-group > div { grid-template-columns: 1fr 1fr; }
   .number-input button { width: 36px; font-size: 16px; }
+  .contacts { grid-template-columns: 1fr; }
+  .contact-actions { grid-template-columns: 1fr 1fr 1fr; }
+  .contact-actions a { padding: 12px 6px; font-size: var(--text-xs); }
+  .contact-actions a i { display: none; }
+  .phone { font-size: var(--text-xl); }
+  .footer-inner { justify-content: center; text-align: center; }
 }
 @media(max-width:400px){
   .features { grid-template-columns: 1fr; }
   .offers { grid-template-columns: 1fr; }
   .reviews { grid-template-columns: 1fr; }
-  .contacts { grid-template-columns: 1fr; }
   .locations { grid-template-columns: 1fr; }
   .container { max-width: 100%; }
   .steps { grid-template-columns: 1fr 1fr; }
@@ -808,6 +870,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
       <div class="hero-actions">
         <a class="btn btn-gold" href="#calculator"><i class="fa-solid fa-calculator"></i> <span data-i18n="hero_calc_btn">احسب سعر النقل</span></a>
         <a class="btn btn-dark" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20الاستفسار%20عن%20نقل%20الأثاث"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="hero_wa_btn">اطلب على واتساب</span></a>
+        <a class="btn btn-fb" href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> <span data-i18n="hero_fb_btn">صفحتنا على فيسبوك</span></a>
       </div>
       <div class="hero-stats">
         <div class="stat"><strong>24/7</strong><span data-i18n="stat1">متاحين لخدمتك</span></div>
@@ -1015,7 +1078,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
 </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
+<!-- ===== CONTACT (Customer Service Only) ===== -->
 <section class="section" id="contact">
 <div class="container">
   <div class="section-head reveal">
@@ -1027,30 +1090,14 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   </div>
   <div class="grid contacts">
     <div class="card contact reveal">
+      <div class="contact-logo"><img src="https://i.ibb.co/JFwLxm7S/1791028458488.jpg" alt="النسر الذهبي"></div>
       <h3>شركة النسر الذهبي</h3>
-      <div class="role" data-i18n="role1">الحجز والاستفسار</div>
+      <div class="role" data-i18n="role2">خدمة العملاء</div>
       <div class="phone">01116870575</div>
       <div class="contact-actions">
-        <a class="call" href="tel:01116870575" data-i18n="call_btn">اتصال</a>
-        <a class="wa" href="https://wa.me/201116870575" data-i18n="wa_btn">واتساب</a>
-      </div>
-    </div>
-    <div class="card contact reveal">
-      <h3>خدمة العملاء</h3>
-      <div class="role" data-i18n="role2">متابعة الطلبات</div>
-      <div class="phone">01116870575</div>
-      <div class="contact-actions">
-        <a class="call" href="tel:01116870575" data-i18n="call_btn">اتصال</a>
-        <a class="wa" href="https://wa.me/201116870575" data-i18n="wa_btn">واتساب</a>
-      </div>
-    </div>
-    <div class="card contact reveal">
-      <h3>الطوارئ</h3>
-      <div class="role" data-i18n="role3">24 ساعة</div>
-      <div class="phone">01116870575</div>
-      <div class="contact-actions">
-        <a class="call" href="tel:01116870575" data-i18n="call_btn">اتصال</a>
-        <a class="wa" href="https://wa.me/201116870575" data-i18n="wa_btn">واتساب</a>
+        <a class="call" href="tel:01116870575"><i class="fa-solid fa-phone"></i><span data-i18n="call_btn">اتصال</span></a>
+        <a class="wa" href="https://wa.me/201116870575"><i class="fa-brands fa-whatsapp"></i><span data-i18n="wa_btn">واتساب</span></a>
+        <a class="fb" href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i><span data-i18n="fb_btn">فيسبوك</span></a>
       </div>
     </div>
   </div>
@@ -1086,6 +1133,11 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
 <footer>
 <div class="container footer-inner">
   <div>© 2026 <span data-i18n="footer_brand">شركة النسر الذهبي لنقل وتغليف الأثاث</span></div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener" class="fb-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/201116870575" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="tel:01116870575" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+  </div>
   <div data-i18n="footer_hours">متاح 24 ساعة • فك وتركيب • تغليف • ونش</div>
 </div>
 </footer>
@@ -1120,6 +1172,7 @@ const i18n = {
   hero_desc: { ar: 'شركة النسر الذهبي لنقل وتغليف الأثاث مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.', en: 'Al-Naser Al-Zahabi for furniture moving and packing with disassembly, assembly, AC and electrical work.' },
   hero_calc_btn: { ar: 'احسب سعر النقل', en: 'Calculate Moving Cost' },
   hero_wa_btn: { ar: 'اطلب على واتساب', en: 'Order on WhatsApp' },
+  hero_fb_btn: { ar: 'صفحتنا على فيسبوك', en: 'Our Facebook Page' },
   stat1: { ar: 'متاحين لخدمتك', en: 'Available for you' },
   stat2: { ar: 'سنوات خبرة', en: 'Years Experience' },
   stat3: { ar: 'خدمات في فريق واحد', en: 'Services in one team' },
@@ -1205,11 +1258,10 @@ const i18n = {
   contact_badge: { ar: 'تواصل مباشر', en: 'Direct Contact' },
   contact_title: { ar: 'اتصل بنا الآن', en: 'Call Us Now' },
   contact_desc: { ar: 'فريقنا متاح على مدار 24 ساعة لخدمتك.', en: 'Our team is available 24/7 for you.' },
-  role1: { ar: 'الحجز والاستفسار', en: 'Booking & Inquiry' },
-  role2: { ar: 'متابعة الطلبات', en: 'Order Follow-up' },
-  role3: { ar: '24 ساعة', en: '24 Hours' },
+  role2: { ar: 'خدمة العملاء', en: 'Customer Service' },
   call_btn: { ar: 'اتصال', en: 'Call' },
   wa_btn: { ar: 'واتساب', en: 'WhatsApp' },
+  fb_btn: { ar: 'فيسبوك', en: 'Facebook' },
   location_badge: { ar: 'مناطق الخدمة', en: 'Service Areas' },
   location_title: { ar: 'نخدم القاهرة والجيزة', en: 'We Serve Cairo & Giza' },
   location_desc: { ar: 'تصل خدماتنا لجميع مناطق القاهرة والجيزة وجميع المحافظات.', en: 'Our services reach all areas of Cairo, Giza and all governorates.' },
@@ -1284,8 +1336,8 @@ const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
 const PRICE_CRANE = 2000;
 const PRICE_ASSEMBLY_PER_ROOM = 350;
-const PRICE_PACKING_PER_ROOM = 1300;   // ← سعر التغليف للغرفة
-const PRICE_AC_PER_UNIT = 1200;        // ← سعر التكييف 1200
+const PRICE_PACKING_PER_ROOM = 1300;   // سعر التغليف للغرفة
+const PRICE_AC_PER_UNIT = 1200;        // سعر التكييف
 const EXTRA_FLOOR_PRICE = 150;
 const FLOOR_THRESHOLD = 5;
 const COMPANY_PROFIT = 1000;
