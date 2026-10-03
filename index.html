@@ -14,7 +14,6 @@
 <style>
 /* ===== WISE DESIGN SYSTEM TOKENS ===== */
 :root {
-  /* Colors */
   --bg: #ffffff;
   --surface: #e8ebe6;
   --surface-warm: #e8ebe6;
@@ -34,12 +33,10 @@
   --danger-light: #fef2f2;
   --info-bg: rgba(56, 200, 255, 0.10);
 
-  /* Typography */
   --font-display: "Cairo", Inter, ui-sans-serif, system-ui, sans-serif;
   --font-body: "Cairo", Inter, Helvetica, Arial, ui-sans-serif, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
   
-  /* Type Scale */
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 18px;
@@ -52,7 +49,6 @@
   --leading-tight: 0.85;
   --tracking-display: normal;
 
-  /* Spacing */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -65,32 +61,26 @@
   --section-y-tablet: 48px;
   --section-y-phone: 32px;
 
-  /* Radius */
   --radius-sm: 16px;
   --radius-md: 30px;
   --radius-lg: 40px;
   --radius-pill: 9999px;
 
-  /* Elevation */
   --elev-flat: none;
   --elev-ring: 0 0 0 1px var(--border);
   --elev-raised: 0 0 0 1px var(--border), 0 2px 8px rgba(14, 15, 12, 0.04);
 
-  /* Focus */
   --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 60%);
 
-  /* Motion */
   --motion-fast: 150ms;
   --motion-base: 200ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
-  /* Layout */
   --container-max: 1280px;
   --container-gutter-desktop: 24px;
   --container-gutter-tablet: 16px;
   --container-gutter-phone: 12px;
 
-  /* Legacy mapping for existing components */
   --gold: var(--accent);
   --gold2: var(--accent);
   --gold-light: var(--accent-hover);
@@ -230,7 +220,7 @@ button, input, select { font: inherit }
   position: relative; padding-top: 74px; overflow: hidden;
   background:
     linear-gradient(90deg, var(--bg) 0%, var(--bg) 43%, rgba(255, 255, 255, 0.1) 100%),
-    url("https://i.ibb.co/6R0X1zZ/cover.jpg") center/cover;
+    url("https://ibb.co/cS3WskxK") center/cover; /* استبدل هذا الرابط بالرابط المباشر من ImgBB */
 }
 .hero:after { content:""; position:absolute; inset:auto 0 0; height:180px; background:linear-gradient(transparent,var(--bg)) }
 .hero-content { position:relative; z-index:2; max-width:730px }
@@ -463,7 +453,7 @@ button, input, select { font: inherit }
   position:relative; overflow:hidden; border-radius: var(--radius-lg); padding:35px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.95)),
-    url("https://i.ibb.co/6R0X1zZ/cover.jpg") center/cover;
+    url("https://ibb.co/cS3WskxK") center/cover; /* استبدل هذا الرابط بالرابط المباشر من ImgBB */
   border: 1px solid var(--border);
 }
 .calc-side h3 { 
@@ -813,7 +803,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
 <nav class="nav" id="mainNav">
   <div class="container nav-inner">
     <a class="brand" href="#home">
-      <div class="brand-mark"><img src="https://i.ibb.co/6R0X1zZ/logo.jpg" alt="شعار النسر الذهبي"></div>
+      <div class="brand-mark"><img src="https://ibb.co/JFwLxm7S" alt="شعار النسر الذهبي"></div> <!-- استبدل بالرابط المباشر -->
       <div>النسر الذهبي<small>نقل وتغليف الأثاث</small></div>
     </a>
     <div class="nav-links">
@@ -924,6 +914,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
         <div class="checks">
           <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box"></i> <span data-i18n="chk_crane">ونش</span></label></div>
           <div class="check"><input type="checkbox" id="assembly"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="chk_assembly">فك وتركيب</span></label></div>
+          <div class="check"><input type="checkbox" id="packing"><label for="packing"><i class="fa-solid fa-box"></i> <span data-i18n="chk_packing">تغليف</span></label></div>
           <div class="check"><input type="checkbox" id="ac"><label for="ac"><i class="fa-solid fa-snowflake"></i> <span data-i18n="chk_ac">تركيب تكييف</span></label></div>
           <div class="check"><input type="checkbox" id="electric"><label for="electric"><i class="fa-solid fa-bolt"></i> <span data-i18n="chk_electric">كهرباء</span></label></div>
         </div>
@@ -1035,10 +1026,11 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
     <p data-i18n="works_desc">صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.</p>
   </div>
   <div class="gallery reveal">
-    <img src="https://i.ibb.co/6R0X1zZ/cover.jpg" alt="نقل أثاث باستخدام ونش رفع الأثاث">
-    <img src="https://i.ibb.co/6R0X1zZ/cover.jpg" alt="نقل وتغليف الأثاث داخل سيارة النقل">
-    <img src="https://i.ibb.co/6R0X1zZ/cover.jpg" alt="نقل أثاث مع ونش خارجي">
-    <img src="https://i.ibb.co/6R0X1zZ/cover.jpg" alt="نقل أثاث وفك وتركيب باستخدام الونش">
+    <!-- استبدل هذه الروابط بالروابط المباشرة من ImgBB -->
+    <img src="https://ibb.co/3y0RQmgN" alt="نقل أثاث باستخدام ونش رفع الأثاث">
+    <img src="https://ibb.co/Tx2pzb8V" alt="نقل وتغليف الأثاث داخل سيارة النقل">
+    <img src="https://ibb.co/qtY5rNZ" alt="نقل أثاث مع ونش خارجي">
+    <img src="https://ibb.co/PZjhtCGB" alt="نقل أثاث وفك وتركيب باستخدام الونش">
   </div>
 </div>
 </section>
@@ -1120,7 +1112,7 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
 
 <!-- ===== FLOATING WA ===== -->
 <a class="floating-wa" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20طلب%20خدمة%20نقل%20أثاث" aria-label="WhatsApp">
-  <img src="https://i.ibb.co/6R0X1zZ/logo.jpg" alt="واتساب">
+  <img src="https://ibb.co/JFwLxm7S" alt="واتساب"> <!-- استبدل بالرابط المباشر -->
 </a>
 
 <!-- ===== TOAST ===== -->
@@ -1176,6 +1168,7 @@ const i18n = {
   services_required: { ar: 'الخدمات المطلوبة', en: 'Required Services' },
   chk_crane: { ar: 'ونش', en: 'Crane' },
   chk_assembly: { ar: 'فك وتركيب', en: 'Disassembly/Assembly' },
+  chk_packing: { ar: 'تغليف', en: 'Packing' },
   chk_ac: { ar: 'تركيب تكييف', en: 'AC Installation' },
   chk_electric: { ar: 'كهرباء', en: 'Electrical' },
   discount_title: { ar: 'اختر الخصم المناسب لك', en: 'Choose Your Discount' },
@@ -1323,7 +1316,8 @@ const PRICE_CAR = 2500;
 const PRICE_LABOR = 2000;
 const PRICE_CRANE = 2000;
 const PRICE_ASSEMBLY_PER_ROOM = 350;
-const PRICE_AC_PER_UNIT = 700;
+const PRICE_PACKING_PER_ROOM = 1300; // تمت الإضافة: سعر التغليف للغرفة
+const PRICE_AC_PER_UNIT = 1200;      // تم التعديل: سعر التكييف 1200
 const EXTRA_FLOOR_PRICE = 150;
 const FLOOR_THRESHOLD = 5;
 const COMPANY_PROFIT = 1000;
@@ -1335,6 +1329,7 @@ function calculateTotal() {
   const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
   const crane = document.getElementById('crane').checked;
   const assembly = document.getElementById('assembly').checked;
+  const packing = document.getElementById('packing').checked;
   const acService = document.getElementById('ac').checked;
 
   let discountPercent = 0;
@@ -1345,11 +1340,32 @@ function calculateTotal() {
   let total = PRICE_CAR + PRICE_LABOR;
   let details = `أساسي: عربية ${PRICE_CAR} + عمال ${PRICE_LABOR}`;
   let extras = [];
+
   if (crane) { total += PRICE_CRANE; extras.push(`ونش ${PRICE_CRANE}`); }
-  if (assembly && rooms > 0) { const cost = rooms * PRICE_ASSEMBLY_PER_ROOM; total += cost; extras.push(`فك/تركيب ${rooms} غرفة × ${PRICE_ASSEMBLY_PER_ROOM} = ${cost}`); }
-  else if (assembly) { extras.push(`فك/تركيب (0 غرفة)`); }
-  if (acService && acs > 0) { const cost = acs * PRICE_AC_PER_UNIT; total += cost; extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`); }
-  else if (acService) { extras.push(`تكييف (0 جهاز)`); }
+
+  if (assembly && rooms > 0) { 
+    const cost = rooms * PRICE_ASSEMBLY_PER_ROOM; 
+    total += cost; 
+    extras.push(`فك/تركيب ${rooms} غرفة × ${PRICE_ASSEMBLY_PER_ROOM} = ${cost}`); 
+  } else if (assembly) { 
+    extras.push(`فك/تركيب (0 غرفة)`); 
+  }
+
+  if (packing && rooms > 0) { 
+    const cost = rooms * PRICE_PACKING_PER_ROOM; 
+    total += cost; 
+    extras.push(`تغليف ${rooms} غرفة × ${PRICE_PACKING_PER_ROOM} = ${cost}`); 
+  } else if (packing) { 
+    extras.push(`تغليف (0 غرفة)`); 
+  }
+
+  if (acService && acs > 0) { 
+    const cost = acs * PRICE_AC_PER_UNIT; 
+    total += cost; 
+    extras.push(`تكييف ${acs} جهاز × ${PRICE_AC_PER_UNIT} = ${cost}`); 
+  } else if (acService) { 
+    extras.push(`تكييف (0 جهاز)`); 
+  }
 
   const totalFloors = floorsDown + floorsUp;
   if (totalFloors > FLOOR_THRESHOLD) {
@@ -1399,7 +1415,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ['rooms', 'acs', 'floorsDown', 'floorsUp'].forEach(id => {
     document.getElementById(id).addEventListener('input', updatePrice);
   });
-  ['crane', 'assembly', 'ac', 'electric'].forEach(id => {
+  ['crane', 'assembly', 'packing', 'ac', 'electric'].forEach(id => {
     document.getElementById(id).addEventListener('change', updatePrice);
   });
   document.querySelectorAll('input[name="discount"]').forEach(el => {
@@ -1424,6 +1440,7 @@ function sendCustomerOrder() {
   const services = [];
   if (document.getElementById('crane').checked) services.push('ونش');
   if (document.getElementById('assembly').checked) services.push('فك وتركيب');
+  if (document.getElementById('packing').checked) services.push('تغليف');
   if (document.getElementById('ac').checked) services.push('تكييف');
   if (document.getElementById('electric').checked) services.push('كهرباء');
 
