@@ -948,6 +948,21 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
 @media(max-width:900px){.hero-premium{display:none}.premium-strip-inner{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}.assurance{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.cta-band{align-items:flex-start;flex-direction:column}.cta-band .btn{width:100%}}
 @media(max-width:560px){.premium-strip{margin-top:-22px}.premium-point{padding:15px}.process-grid{grid-template-columns:1fr}.assurance-list{grid-template-columns:1fr}.assurance-card{padding:21px}.cta-band{padding:24px 18px}.cta-band h3{font-size:20px}}
 
+
+/* ===== INTERACTIVE PREMIUM LAYER ===== */
+.gallery{position:relative}
+.gallery img{cursor:zoom-in}
+.floating-actions{position:fixed;left:20px;bottom:22px;z-index:50;display:flex;flex-direction:column;gap:10px}
+.float-action{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;text-decoration:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.32);backdrop-filter:blur(12px);font-size:20px;transition:transform .2s,box-shadow .2s}
+.float-action:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.42)}
+.float-action.wa{background:#1f9d62;color:#fff}.float-action.phone{background:#c7a76b;color:#0b0f18}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,6,12,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}.lightbox img{max-width:min(1100px,94vw);max-height:84vh;object-fit:contain;border-radius:18px;box-shadow:0 30px 100px rgba(0,0,0,.6)}
+.lightbox-close{position:absolute;top:20px;left:20px;width:48px;height:48px;border-radius:15px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer}
+.lightbox-caption{position:absolute;bottom:22px;right:24px;left:24px;text-align:center;color:#e8e4d8;font-size:13px}
+.booking-note{margin-top:12px;text-align:center;color:var(--muted);font-size:11px;line-height:1.6}
+@media(max-width:560px){.floating-actions{left:12px;bottom:78px}.float-action{width:48px;height:48px;border-radius:15px}.lightbox{padding:12px}.lightbox img{max-height:78vh}.lightbox-close{top:12px;left:12px}}
+@media(prefers-reduced-motion:reduce){.float-action{transition:none}}
 </style>
 </head>
 
@@ -1138,6 +1153,7 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
       <button class="btn btn-gold" style="width:100%" onclick="sendCustomerOrder()">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span data-i18n="send_btn">إرسال طلب النقل</span>
       </button>
+      <div class="booking-note">السعر الظاهر تقديري، والتأكيد النهائي يتم بعد مراجعة تفاصيل النقل مع الفريق.</div>
     </div>
     <div class="calc-side reveal">
       <div class="badge" data-i18n="calc_side_badge">النسر الذهبي</div>
@@ -1742,6 +1758,31 @@ offerTimer();
 // ============================================================
 // 7. REVEAL ON SCROLL
 // ============================================================
+
+// Premium gallery lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const galleryImages = document.querySelectorAll('.gallery img');
+function closeLightbox(){
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  document.body.style.overflow='';
+}
+if(lightbox && lightboxImage){
+  galleryImages.forEach(img=>img.addEventListener('click',()=>{
+    lightboxImage.src=img.currentSrc || img.src;
+    lightboxImage.alt=img.alt || 'صورة من أعمال النسر الذهبي';
+    lightboxCaption.textContent=img.alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow='hidden';
+  }));
+  lightboxClose?.addEventListener('click',closeLightbox);
+  lightbox.addEventListener('click',e=>{ if(e.target===lightbox) closeLightbox(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
+}
+
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) e.target.classList.add('visible');
@@ -1749,5 +1790,15 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+
+<div class="floating-actions" aria-label="تواصل سريع">
+  <a class="float-action wa" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20حجز%20نقل%20أثاث" aria-label="واتساب"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+  <a class="float-action phone" href="tel:01116870575" aria-label="اتصال"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="عرض صورة من الأعمال">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="إغلاق الصورة"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+  <img id="lightboxImage" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 </body>
 </html>
