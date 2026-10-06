@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0e1a">
-<meta name="description" content="شركة النسر الذهبي - نقل أثاث وعفش، فك وتركيب، تغليف، ونش رفع.">
+<meta name="description" content="شركة النسر الذهبي لنقل وتغليف الأثاث في القاهرة والجيزة. نقل، فك وتركيب، تغليف، ونش رفع وخدمة عملاء 24/7.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="شركة النسر الذهبي | نقل وتغليف الأثاث">
+<meta property="og:description" content="نقل أثاث آمن، فك وتركيب، تغليف وونش رفع — اطلب عرضك الآن.">
 <title>شركة النسر الذهبي | نقل وتغليف الأثاث</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -868,14 +872,79 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   .contact-actions a { font-size: var(--text-xs); padding: 11px 6px; }
   .contact-actions a i { display: none; }
 }
+
+/* ===== UI/UX PRO MAX REFINEMENT ===== */
+:root{
+  --container-max:1240px;
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px;
+  --space-5:48px; --space-6:64px; --space-7:80px;
+  --focus-visible:0 0 0 3px rgba(245,217,138,.95),0 0 0 6px rgba(10,14,26,.9);
+}
+body{line-height:1.55}
+.skip-link{position:fixed;z-index:1000;top:12px;right:12px;transform:translateY(-180%);padding:12px 18px;border-radius:12px;background:var(--accent-2);color:var(--accent-on);font-weight:900;transition:transform .2s ease}
+.skip-link:focus{transform:translateY(0);box-shadow:var(--focus-visible)}
+:where(a,button,input,select):focus-visible{outline:none;box-shadow:var(--focus-visible)}
+button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{min-height:44px}
+.hero-content{max-width:760px}
+.hero h1{line-height:1.02}
+.hero p{line-height:1.7;max-width:680px}
+.hero-actions .btn{min-width:170px}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.trust-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(10,14,26,.48);color:var(--fg);font-size:12px;font-weight:800;backdrop-filter:blur(8px)}
+.trust-chip i{color:var(--accent-2)}
+.nav-menu-btn{display:none;width:44px;height:44px;border:1px solid var(--border);border-radius:50%;background:rgba(19,26,44,.7);color:var(--accent-2);cursor:pointer;place-items:center}
+.mobile-menu{display:none;position:absolute;top:74px;left:4%;right:4%;padding:12px;border:1px solid var(--border);border-radius:20px;background:rgba(15,20,36,.97);box-shadow:var(--elev-raised)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{min-height:46px;display:flex;align-items:center;padding:0 14px;border-radius:12px;font-weight:800;color:var(--fg)}
+.mobile-menu a:hover{background:rgba(212,165,72,.12);color:var(--accent-2)}
+.calc-wrap{align-items:start}
+.form-card{position:relative}
+.calc-result{position:sticky;bottom:14px;z-index:3;backdrop-filter:blur(14px)}
+.check label,.discount-opt label{min-height:48px}
+.field input,.field select{min-height:50px}
+.card{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.card:hover{transform:translateY(-3px)}
+.gallery img{display:block}
+.contact-actions a{min-height:48px}
+.mobile-cta{display:none;position:fixed;z-index:55;left:12px;right:12px;bottom:12px;padding:8px;border:1px solid var(--border);border-radius:18px;background:rgba(15,20,36,.94);backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.mobile-cta a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:12px;background:var(--gold-grad);color:var(--accent-on);font-weight:900}
+@media(max-width:900px){
+  .nav-menu-btn{display:grid}
+  .nav-links{display:none}
+  .nav-inner{gap:10px}
+  .brand{margin-inline-end:auto}
+  .calc-result{position:static}
+}
+@media(max-width:600px){
+  body{padding-bottom:76px}
+  .hero{min-height:760px}
+  .hero-content{padding-top:34px}
+  .hero h1{font-size:clamp(36px,10vw,52px);line-height:1.04}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn{width:100%}
+  .hero-stats{margin-top:28px;gap:12px 22px}
+  .trust-row{gap:6px}
+  .trust-chip{font-size:11px;padding:7px 10px}
+  .mobile-cta{display:block}
+  .floating-wa{bottom:88px}
+  .section-head h2{line-height:1.1}
+  .section-head p{line-height:1.65}
+  .contact-actions a{min-height:50px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
 </style>
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
 
 <!-- ===== TOOLBAR ===== -->
 <div class="toolbar" id="toolbar">
-  <button id="langToggle" title="تبديل اللغة"><i class="fa-solid fa-globe"></i> <span id="langLabel">العربية</span></button>
+  <button id="langToggle" title="تبديل اللغة"><i class="fa-solid fa-globe" aria-hidden="true"></i> <span id="langLabel">العربية</span></button>
   <span class="sep"></span>
   <div class="clock" id="clockDisplay">⏰ 00:00:00</div>
 </div>
@@ -894,26 +963,42 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
       <a href="#works" data-i18n="nav_works">أعمالنا</a>
       <a href="#contact" data-i18n="nav_contact">التواصل</a>
     </div>
-    <a class="nav-btn" href="tel:01116870575"><i class="fa-solid fa-phone"></i> <span data-i18n="nav_call">اتصل الآن</span></a>
+    <a class="nav-btn" href="tel:01116870575"><i class="fa-solid fa-phone" aria-hidden="true"></i> <span data-i18n="nav_call">اتصل الآن</span></a>
+    <button class="nav-menu-btn" id="mobileMenuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileMenu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-label="قائمة التنقل">
+    <a href="#calculator" data-i18n="nav_calc">احجز الآن</a>
+    <a href="#offers" data-i18n="nav_offers">العروض</a>
+    <a href="#services" data-i18n="nav_services">خدماتنا</a>
+    <a href="#works" data-i18n="nav_works">أعمالنا</a>
+    <a href="#contact" data-i18n="nav_contact">التواصل</a>
   </div>
 </nav>
 
+<main id="main-content">
 <!-- ===== HERO ===== -->
 <header class="hero" id="home">
   <div class="container">
     <div class="hero-content">
-      <div class="badge"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="hero_badge">نقل آمن • فريق متكامل • خدمة 24/7</span></div>
+      <div class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span data-i18n="hero_badge">نقل آمن • فريق متكامل • خدمة 24/7</span></div>
       <h1><span class="gold" data-i18n="hero_title1">ننقل أثاثك</span> <span class="gold" data-i18n="hero_title2">بأمان</span><br><span data-i18n="hero_title3">يليق به.</span></h1>
       <p data-i18n="hero_desc">شركة النسر الذهبي لنقل وتغليف الأثاث مع الفك والتركيب، التكييف والكهرباء. من أول اتصال لحد ما كل قطعة تستقر في مكانها.</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="#calculator"><i class="fa-solid fa-calculator"></i> <span data-i18n="hero_calc_btn">احسب سعر النقل</span></a>
-        <a class="btn btn-dark" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20الاستفسار%20عن%20نقل%20الأثاث"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="hero_wa_btn">اطلب على واتساب</span></a>
-        <a class="btn btn-fb" href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i> <span data-i18n="hero_fb_btn">صفحتنا على فيسبوك</span></a>
+        <a class="btn btn-gold" href="#calculator"><i class="fa-solid fa-calculator" aria-hidden="true"></i> <span data-i18n="hero_calc_btn">احسب سعر النقل</span></a>
+        <a class="btn btn-dark" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20الاستفسار%20عن%20نقل%20الأثاث"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span data-i18n="hero_wa_btn">اطلب على واتساب</span></a>
+        <a class="btn btn-fb" href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i> <span data-i18n="hero_fb_btn">صفحتنا على فيسبوك</span></a>
       </div>
       <div class="hero-stats">
         <div class="stat"><strong>24/7</strong><span data-i18n="stat1">متاحين لخدمتك</span></div>
         <div class="stat"><strong>+10</strong><span data-i18n="stat2">سنوات خبرة</span></div>
         <div class="stat"><strong>4</strong><span data-i18n="stat3">خدمات في فريق واحد</span></div>
+      </div>
+      <div class="trust-row" aria-label="مميزات الخدمة">
+        <span class="trust-chip"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> نقل آمن</span>
+        <span class="trust-chip"><i class="fa-solid fa-clock" aria-hidden="true"></i> خدمة 24/7</span>
+        <span class="trust-chip"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> سعر واضح</span>
       </div>
     </div>
   </div>
@@ -994,38 +1079,38 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
       <div class="services">
         <div class="services-title" data-i18n="services_required">الخدمات المطلوبة</div>
         <div class="checks">
-          <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box"></i> <span data-i18n="chk_crane">ونش</span></label></div>
-          <div class="check"><input type="checkbox" id="assembly"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="chk_assembly">فك وتركيب</span></label></div>
-          <div class="check"><input type="checkbox" id="packing"><label for="packing"><i class="fa-solid fa-box"></i> <span data-i18n="chk_packing">تغليف</span></label></div>
-          <div class="check"><input type="checkbox" id="ac"><label for="ac"><i class="fa-solid fa-snowflake"></i> <span data-i18n="chk_ac">تركيب تكييف</span></label></div>
-          <div class="check"><input type="checkbox" id="electric"><label for="electric"><i class="fa-solid fa-bolt"></i> <span data-i18n="chk_electric">كهرباء</span></label></div>
+          <div class="check"><input type="checkbox" id="crane"><label for="crane"><i class="fa-solid fa-truck-ramp-box" aria-hidden="true"></i> <span data-i18n="chk_crane">ونش</span></label></div>
+          <div class="check"><input type="checkbox" id="assembly"><label for="assembly"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> <span data-i18n="chk_assembly">فك وتركيب</span></label></div>
+          <div class="check"><input type="checkbox" id="packing"><label for="packing"><i class="fa-solid fa-box" aria-hidden="true"></i> <span data-i18n="chk_packing">تغليف</span></label></div>
+          <div class="check"><input type="checkbox" id="ac"><label for="ac"><i class="fa-solid fa-snowflake" aria-hidden="true"></i> <span data-i18n="chk_ac">تركيب تكييف</span></label></div>
+          <div class="check"><input type="checkbox" id="electric"><label for="electric"><i class="fa-solid fa-bolt" aria-hidden="true"></i> <span data-i18n="chk_electric">كهرباء</span></label></div>
         </div>
       </div>
 
       <div class="discount-section">
-        <div class="title"><i class="fa-solid fa-tags"></i> <span data-i18n="discount_title">اختر الخصم المناسب لك</span></div>
+        <div class="title"><i class="fa-solid fa-tags" aria-hidden="true"></i> <span data-i18n="discount_title">اختر الخصم المناسب لك</span></div>
         <div class="discount-options">
-          <div class="discount-opt"><input type="radio" name="discount" id="discountNone" value="0" checked><label for="discountNone"><i class="fa-solid fa-xmark"></i> <span data-i18n="disc_none">بدون خصم</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountWedding" value="25"><label for="discountWedding"><i class="fa-solid fa-ring"></i> <span data-i18n="disc_wedding">عروسة 25%</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountDivorce" value="15"><label for="discountDivorce"><i class="fa-solid fa-heart-crack"></i> <span data-i18n="disc_divorce">منقولات 15%</span></label></div>
-          <div class="discount-opt"><input type="radio" name="discount" id="discountFlash" value="10"><label for="discountFlash"><i class="fa-solid fa-bolt"></i> <span data-i18n="disc_flash">عرض سريع 10%</span></label></div>
+          <div class="discount-opt"><input type="radio" name="discount" id="discountNone" value="0" checked><label for="discountNone"><i class="fa-solid fa-xmark" aria-hidden="true"></i> <span data-i18n="disc_none">بدون خصم</span></label></div>
+          <div class="discount-opt"><input type="radio" name="discount" id="discountWedding" value="25"><label for="discountWedding"><i class="fa-solid fa-ring" aria-hidden="true"></i> <span data-i18n="disc_wedding">عروسة 25%</span></label></div>
+          <div class="discount-opt"><input type="radio" name="discount" id="discountDivorce" value="15"><label for="discountDivorce"><i class="fa-solid fa-heart-crack" aria-hidden="true"></i> <span data-i18n="disc_divorce">منقولات 15%</span></label></div>
+          <div class="discount-opt"><input type="radio" name="discount" id="discountFlash" value="10"><label for="discountFlash"><i class="fa-solid fa-bolt" aria-hidden="true"></i> <span data-i18n="disc_flash">عرض سريع 10%</span></label></div>
         </div>
       </div>
       
       <div class="calc-result" id="priceDisplay">
         <div class="result-top">
           <span>
-            <span class="result-price" id="estimatedPrice">5500 ج.م</span>
+            <span class="result-price" id="estimatedPrice" aria-live="polite">5500 ج.م</span>
             <span class="original" id="originalPrice" style="display:none"></span>
             <span class="discount-label" id="discountLabel" style="display:none"></span>
           </span>
           <span style="font-size:13px;color:var(--muted);font-weight:700" data-i18n="estimate_label">تقديري</span>
         </div>
-        <div class="result-details" id="priceDetails" data-i18n="price_details">السعر يشمل جميع الخدمات</div>
+        <div class="result-details" id="priceDetails" aria-live="polite" data-i18n="price_details">السعر يشمل جميع الخدمات</div>
       </div>
 
       <button class="btn btn-gold" style="width:100%" onclick="sendCustomerOrder()">
-        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="send_btn">إرسال طلب النقل</span>
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span data-i18n="send_btn">إرسال طلب النقل</span>
       </button>
     </div>
     <div class="calc-side reveal">
@@ -1108,10 +1193,10 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
     <p data-i18n="works_desc">صور توضيحية للخدمة. يمكن استبدالها بصور أعمالك الحقيقية لرفع الثقة أكثر.</p>
   </div>
   <div class="gallery reveal">
-    <img src="https://i.ibb.co/3y0RQmgN/1000008882.jpg" alt="نقل أثاث باستخدام ونش رفع الأثاث">
-    <img src="https://i.ibb.co/Tx2pzb8V/1000008883.jpg" alt="نقل وتغليف الأثاث داخل سيارة النقل">
-    <img src="https://i.ibb.co/qtY5rNZ/1000008879.jpg" alt="نقل أثاث مع ونش خارجي">
-    <img src="https://i.ibb.co/PZjhtCGB/1000008884.jpg" alt="نقل أثاث وفك وتركيب باستخدام الونش">
+    <img src="https://i.ibb.co/3y0RQmgN/1000008882.jpg" loading="lazy" decoding="async" alt="نقل أثاث باستخدام ونش رفع الأثاث">
+    <img src="https://i.ibb.co/Tx2pzb8V/1000008883.jpg" loading="lazy" decoding="async" alt="نقل وتغليف الأثاث داخل سيارة النقل">
+    <img src="https://i.ibb.co/qtY5rNZ/1000008879.jpg" loading="lazy" decoding="async" alt="نقل أثاث مع ونش خارجي">
+    <img src="https://i.ibb.co/PZjhtCGB/1000008884.jpg" loading="lazy" decoding="async" alt="نقل أثاث وفك وتركيب باستخدام الونش">
   </div>
 </div>
 </section>
@@ -1128,33 +1213,33 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   </div>
   <div class="grid contacts">
     <div class="card contact reveal">
-      <div class="contact-logo"><img src="https://i.ibb.co/JFwLxm7S/1791028458488.jpg" alt="النسر الذهبي"></div>
+      <div class="contact-logo"><img src="https://i.ibb.co/JFwLxm7S/1791028458488.jpg" alt="النسر الذهبي" width="90" height="90"></div>
       <h3>شركة النسر الذهبي</h3>
       <div class="role" data-i18n="role2">خدمة العملاء</div>
 
       <!-- الرقم الأول -->
       <div class="phone-row">
-        <div class="phone-label"><i class="fa-solid fa-phone-volume"></i> <span data-i18n="phone_label_1">الرقم الأول</span></div>
+        <div class="phone-label"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> <span data-i18n="phone_label_1">الرقم الأول</span></div>
         <div class="phone">01116870575</div>
         <div class="contact-actions">
-          <a class="call" href="tel:01116870575"><i class="fa-solid fa-phone"></i><span data-i18n="call_btn">اتصال</span></a>
-          <a class="wa" href="https://wa.me/201116870575"><i class="fa-brands fa-whatsapp"></i><span data-i18n="wa_btn">واتساب</span></a>
+          <a class="call" href="tel:01116870575"><i class="fa-solid fa-phone" aria-hidden="true"></i><span data-i18n="call_btn">اتصال</span></a>
+          <a class="wa" href="https://wa.me/201116870575"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span data-i18n="wa_btn">واتساب</span></a>
         </div>
       </div>
 
       <!-- الرقم الثاني -->
       <div class="phone-row">
-        <div class="phone-label"><i class="fa-solid fa-phone-volume"></i> <span data-i18n="phone_label_2">الرقم الثاني</span></div>
+        <div class="phone-label"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> <span data-i18n="phone_label_2">الرقم الثاني</span></div>
         <div class="phone">01110758232</div>
         <div class="contact-actions">
-          <a class="call" href="tel:01110758232"><i class="fa-solid fa-phone"></i><span data-i18n="call_btn">اتصال</span></a>
-          <a class="wa" href="https://wa.me/201110758232"><i class="fa-brands fa-whatsapp"></i><span data-i18n="wa_btn">واتساب</span></a>
+          <a class="call" href="tel:01110758232"><i class="fa-solid fa-phone" aria-hidden="true"></i><span data-i18n="call_btn">اتصال</span></a>
+          <a class="wa" href="https://wa.me/201110758232"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span data-i18n="wa_btn">واتساب</span></a>
         </div>
       </div>
 
       <!-- زر الفيسبوك -->
       <a class="fb-full-btn" href="https://www.facebook.com/share/19eRTJxtJV/" target="_blank" rel="noopener">
-        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
         <span data-i18n="fb_follow_btn">تابعنا على فيسبوك</span>
       </a>
     </div>
@@ -1174,10 +1259,12 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   </div>
   <div class="grid locations">
     <div class="card location reveal"><div><h3 data-i18n="loc_nasr">القاهرة والجيزة</h3><p data-i18n="loc_nasr_detail">تغطية شاملة لجميع المناطق</p></div><i class="fa-solid fa-location-dot"></i></div>
-    <a class="card location map reveal" href="https://www.google.com/maps/search/?api=1&query=Cairo+Egypt" target="_blank"><div><h3 data-i18n="loc_map">افتح الخريطة</h3><p data-i18n="loc_map_detail">عرض الموقع على Google Maps</p></div><i class="fa-solid fa-map-location-dot"></i></a>
+    <a class="card location map reveal" href="https://www.google.com/maps/search/?api=1&query=Cairo+Egypt" target="_blank" rel="noopener"><div><h3 data-i18n="loc_map">افتح الخريطة</h3><p data-i18n="loc_map_detail">عرض الموقع على Google Maps</p></div><i class="fa-solid fa-map-location-dot"></i></a>
   </div>
 </div>
 </section>
+
+</main>
 
 <!-- ===== SALAWAT ===== -->
 <div class="container">
@@ -1200,6 +1287,11 @@ footer { padding:45px 0 100px; border-top:1px solid var(--border); color:var(--m
   <div data-i18n="footer_hours">متاح 24 ساعة • فك وتركيب • تغليف • ونش</div>
 </div>
 </footer>
+
+<!-- ===== MOBILE CTA ===== -->
+<div class="mobile-cta" aria-label="إجراء سريع">
+  <a href="#calculator"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span>احسب سعر النقل واحجز</span></a>
+</div>
 
 <!-- ===== FLOATING WA ===== -->
 <a class="floating-wa" href="https://wa.me/201116870575?text=السلام%20عليكم،%20أريد%20طلب%20خدمة%20نقل%20أثاث" aria-label="WhatsApp">
@@ -1350,17 +1442,38 @@ function setLang(lang) {
 }
 setLang(currentLang);
 langToggle.addEventListener('click', () => setLang(currentLang === 'ar' ? 'en' : 'ar'));
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+function closeMobileMenu() {
+  if (!mobileMenu || !mobileMenuBtn) return;
+  mobileMenu.classList.remove('open');
+  mobileMenuBtn.setAttribute('aria-expanded','false');
+  mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+}
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    mobileMenuBtn.setAttribute('aria-expanded', String(open));
+    mobileMenuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+      : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+}
 
 // ============================================================
 // 2. CLOCK
 // ============================================================
 function updateClock() {
-  const now = new Date();
-  const cairoTime = new Date(now.getTime() + (2 * 60 * 60 * 1000));
-  const h = String(cairoTime.getUTCHours()).padStart(2,'0');
-  const m = String(cairoTime.getUTCMinutes()).padStart(2,'0');
-  const s = String(cairoTime.getUTCSeconds()).padStart(2,'0');
-  document.getElementById('clockDisplay').textContent = `⏰ ${h}:${m}:${s}`;
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Africa/Cairo',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+  document.getElementById('clockDisplay').textContent = `⏰ ${formatter.format(new Date())}`;
 }
 setInterval(updateClock, 1000);
 updateClock();
