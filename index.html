@@ -989,8 +989,12 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
 .booking-grid label{display:grid;gap:7px;font-weight:800;font-size:13px}.booking-grid .full{grid-column:1/-1}
 .booking-grid input,.booking-grid select,.booking-grid textarea{width:100%;padding:13px 14px;border-radius:13px;border:1px solid rgba(127,127,127,.25);background:transparent;color:inherit;font:inherit;outline:none}
 .booking-grid textarea{min-height:92px;resize:vertical}.booking-grid input:focus,.booking-grid select:focus,.booking-grid textarea:focus{border-color:var(--accent,#c7a76b);box-shadow:0 0 0 3px rgba(199,167,107,.16)}
-.booking-submit{grid-column:1/-1;border:0;border-radius:14px;padding:14px;background:#b9934d;color:#111;font-weight:950;cursor:pointer;font:inherit}
-@media(max-width:520px){.booking-grid{grid-template-columns:1fr}.booking-grid .full,.booking-submit{grid-column:auto}}
+.booking-submit{grid-column:1/-1;border:0;border-radius:14px;padding:14px;background:#b9934d;color:#111;font-weight:950;cursor:pointer;font:inherit;transition:.2s}
+.booking-submit:disabled{opacity:.65;cursor:wait}
+.booking-status{grid-column:1/-1;min-height:20px;font-size:13px;font-weight:800;text-align:center;color:var(--muted)}
+.booking-status.success{color:#49e18c}
+.booking-status.error{color:#ff767d}
+@media(max-width:520px){.booking-grid{grid-template-columns:1fr}.booking-grid .full,.booking-submit,.booking-status{grid-column:auto}}
 </style>
 <script type="application/ld+json">
 {
@@ -1753,53 +1757,89 @@ document.addEventListener('DOMContentLoaded', function() {
   updatePrice();
 });
 
-function sendCustomerOrder() {
+async function saveBooking(payload) {
+  try {
+    const response = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.message || 'تعذر حفظ الطلب');
+    return data;
+  } catch (error) {
+    console.warn('Booking API:', error);
+    return {ok:false, message:error.message || 'تعذر حفظ الطلب'};
+  }
+}
+
+function buildCalculatorBookingPayload() {
   const from = document.getElementById('from').value.trim();
   const to = document.getElementById('to').value.trim();
   const rooms = Number(document.getElementById('rooms').value) || 0;
   const acs = Number(document.getElementById('acs').value) || 0;
   const floorsDown = Number(document.getElementById('floorsDown').value) || 0;
   const floorsUp = Number(document.getElementById('floorsUp').value) || 0;
-
-  if (!from || !to) {
-    toast('اكتب منطقة الاستلام والتسليم أولاً');
-    return;
-  }
-
+  const calc = calculateTotal();
   const services = [];
   if (document.getElementById('crane').checked) services.push('ونش');
   if (document.getElementById('assembly').checked) services.push('فك وتركيب');
   if (document.getElementById('packing').checked) services.push('تغليف');
   if (document.getElementById('ac').checked) services.push('تكييف');
   if (document.getElementById('electric').checked) services.push('كهرباء');
-
   let discountText = 'بدون خصم';
   document.querySelectorAll('input[name="discount"]').forEach(r => {
     if (r.checked && Number(r.value) > 0) {
-      const names = { '25': 'عروسة 25%', '15': 'منقولات 15%', '10': 'عرض سريع 10%' };
+      const names = {'25':'عروسة 25%','15':'منقولات 15%','10':'عرض سريع 10%'};
       discountText = names[r.value] || `خصم ${r.value}%`;
     }
   });
-
-  const priceText = document.getElementById('estimatedPrice').textContent;
-
-  const msg =
-`السلام عليكم، أريد طلب نقل أثاث من شركة النسر الذهبي%0A%0A` +
-`منطقة الاستلام: ${encodeURIComponent(from)}%0A` +
-`منطقة التسليم: ${encodeURIComponent(to)}%0A` +
-`عدد الغرف: ${rooms}%0A` +
-`عدد أجهزة التكييف: ${acs}%0A` +
-`عدد الأدوار نازل: ${floorsDown}%0A` +
-`عدد الأدوار طالع: ${floorsUp}%0A` +
-`إجمالي الأدوار: ${floorsDown + floorsUp}%0A` +
-`الخدمات المطلوبة: ${encodeURIComponent(services.join('، ') || 'نقل فقط')}%0A` +
-`الخصم المختار: ${encodeURIComponent(discountText)}%0A` +
-`السعر التقديري: ${encodeURIComponent(priceText)}%0A%0A` +
-`برجاء التواصل معي لتأكيد السعر والموعد.`;
-
-  window.open('https://wa.me/201116870575?text=' + msg, '_blank');
+  return {
+    source: 'calculator',
+    from_location: from,
+    to_location: to,
+    rooms,
+    acs,
+    floors_down: floorsDown,
+    floors_up: floorsUp,
+    services,
+    discount: discountText,
+    estimated_price: calc.total,
+    notes: 'طلب من حاسبة الموقع'
+  };
 }
 
+async function sendCustomerOrder() {
+  const payload = buildCalculatorBookingPayload();
+  if (!payload.from_location || !payload.to_location) {
+    toast('اكتب منطقة الاستلام والتسليم أولاً');
+    return;
+  }
+
+  const priceText = document.getElementById('estimatedPrice').textContent;
+  const msg = [
+    'السلام عليكم، أريد طلب نقل أثاث من شركة النسر الذهبي',
+    '',
+    `منطقة الاستلام: ${payload.from_location}`,
+    `منطقة التسليم: ${payload.to_location}`,
+    `عدد الغرف: ${payload.rooms}`,
+    `عدد أجهزة التكييف: ${payload.acs}`,
+    `عدد الأدوار نازل: ${payload.floors_down}`,
+    `عدد الأدوار طالع: ${payload.floors_up}`,
+    `إجمالي الأدوار: ${payload.floors_down + payload.floors_up}`,
+    `الخدمات المطلوبة: ${payload.services.join('، ') || 'نقل فقط'}`,
+    `الخصم المختار: ${payload.discount}`,
+    `السعر التقديري: ${priceText}`,
+    '',
+    'برجاء التواصل معي لتأكيد السعر والموعد.'
+  ].join('\\n');
+
+  // Save first, but never block the customer from contacting the company if the API is unavailable.
+  const saved = await saveBooking(payload);
+  if (saved.ok) toast('تم تسجيل طلبك بنجاح، جاري فتح واتساب');
+  else toast('جاري فتح واتساب — وسيتم تسجيل الطلب عند توفر الاتصال');
+  window.open('https://wa.me/201116870575?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+}
 function toast(t) {
   const el = document.getElementById('toast');
   el.textContent = t;
@@ -1889,24 +1929,89 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
       <label>موعد مناسب<input name="date" type="date"></label>
       <label>الخدمة<select name="service"><option>نقل أثاث</option><option>نقل + فك وتركيب</option><option>نقل + تغليف</option><option>نقل + ونش</option></select></label>
       <label class="full">تفاصيل إضافية<textarea name="notes" placeholder="الدور، عدد الغرف، وجود ونش... "></textarea></label>
-      <button class="booking-submit" type="submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> إرسال الطلب على واتساب</button>
+      <button class="booking-submit" id="bookingSubmit" type="submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> إرسال الطلب على واتساب</button>
+      <div id="bookingStatus" class="booking-status" role="status" aria-live="polite"></div>
     </form>
   </div>
 </div>
 
 <script>
 (()=>{
- const open=document.getElementById('quickBook'), overlay=document.getElementById('bookingOverlay'), close=document.getElementById('bookingClose'), form=document.getElementById('bookingForm');
- if(!open||!overlay||!form)return;
- const show=e=>{e&&e.preventDefault();overlay.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>form.querySelector('input')?.focus(),50)};
- const hide=()=>{overlay.classList.remove('open');document.body.style.overflow=''};
- open.addEventListener('click',show);close?.addEventListener('click',hide);overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
- form.addEventListener('submit',e=>{
-   e.preventDefault(); const d=new FormData(form);
-   const msg=['السلام عليكم، أريد حجز نقل أثاث','الاسم: '+d.get('name'),'الهاتف: '+d.get('phone'),'من: '+d.get('from'),'إلى: '+d.get('to'),'الموعد: '+(d.get('date')||'لم يحدد'),'الخدمة: '+d.get('service'),'التفاصيل: '+(d.get('notes')||'لا توجد')].join('\n');
-   window.open('https://wa.me/201116870575?text='+encodeURIComponent(msg),'_blank','noopener');
- });
+  const open=document.getElementById('quickBook');
+  const overlay=document.getElementById('bookingOverlay');
+  const close=document.getElementById('bookingClose');
+  const form=document.getElementById('bookingForm');
+  const submit=document.getElementById('bookingSubmit');
+  const status=document.getElementById('bookingStatus');
+  if(!open||!overlay||!form)return;
+
+  const show=(e)=>{
+    e&&e.preventDefault();
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(()=>form.querySelector('input')?.focus(),50);
+  };
+  const hide=()=>{
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    if(status){status.textContent='';status.className='booking-status';}
+  };
+
+  open.addEventListener('click',show);
+  close?.addEventListener('click',hide);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape' && overlay.classList.contains('open'))hide()});
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const d=new FormData(form);
+    const phone=String(d.get('phone')||'').trim();
+    if(!/^01[0-25][0-9]{8}$/.test(phone)){
+      status.textContent='اكتب رقم موبايل مصري صحيح مثل 01012345678';
+      status.className='booking-status error';
+      return;
+    }
+
+    const payload={
+      source:'booking_form',
+      name:String(d.get('name')||'').trim(),
+      phone,
+      from_location:String(d.get('from')||'').trim(),
+      to_location:String(d.get('to')||'').trim(),
+      move_date:String(d.get('date')||''),
+      service:String(d.get('service')||'نقل أثاث'),
+      notes:String(d.get('notes')||'').trim()
+    };
+
+    submit.disabled=true;
+    status.textContent='جاري تسجيل الطلب...';
+    status.className='booking-status';
+
+    const saved=await saveBooking(payload);
+    if(saved.ok){
+      status.textContent='تم تسجيل الطلب ✓ جاري فتح واتساب';
+      status.className='booking-status success';
+    }else{
+      status.textContent='تعذر حفظ الطلب تلقائيًا، لكن سيتم فتح واتساب الآن.';
+      status.className='booking-status error';
+    }
+
+    const msg=[
+      'السلام عليكم، أريد حجز نقل أثاث من شركة النسر الذهبي',
+      `الاسم: ${payload.name}`,
+      `الهاتف: ${payload.phone}`,
+      `من: ${payload.from_location}`,
+      `إلى: ${payload.to_location}`,
+      `الموعد: ${payload.move_date||'لم يحدد'}`,
+      `الخدمة: ${payload.service}`,
+      `التفاصيل: ${payload.notes||'لا توجد'}`
+    ].join('\\n');
+
+    window.open('https://wa.me/201116870575?text='+encodeURIComponent(msg),'_blank','noopener');
+    setTimeout(()=>{submit.disabled=false;},900);
+  });
 })();
 </script>
+
 </body>
 </html>

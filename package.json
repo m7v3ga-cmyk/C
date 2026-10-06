@@ -1,0 +1,12 @@
+{
+  "name": "golden-eagle-moving-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "شركة النسر الذهبي - موقع نقل وتغليف الأثاث مع حجز وحفظ الطلبات في Supabase",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
