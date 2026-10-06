@@ -936,6 +936,18 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+/* ===== PREMIUM POLISH ===== */
+:root{--premium-shadow:0 24px 70px rgba(0,0,0,.32)}
+.hero{isolation:isolate}.hero:before{content:"";position:absolute;z-index:1;inset:0;background:radial-gradient(circle at 18% 35%,rgba(199,167,107,.18),transparent 28%),linear-gradient(180deg,rgba(5,8,16,.05),rgba(5,8,16,.4))}.hero-content{max-width:780px}.hero h1{text-shadow:0 12px 45px rgba(0,0,0,.28)}.hero p{font-size:clamp(16px,1.7vw,20px)}
+.hero-premium{position:absolute;z-index:3;left:6%;bottom:92px;width:min(330px,31vw);padding:20px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(10,14,26,.72);backdrop-filter:blur(18px);box-shadow:var(--premium-shadow)}.hero-premium .hp-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.hero-premium strong{font-size:18px}.hero-premium .live{font-size:11px;color:#d9c28e;font-weight:900;background:rgba(199,167,107,.1);padding:7px 10px;border-radius:999px}.hero-premium .hp-step{display:flex;gap:12px;align-items:flex-start;margin-top:13px}.hero-premium .hp-icon{width:32px;height:32px;flex:0 0 32px;border-radius:10px;display:grid;place-items:center;background:rgba(199,167,107,.13);color:#d7b873}.hero-premium small{display:block;color:var(--muted);margin-top:3px;line-height:1.5}
+.premium-strip{position:relative;z-index:4;margin-top:-36px}.premium-strip-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:var(--premium-shadow)}.premium-point{padding:20px 22px;background:rgba(18,23,38,.96);display:flex;align-items:center;gap:13px}.premium-point i{font-size:20px;color:var(--accent-2)}.premium-point strong{display:block;font-size:14px}.premium-point span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:steps}.process-card{position:relative;padding:25px 20px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));overflow:hidden}.process-card:before{counter-increment:steps;content:counter(steps);position:absolute;top:13px;left:16px;font-size:42px;font-weight:900;color:rgba(199,167,107,.08)}.process-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:rgba(199,167,107,.11);color:var(--accent-2);font-size:19px;margin-bottom:18px}.process-card h3{font-size:16px;margin-bottom:7px}.process-card p{font-size:12px;color:var(--muted);line-height:1.7}
+.assurance{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px}.assurance-card{padding:27px;border-radius:24px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(199,167,107,.09),rgba(255,255,255,.025));box-shadow:var(--premium-shadow)}.assurance-card h3{font-size:25px;margin:8px 0 10px}.assurance-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.assurance-list div{padding:11px 12px;border-radius:13px;background:rgba(255,255,255,.035);font-size:12px;color:#ddd6c4}.assurance-list i{color:var(--accent-2);margin-left:7px}.mini-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini-stat{padding:20px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid var(--border)}.mini-stat strong{display:block;font-size:28px;color:var(--accent-2)}.mini-stat span{font-size:11px;color:var(--muted)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq-item{border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.025);overflow:hidden}.faq-item summary{cursor:pointer;list-style:none;padding:19px 20px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';font-size:21px;color:var(--accent-2);transition:transform .2s}.faq-item[open] summary:after{transform:rotate(45deg)}.faq-answer{padding:0 20px 20px;color:var(--muted);font-size:12px;line-height:1.8}
+.cta-band{position:relative;overflow:hidden;padding:34px;border-radius:26px;background:linear-gradient(120deg,rgba(199,167,107,.16),rgba(255,255,255,.035));border:1px solid rgba(199,167,107,.24);display:flex;align-items:center;justify-content:space-between;gap:20px}.cta-band:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;left:-70px;top:-110px;background:rgba(199,167,107,.08)}.cta-band h3{font-size:24px;margin-bottom:7px}.cta-band p{color:var(--muted);font-size:12px}.cta-band .btn{position:relative;z-index:1;white-space:nowrap}
+@media(max-width:900px){.hero-premium{display:none}.premium-strip-inner{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}.assurance{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.cta-band{align-items:flex-start;flex-direction:column}.cta-band .btn{width:100%}}
+@media(max-width:560px){.premium-strip{margin-top:-22px}.premium-point{padding:15px}.process-grid{grid-template-columns:1fr}.assurance-list{grid-template-columns:1fr}.assurance-card{padding:21px}.cta-band{padding:24px 18px}.cta-band h3{font-size:20px}}
+
 </style>
 </head>
 
@@ -1002,8 +1014,22 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
       </div>
     </div>
   </div>
+  <div class="hero-premium" aria-label="خطوات الخدمة">
+    <div class="hp-top"><strong>رحلتك مع النسر الذهبي</strong><span class="live">متاح الآن</span></div>
+    <div class="hp-step"><span class="hp-icon"><i class="fa-solid fa-phone"></i></span><div><b>1 · تواصل</b><small>احجز موعدك وأرسل تفاصيل النقل.</small></div></div>
+    <div class="hp-step"><span class="hp-icon"><i class="fa-solid fa-boxes-stacked"></i></span><div><b>2 · تجهيز</b><small>تغليف وفك وتركيب حسب احتياجك.</small></div></div>
+    <div class="hp-step"><span class="hp-icon"><i class="fa-solid fa-house-circle-check"></i></span><div><b>3 · تسليم</b><small>نقل وترتيب حتى استقرار الأثاث.</small></div></div>
+  </div>
   <div class="scroll-note" data-i18n="scroll_note">اسحب لأسفل ↓</div>
 </header>
+
+<div class="premium-strip">
+  <div class="container"><div class="premium-strip-inner">
+    <div class="premium-point"><i class="fa-solid fa-shield-halved"></i><div><strong>أمان قبل كل شيء</strong><span>تجهيز ونقل باهتمام بكل قطعة</span></div></div>
+    <div class="premium-point"><i class="fa-solid fa-receipt"></i><div><strong>تسعير واضح</strong><span>احسب تقديرك قبل إرسال الطلب</span></div></div>
+    <div class="premium-point"><i class="fa-solid fa-headset"></i><div><strong>متابعة مستمرة</strong><span>مشرف يتابع تفاصيل عملية النقل</span></div></div>
+  </div></div>
+</div>
 
 <!-- ===== SERVICES ===== -->
 <section class="section" id="services">
@@ -1127,6 +1153,21 @@ button,.btn,.nav-btn,.contact-actions a,.fb-full-btn,.floating-wa,.mobile-cta a{
   </div>
 </div>
 </section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section" id="process"><div class="container">
+  <div class="section-head reveal"><div><div class="badge">كيف نشتغل؟</div><h2><span class="gold">من أول اتصال لحد التسليم</span></h2></div><p>خطوات بسيطة ومنظمة عشان تكون عملية النقل أوضح وأسهل من البداية للنهاية.</p></div>
+  <div class="process-grid">
+    <div class="process-card reveal"><div class="process-icon"><i class="fa-solid fa-phone-volume"></i></div><h3>تواصل وحجز</h3><p>أرسل مناطق النقل والتفاصيل المطلوبة، ونرتب معك الموعد المناسب.</p></div>
+    <div class="process-card reveal"><div class="process-icon"><i class="fa-solid fa-box-open"></i></div><h3>تجهيز الأثاث</h3><p>فك وتغليف وتجهيز القطع حسب نوع الأثاث والخدمات التي اخترتها.</p></div>
+    <div class="process-card reveal"><div class="process-icon"><i class="fa-solid fa-truck-fast"></i></div><h3>النقل الآمن</h3><p>تحميل ونقل الأثاث بعناية، مع الونش عند الحاجة للأدوار المناسبة.</p></div>
+    <div class="process-card reveal"><div class="process-icon"><i class="fa-solid fa-house-circle-check"></i></div><h3>التسليم والتركيب</h3><p>تنزيل الأثاث وترتيبه وتركيب القطع المطلوبة حتى تكتمل المهمة.</p></div>
+  </div>
+  <div class="assurance">
+    <div class="assurance-card reveal"><div class="badge">ثقة وتنظيم</div><h3>خدمة متكاملة بدل ما تجمع أكثر من فريق</h3><p>النقل، التغليف، الفك والتركيب، الونش، التكييف والكهرباء — تختار احتياجك من مكان واحد.</p><div class="assurance-list"><div><i class="fa-solid fa-check"></i> طلب مباشر على واتساب</div><div><i class="fa-solid fa-check"></i> حاسبة تقديرية فورية</div><div><i class="fa-solid fa-check"></i> خدمات إضافية حسب الطلب</div><div><i class="fa-solid fa-check"></i> متابعة حتى التسليم</div></div></div>
+    <div class="mini-stat-grid reveal"><div class="mini-stat"><strong>24/7</strong><span>متاحين للتواصل والحجز</span></div><div class="mini-stat"><strong>+10</strong><span>سنوات خبرة</span></div><div class="mini-stat"><strong>5+</strong><span>خدمات يمكن إضافتها</span></div><div class="mini-stat"><strong>1</strong><span>فريق لإدارة عملية النقل</span></div></div>
+  </div>
+</div></section>
 
 <!-- ===== OFFERS ===== -->
 <section class="section" id="offers">
